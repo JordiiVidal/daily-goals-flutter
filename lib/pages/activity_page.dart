@@ -1,4 +1,6 @@
-import '../data/state.dart';
+import 'package:daily_goals/providers/activity_provider.dart';
+import 'package:provider/provider.dart';
+
 import '../models/activity.dart';
 import 'package:flutter/material.dart';
 
@@ -10,7 +12,8 @@ class ActivityPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final String idActivity =
         ModalRoute.of(context).settings.arguments as String;
-    final Activity activity = activityById(idActivity);
+    final Activity activity =
+        Provider.of<ActivityProvider>(context).getById(idActivity);
     return Scaffold(
       appBar: AppBar(
         title: Text(activity.name),

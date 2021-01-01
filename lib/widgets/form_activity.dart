@@ -1,4 +1,6 @@
-import '../data/state.dart';
+import 'package:daily_goals/providers/activity_provider.dart';
+import 'package:provider/provider.dart';
+
 import '../models/activity.dart';
 import '../widgets/checkbox_exigency.dart';
 import 'package:flutter/material.dart';
@@ -33,7 +35,7 @@ class _FormActivityState extends State<FormActivity> {
       exigency: _exigencies[_indexSelected],
       name: _nameController.text,
     );
-    addActivity(newActivity);
+    Provider.of<ActivityProvider>(context, listen: false).addActivity(newActivity);
     Navigator.pop(context);
   }
 

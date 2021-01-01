@@ -9,7 +9,7 @@ class AddActivityPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('New Activity'),
+        title: const Text('New Activity'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
