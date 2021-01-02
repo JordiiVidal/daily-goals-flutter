@@ -11,10 +11,20 @@ class ActivityProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  List<Activity> getByListId(List<String> listId) {
+    List<Activity> list = [];
+    listId.forEach((idActivity) {
+      final activity =
+          _activitiesList.firstWhere((element) => element.id == idActivity);
+      list.add(activity);
+    });
+    return list;
+  }
+
   Activity getById(String id) =>
       _activitiesList.firstWhere((element) => element.id == id);
 
-  void removeById(String id) {
+  removeById(String id) {
     _activitiesList.removeWhere((element) => element.id == id);
     notifyListeners();
   }

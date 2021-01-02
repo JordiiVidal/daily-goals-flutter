@@ -31,7 +31,7 @@ class ActivityListPage extends StatelessWidget {
               itemCount: provider.activitiesList.length,
               itemBuilder: (_, i) => ActivityItemList(
                 activity: provider.activitiesList[i],
-                provider: provider,
+                onDismiss: provider.removeById,
               ),
             );
           },

@@ -1,4 +1,3 @@
-import 'package:daily_goals/providers/activity_provider.dart';
 
 import '../models/activity.dart';
 import '../pages/activity_page.dart';
@@ -6,8 +5,8 @@ import 'package:flutter/material.dart';
 
 class ActivityItemList extends StatelessWidget {
   final Activity activity;
-  final ActivityProvider provider;
-  const ActivityItemList({Key key, this.activity, this.provider})
+  final Function  onDismiss;
+  const ActivityItemList({Key key, this.activity, this.onDismiss})
       : super(key: key);
 
   @override
@@ -18,7 +17,7 @@ class ActivityItemList extends StatelessWidget {
         movementDuration: Duration(seconds: 2),
         direction: DismissDirection.endToStart,
         key: Key(activity.id),
-        onDismissed: (direction) => provider.removeById(activity.id),
+        onDismissed: (direction) => onDismiss(activity.id),
         background: Container(
           color: Colors.transparent,
           child: Padding(
