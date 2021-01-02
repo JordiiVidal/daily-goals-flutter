@@ -1,6 +1,7 @@
 import 'package:daily_goals/pages/add_goal_page.dart';
 import 'package:daily_goals/pages/calendar_page.dart';
-import 'package:daily_goals/pages/goals_page.dart';
+import 'package:daily_goals/pages/home_page.dart';
+import 'package:daily_goals/pages/menu_page.dart';
 import 'package:daily_goals/providers/activity_provider.dart';
 import 'package:daily_goals/providers/goals_provider.dart';
 import 'package:provider/provider.dart';
@@ -31,14 +32,15 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        initialRoute: GoalsPage.routeName,
+        initialRoute: HomePage.routeName,
         routes: {
-          GoalsPage.routeName: (_) => GoalsPage(),
+          HomePage.routeName: (_) => HomePage(),
           AddGoalPage.routeName: (_) => AddGoalPage(),
           ActivityListPage.routeName: (_) => ActivityListPage(),
           ActivityPage.routeName: (_) => ActivityPage(),
           AddActivityPage.routeName: (_) => AddActivityPage(),
           CalendarPage.routeName: (_) => CalendarPage(),
+          MenuPage.routeName: (_) => MenuPage(),
         },
       ),
     );
