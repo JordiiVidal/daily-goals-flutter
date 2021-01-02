@@ -1,17 +1,13 @@
-import 'package:daily_goals/models/activity.dart';
-import 'package:daily_goals/pages/activity_list_page.dart';
-import 'package:daily_goals/pages/calendar_page.dart';
-import 'package:daily_goals/pages/menu_page.dart';
-import 'package:daily_goals/widgets/activity_litem_list.dart';
-import 'package:daily_goals/widgets/app_bar_icon.dart';
-import 'package:daily_goals/widgets/bottom_sheet_calendar.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 import 'add_goal_page.dart';
 import '../providers/goals_provider.dart';
+import '../models/activity.dart';
+import '../pages/menu_page.dart';
+import '../widgets/activity_litem_list.dart';
+import '../widgets/bottom_sheet_calendar.dart';
 
 class HomePage extends StatelessWidget {
   static const routeName = '/home';
@@ -20,6 +16,13 @@ class HomePage extends StatelessWidget {
   void _showModalBottomSheetCalendar(BuildContext context) {
     showModalBottomSheet(
       context: context,
+      elevation: 3,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topRight: Radius.circular(30),
+          topLeft: Radius.circular(30),
+        ),
+      ),
       builder: (context) {
         return BottomSheetCalendar();
       },
@@ -29,13 +32,20 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xffF4F6FD),
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.transparent,
-        leading: AppBarIcon(
-          icon: FontAwesomeIcons.bars,
-          onPress: () =>
-              Navigator.pushNamed(context, MenuPage.routeName),
+        leading: InkWell(
+          onTap: () => Navigator.pushNamed(context, MenuPage.routeName),
+          child: Hero(
+            tag: 'icon-appbar-menu',
+            child: Icon(
+              Icons.menu,
+              color: Colors.black54,
+              size: 25,
+            ),
+          ),
         ),
         actions: [
           Center(
@@ -52,9 +62,13 @@ class HomePage extends StatelessWidget {
               },
             ),
           ),
-          AppBarIcon(
-            icon: FontAwesomeIcons.calendar,
-            onPress: () => _showModalBottomSheetCalendar(context),
+          IconButton(
+            icon: Icon(
+              Icons.calendar_today,
+              color: Colors.black54,
+              size: 25,
+            ),
+            onPressed: () => _showModalBottomSheetCalendar(context),
           ),
         ],
       ),
@@ -81,6 +95,9 @@ class HomePage extends StatelessWidget {
                 fontWeight: FontWeight.w400,
                 letterSpacing: 1.2,
               ),
+            ),
+            const SizedBox(
+              height: 25.0,
             ),
             Expanded(
               child: Consumer<GoalsProvider>(

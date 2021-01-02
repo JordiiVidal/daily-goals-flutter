@@ -1,6 +1,6 @@
-import 'package:daily_goals/widgets/app_bar_icon.dart';
+import 'package:daily_goals/config/data.dart';
+import 'package:daily_goals/widgets/circle_menu_item.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class MenuPage extends StatelessWidget {
   static const routeName = '/menu';
@@ -12,9 +12,16 @@ class MenuPage extends StatelessWidget {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.transparent,
-        leading: AppBarIcon(
-          icon: FontAwesomeIcons.times,
-          onPress: () => Navigator.pop(context),
+        leading: InkWell(
+          onTap: () => Navigator.pop(context),
+          child: Hero(
+            tag: 'icon-appbar-menu',
+            child: Icon(
+              Icons.close,
+              color: Colors.black54,
+              size: 25,
+            ),
+          ),
         ),
       ),
       body: Padding(
@@ -36,9 +43,9 @@ class MenuPage extends StatelessWidget {
             const Text(
               'Move around app',
               style: const TextStyle(
-                fontSize: 16,
+                fontSize: 20,
                 fontWeight: FontWeight.bold,
-                color: Colors.black54,
+                color: Colors.black45,
               ),
             ),
             const SizedBox(
@@ -48,12 +55,11 @@ class MenuPage extends StatelessWidget {
               child: GridView.builder(
                 gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
                   maxCrossAxisExtent: MediaQuery.of(context).size.width / 3,
-                  crossAxisSpacing: 10,
+                  mainAxisSpacing: 20,
+                  crossAxisSpacing: 0,
                 ),
                 itemCount: 6,
-                itemBuilder: (_, i) {
-                  return CircleAvatar();
-                },
+                itemBuilder: (_, i) => CircleMenuItem(menuItems[i]),
               ),
             )
           ],

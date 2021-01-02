@@ -6,6 +6,8 @@ String activityToJson(Activity data) => json.encode(data.toJson());
 
 enum Exigency { Low, Medium, High }
 
+String exigencyToString(Exigency exc) => exc.toString().split('.').last;
+
 class Activity {
   Activity({
     String id,

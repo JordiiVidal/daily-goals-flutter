@@ -28,15 +28,23 @@ class _BottomSheetCalendarState extends State<BottomSheetCalendar> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: TableCalendar(
-        calendarController: _calendarController,
-        initialSelectedDay: Provider.of<GoalsProvider>(context).selectDateTime,
-        onDaySelected: (da, l, ls) =>
-            Provider.of<GoalsProvider>(context, listen: false)
-                .changeSelectedDate(da),
-        availableCalendarFormats: {CalendarFormat.month: 'Month'},
-        headerStyle: HeaderStyle(
-          centerHeaderTitle: true,
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.only(
+            topRight: Radius.circular(20),
+          ),
+        ),
+        child: TableCalendar(
+          calendarController: _calendarController,
+          initialSelectedDay:
+              Provider.of<GoalsProvider>(context).selectDateTime,
+          onDaySelected: (da, l, ls) =>
+              Provider.of<GoalsProvider>(context, listen: false)
+                  .changeSelectedDate(da),
+          availableCalendarFormats: {CalendarFormat.month: 'Month'},
+          headerStyle: HeaderStyle(
+            centerHeaderTitle: true,
+          ),
         ),
       ),
     );

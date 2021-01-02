@@ -8,12 +8,11 @@ class AddActivityPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('New Activity'),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: FormActivity(),
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: FormActivity(),
+        ),
       ),
     );
   }

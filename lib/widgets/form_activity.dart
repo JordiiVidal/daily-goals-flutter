@@ -1,8 +1,9 @@
+import 'package:chips_choice/chips_choice.dart';
 import 'package:daily_goals/providers/activity_provider.dart';
+import 'package:daily_goals/widgets/back_button.dart';
 import 'package:provider/provider.dart';
 
 import '../models/activity.dart';
-import '../widgets/checkbox_exigency.dart';
 import 'package:flutter/material.dart';
 
 class FormActivity extends StatefulWidget {
@@ -35,36 +36,96 @@ class _FormActivityState extends State<FormActivity> {
       exigency: _exigencies[_indexSelected],
       name: _nameController.text,
     );
-    Provider.of<ActivityProvider>(context, listen: false).addActivity(newActivity);
+    Provider.of<ActivityProvider>(context, listen: false)
+        .addActivity(newActivity);
     Navigator.pop(context);
   }
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Stack(
       children: [
-        Text('Name Activity'),
-        TextField(controller: _nameController),
-        Text('Exigency'),
-        CheckBoxExigency(
-          exigency: _exigencies[0],
-          indexSelected: _indexSelected,
-          onChange: onChangeCheckBox,
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 25),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text(
+                'Create',
+                style: TextStyle(
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(
+                height: 40.0,
+              ),
+              TextField(
+                controller: _nameController,
+                style: TextStyle(
+                  fontSize: 21,
+                ),
+                cursorWidth: 2,
+                decoration: InputDecoration(
+                  hintText: ' Enter a new activity',
+                  border: InputBorder.none,
+                ),
+              ),
+              const SizedBox(
+                height: 40,
+              ),
+              ChipsChoice<int>.single(
+                padding: const EdgeInsets.all(0),
+                value: _indexSelected,
+                choiceStyle: C2ChoiceStyle(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 10.0,
+                    vertical: 8.0,
+                  ),
+                  borderColor: Colors.grey[300],
+                  elevation: 2,
+                ),
+                choiceActiveStyle: C2ChoiceStyle(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 10.0,
+                    vertical: 8.0,
+                  ),
+                  borderColor: Colors.blue,
+                  elevation: 0,
+                ),
+                onChanged: (val) => setState(() => _indexSelected = val),
+                choiceItems: C2Choice.listFrom<int, Exigency>(
+                  source: _exigencies,
+                  value: (i, v) => v.index,
+                  label: (i, v) => exigencyToString(v),
+                ),
+              ),
+            ],
+          ),
         ),
-        CheckBoxExigency(
-          exigency: _exigencies[1],
-          indexSelected: _indexSelected,
-          onChange: onChangeCheckBox,
-        ),
-        CheckBoxExigency(
-          exigency: _exigencies[2],
-          indexSelected: _indexSelected,
-          onChange: onChangeCheckBox,
-        ),
-        MaterialButton(
-          color: Colors.grey[200],
-          onPressed: saveForm,
-          child: Text('Create Activity'),
+        TopBackButton(),
+        Positioned(
+          bottom: 30,
+          right: 30,
+          child: MaterialButton(
+            padding:
+                const EdgeInsets.symmetric(vertical: 15.0, horizontal: 25.0),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(30),
+            ),
+            color: Colors.blue,
+            textColor: Colors.white,
+            onPressed: saveForm,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                const Text('New activity'),
+                const SizedBox(width: 20),
+                const Icon(Icons.keyboard_arrow_up),
+              ],
+            ),
+          ),
         )
       ],
     );
