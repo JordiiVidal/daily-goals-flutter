@@ -15,6 +15,13 @@ class ActivityListPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Activities'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.add),
+            onPressed: () =>
+                Navigator.pushNamed(context, AddActivityPage.routeName),
+          )
+        ],
       ),
       body: Container(
         padding: const EdgeInsets.all(16.0),
@@ -29,11 +36,6 @@ class ActivityListPage extends StatelessWidget {
             );
           },
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: () =>
-            Navigator.pushNamed(context, AddActivityPage.routeName),
       ),
     );
   }

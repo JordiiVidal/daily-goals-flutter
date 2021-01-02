@@ -17,6 +17,7 @@ class MyApp extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (_) => ActivityProvider(),
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Daily Goals',
         theme: ThemeData(
           primarySwatch: Colors.blue,
