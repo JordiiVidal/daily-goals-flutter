@@ -1,19 +1,18 @@
-import 'package:chips_choice/chips_choice.dart';
-import 'package:daily_goals/providers/activity_provider.dart';
-import 'package:daily_goals/widgets/back_button.dart';
+import 'package:daily_goals/domain/models/task_model.dart';
+import 'package:daily_goals/presentation/providers/task_provider.dart';
+import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../models/activity.dart';
-import 'package:flutter/material.dart';
+import 'package:chips_choice/chips_choice.dart';
+import 'package:daily_goals/widgets/back_button.dart';
 
-class FormActivity extends StatefulWidget {
-  FormActivity({Key key}) : super(key: key);
 
+class FormCreateTask extends StatefulWidget {
   @override
-  _FormActivityState createState() => _FormActivityState();
+  _FormCreateTaskState createState() => _FormCreateTaskState();
 }
 
-class _FormActivityState extends State<FormActivity> {
+class _FormCreateTaskState extends State<FormCreateTask> {
   final _nameController = TextEditingController();
   static const List<Exigency> _exigencies = [
     Exigency.Low,
@@ -32,12 +31,11 @@ class _FormActivityState extends State<FormActivity> {
       setState(() => _indexSelected = selected);
 
   void saveForm() {
-    final newActivity = Activity(
+    final task = TaskModel(
       exigency: _exigencies[_indexSelected],
       name: _nameController.text,
     );
-    Provider.of<ActivityProvider>(context, listen: false)
-        .addActivity(newActivity);
+    context.read<TaskProvider>().createTask(task);
     Navigator.pop(context);
   }
 

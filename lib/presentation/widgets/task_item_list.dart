@@ -1,12 +1,10 @@
-import '../models/activity.dart';
-import '../pages/activity_page.dart';
 import 'package:flutter/material.dart';
+import '../../domain/models/task_model.dart';
 
-class ActivityItemList extends StatelessWidget {
-  final Activity activity;
+class TaskItemList extends StatelessWidget {
+  final TaskModel task;
   final Function onDismiss;
-  const ActivityItemList({Key key, this.activity, this.onDismiss})
-      : super(key: key);
+  const TaskItemList({this.task, this.onDismiss});
 
   @override
   Widget build(BuildContext context) {
@@ -15,8 +13,8 @@ class ActivityItemList extends StatelessWidget {
       child: Dismissible(
         movementDuration: Duration(seconds: 2),
         direction: DismissDirection.endToStart,
-        key: Key(activity.id),
-        onDismissed: (direction) => onDismiss(activity.id),
+        key: Key(task.id),
+        onDismissed: (direction) => onDismiss(task.id),
         background: Container(
           color: Colors.transparent,
           child: Padding(
@@ -24,11 +22,11 @@ class ActivityItemList extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Text('DELETE'),
-                const SizedBox(width: 20),
-                Icon(
-                  Icons.delete,
-                  color: Colors.black54,
+                OutlineButton(
+                  onPressed: () => null,
+                  child: Text(
+                    'Delete',
+                  ),
                 ),
               ],
             ),
@@ -40,13 +38,9 @@ class ActivityItemList extends StatelessWidget {
             color: Colors.white,
           ),
           child: ListTile(
-            onTap: () => Navigator.pushNamed(
-              context,
-              ActivityPage.routeName,
-              arguments: activity.id,
-            ),
-            title: Text(activity.name),
-            trailing: Text('${activity.exigency.index}'),
+            onTap: () => null,
+            title: Text(task.name),
+            trailing: Text('${task.exigency.index}'),
           ),
         ),
       ),
