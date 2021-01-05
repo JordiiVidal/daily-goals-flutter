@@ -90,22 +90,12 @@ class HomeScreen extends StatelessWidget {
               height: 25.0,
             ),
             Expanded(
-              child: goalProvider.goalsDate.isNotEmpty
-                  ? ListView.builder(
-                      itemCount: goalProvider.goalsDate.length,
-                      itemBuilder: (_, i) =>
-                          GoalItemList(goal: goalProvider.goalsDate[i]),
-                    )
-                  : const Center(
-                      child: Text(
-                        'Empty',
-                        style: TextStyle(
-                          fontSize: 30,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.grey,
-                        ),
-                      ),
-                    ),
+              child: ListView.builder(
+                itemCount: goalProvider.goalsDate.length,
+                itemBuilder: (_, i) => GoalItemList(
+                  goal: goalProvider.goalsDate[i],
+                ),
+              ),
             ),
           ],
         ),

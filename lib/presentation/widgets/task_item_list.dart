@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 
 import 'package:provider/provider.dart';
 
@@ -26,28 +27,9 @@ class TaskItemList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 4.0),
-      child: Dismissible(
-        movementDuration: Duration(seconds: 2),
-        direction: DismissDirection.endToStart,
-        key: Key(task.id),
-        onDismissed: (direction) => onDismiss(task.id),
-        background: Container(
-          color: Colors.transparent,
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                OutlineButton(
-                  onPressed: () => null,
-                  child: Text(
-                    'Delete',
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
+      child: Slidable(
+        actionPane: SlidableDrawerActionPane(),
+        actionExtentRatio: 0.25,
         child: Card(
           margin: const EdgeInsets.all(0),
           child: Container(
@@ -62,6 +44,14 @@ class TaskItemList extends StatelessWidget {
             ),
           ),
         ),
+        secondaryActions: <Widget>[
+          IconSlideAction(
+            caption: 'Delete',
+            color: Colors.redAccent,
+            icon: Icons.delete,
+            onTap: () => null,
+          ),
+        ],
       ),
     );
   }

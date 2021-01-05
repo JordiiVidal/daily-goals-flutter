@@ -11,10 +11,13 @@ class GoalRepositoryImpl extends GoalRepositoryInterface {
   }
 
   @override
-  Future<int> deleteGoal(String id) async =>
+  Future<int> deleteGoalById(String id) async =>
       await DBLocalStorage.db.deleteGoalById(id);
 
   @override
   Future<List<GoalModel>> getGoalsByDate(String date) async =>
       await DBLocalStorage.db.getGoalsByDate(date);
+
+  @override
+  Future<int> updateStatus(String id, int status) async => await DBLocalStorage.db.updateStatus(id,status);
 }

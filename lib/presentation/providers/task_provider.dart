@@ -24,7 +24,6 @@ class TaskProvider extends ChangeNotifier {
     _isLoading = true;
     await taskRepositoryInterface.createTask(task);
     await loadTasks();
-    notifyListeners();
   }
 
   Future<TaskModel> getById(String id) async =>

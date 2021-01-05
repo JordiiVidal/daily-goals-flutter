@@ -5,5 +5,4 @@ abstract class TaskRepositoryInterface {
   Future<TaskModel> getTaskById(String id);
   Future<int> deleteTaskById(String id);
   Future<List<TaskModel>> getAllTasks();
-  Future<int> delteAllTasks();
 }

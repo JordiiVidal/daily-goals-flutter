@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:uuid/uuid.dart';
 
-final uuid = Uuid();
-
 enum Exigency { Low, Medium, High }
 
 class TaskModel {
@@ -11,7 +9,7 @@ class TaskModel {
     @required this.name,
     this.description,
     Exigency exigency,
-  })  : this.id = id ?? uuid.v4(),
+  })  : this.id = id ?? Uuid().v4(),
         this.exigency = exigency ?? Exigency.Medium;
 
   final String id;

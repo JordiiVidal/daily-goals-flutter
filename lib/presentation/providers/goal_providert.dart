@@ -19,24 +19,33 @@ class GoalProvider extends ChangeNotifier {
   String get selectedDateText => _selectedDate;
   bool get isLoading => _isLoading;
 
-  void changeSelectedDate(DateTime selected) async {
+  Future<void> changeSelectedDate(DateTime selected) async {
     _isLoading = true;
     _selectedDate = DateFormat("yyyy-MM-dd").format(selected);
     await loadGoals();
-    notifyListeners();
   }
 
-  Future loadGoals() async {
+  Future<void> loadGoals() async {
     final result = await goalRepositoryInterface.getGoalsByDate(_selectedDate);
     _goalsDate = result;
     _isLoading = false;
     notifyListeners();
   }
 
-  Future createGoal(GoalModel goal) async {
+  Future<void> createGoal(GoalModel goal) async {
     _isLoading = true;
     await goalRepositoryInterface.createGoal(goal);
     await loadGoals();
-    notifyListeners();
+  }
+
+  void deleteGoalById(String id) async {
+    _isLoading = true;
+    await goalRepositoryInterface.deleteGoalById(id);
+    await loadGoals();
+  }
+
+  void updateStatus(String id, Status status) async {
+    await goalRepositoryInterface.updateStatus(id, status.index);
+    await loadGoals();
   }
 }

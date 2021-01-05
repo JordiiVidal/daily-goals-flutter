@@ -78,12 +78,6 @@ class DBLocalStorage {
     return result;
   }
 
-  Future<int> delteAllTasks() async {
-    final db = await database;
-    final result = await db.delete('Task');
-    return result;
-  }
-
   Future<List<TaskModel>> getAllTasks() async {
     final db = await database;
     final result = await db.query('Task');
@@ -112,6 +106,7 @@ class DBLocalStorage {
       where: 'id = ?',
       whereArgs: [id],
     );
+
     return result.isNotEmpty ? GoalModel.fromJson(result.first) : null;
   }
 
@@ -132,19 +127,14 @@ class DBLocalStorage {
       where: 'id = ?',
       whereArgs: [id],
     );
-    return result;
-  }
 
-  Future<int> delteAllGoals() async {
-    final db = await database;
-    final result = await db.delete('Goal');
     return result;
   }
 
   Future<List<GoalModel>> getGoalsByDate(String date) async {
     final db = await database;
     final result = await db.rawQuery(
-      'SELECT * FROM Goal JOIN Task ON Task.id = Goal.id_task WHERE Goal.date = ?',
+      'SELECT Goal.id as id, Goal.date as date, Goal.status as status, Goal.id_task as id_task, Task.name as name_task, Task.description as description_task, Task.exigency as exigency_task  FROM Goal JOIN Task ON Task.id = Goal.id_task WHERE Goal.date = ?',
       [date],
     );
     print(result);
@@ -163,5 +153,17 @@ class DBLocalStorage {
         : [];
 
     return list;
+  }
+
+  Future<int> updateStatus(String id, int status) async {
+    final db = await database;
+    final result = await db.update(
+      'Goal',
+      {'status': status},
+      where: 'id = ?',
+      whereArgs: [id],
+    );
+
+    return result;
   }
 }
