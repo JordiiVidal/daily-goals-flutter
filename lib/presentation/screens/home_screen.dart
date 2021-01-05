@@ -1,7 +1,8 @@
 import 'package:daily_goals/presentation/providers/goal_providert.dart';
+import 'package:daily_goals/presentation/routes/app_routes.dart';
 import 'package:daily_goals/presentation/widgets/bottom_sheet_calendar.dart';
+import 'package:daily_goals/presentation/widgets/goal_item_list.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -43,7 +44,7 @@ class HomeScreen extends StatelessWidget {
         actions: [
           Center(
             child: Text(
-              DateFormat.yMMMd().format(goalProvider.selectedDate),
+              goalProvider.selectedDateText,
               style: const TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
@@ -55,7 +56,7 @@ class HomeScreen extends StatelessWidget {
             icon: Icon(
               Icons.calendar_today,
               color: Colors.black54,
-              size: 25,
+              size: 22,
             ),
             onPressed: () => _showModalBottomSheetCalendar(context),
           ),
@@ -79,7 +80,7 @@ class HomeScreen extends StatelessWidget {
             ),
             const Text(
               ' TASKS',
-              style: const TextStyle(
+              style: TextStyle(
                 color: Colors.black54,
                 fontWeight: FontWeight.w400,
                 letterSpacing: 1.2,
@@ -92,11 +93,8 @@ class HomeScreen extends StatelessWidget {
               child: goalProvider.goalsDate.isNotEmpty
                   ? ListView.builder(
                       itemCount: goalProvider.goalsDate.length,
-                      itemBuilder: (_, i) {
-                        return Container(
-                          child: Text('hola'),
-                        );
-                      },
+                      itemBuilder: (_, i) =>
+                          GoalItemList(goal: goalProvider.goalsDate[i]),
                     )
                   : const Center(
                       child: Text(
@@ -114,7 +112,7 @@ class HomeScreen extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         elevation: 6,
-        onPressed: () => null,
+        onPressed: () => Navigator.pushNamed(context, AppRoutes.tasks),
         child: const Icon(
           Icons.add,
           size: 30,

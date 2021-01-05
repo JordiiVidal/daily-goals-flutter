@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:uuid/uuid.dart';
 
-
 final uuid = Uuid();
 
 enum Exigency { Low, Medium, High }
@@ -20,11 +19,13 @@ class TaskModel {
   String description;
   Exigency exigency;
 
-  factory TaskModel.fromJson(Map<String, dynamic> json) => TaskModel(
-        id: json["id"],
-        name: json["name"],
-        exigency: Exigency.values[int.parse(json["exigency"])],
-      );
+  factory TaskModel.fromJson(Map<String, dynamic> json) {
+    return TaskModel(
+      id: json["id"],
+      name: json["name"],
+      exigency: Exigency.values[json["exigency"]],
+    );
+  }
 
   Map<String, dynamic> toJson() => {
         "id": id,

@@ -8,23 +8,22 @@ class TaskProvider extends ChangeNotifier {
   TaskProvider(this.taskRepositoryInterface);
 
   List<TaskModel> _tasksList = <TaskModel>[];
+  bool _isLoading = true;
 
   List<TaskModel> get tasksList => _tasksList;
+  bool get isLoading => _isLoading;
 
-  Future _loadTasks() async {
+  Future loadTasks() async {
     final result = await taskRepositoryInterface.getAllTasks();
     _tasksList = result;
+    _isLoading = false;
     notifyListeners();
-    print(_tasksList);
-  }
-
-  void getAllTasks() async {
-    await _loadTasks();
   }
 
   void createTask(TaskModel task) async {
+    _isLoading = true;
     await taskRepositoryInterface.createTask(task);
-    _tasksList.add(task);
+    await loadTasks();
     notifyListeners();
   }
 
@@ -32,12 +31,9 @@ class TaskProvider extends ChangeNotifier {
       taskRepositoryInterface.getTaskById(id);
 
   void deleteById(String id) async {
+    _isLoading = true;
     await taskRepositoryInterface.deleteTaskById(id);
-    _loadTasks();
+    await loadTasks();
   }
 
-  void deleteAllTasks() async {
-    await taskRepositoryInterface.delteAllTasks();
-    _loadTasks();
-  }
 }

@@ -9,34 +9,34 @@ class GoalProvider extends ChangeNotifier {
   GoalProvider(this.goalRepositoryInterface);
 
   List<GoalModel> _goalsDate = <GoalModel>[];
-  DateTime _selectedDate = DateTime.now();
+  String _selectedDate = DateFormat("yyyy-MM-dd").format(DateTime.now());
+  bool _isLoading = true;
 
   ///TODO VALUE NOTIFIER
 
   List<GoalModel> get goalsDate => _goalsDate;
-  DateTime get selectedDate => _selectedDate;
+  DateTime get selectedDate => DateTime.parse(_selectedDate);
+  String get selectedDateText => _selectedDate;
+  bool get isLoading => _isLoading;
 
   void changeSelectedDate(DateTime selected) async {
-    _selectedDate = selected;
-    await _loadGoals();
+    _isLoading = true;
+    _selectedDate = DateFormat("yyyy-MM-dd").format(selected);
+    await loadGoals();
     notifyListeners();
   }
 
-  Future _loadGoals() async {
-    final result = await goalRepositoryInterface.getGoalsByDate(
-      DateFormat('Y-m-d').format(_selectedDate),
-    );
+  Future loadGoals() async {
+    final result = await goalRepositoryInterface.getGoalsByDate(_selectedDate);
     _goalsDate = result;
+    _isLoading = false;
     notifyListeners();
   }
 
-  void getGoalsByDate() async {
-    await _loadGoals();
-  }
-
-  void createGoal(GoalModel goal) async {
+  Future createGoal(GoalModel goal) async {
+    _isLoading = true;
     await goalRepositoryInterface.createGoal(goal);
-    _goalsDate.add(goal);
+    await loadGoals();
     notifyListeners();
   }
 }

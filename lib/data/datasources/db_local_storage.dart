@@ -80,9 +80,7 @@ class DBLocalStorage {
 
   Future<int> delteAllTasks() async {
     final db = await database;
-    final result = await db.delete(
-      'Task',
-    );
+    final result = await db.delete('Task');
     return result;
   }
 
@@ -104,7 +102,6 @@ class DBLocalStorage {
       'Goal',
       goal.toJson(),
     );
-    print(result);
     return result;
   }
 
@@ -116,6 +113,16 @@ class DBLocalStorage {
       whereArgs: [id],
     );
     return result.isNotEmpty ? GoalModel.fromJson(result.first) : null;
+  }
+
+  Future<bool> existGoalWhere(String where, List<String> whereArgs) async {
+    final db = await database;
+    final result = await db.query(
+      'Goal',
+      where: where,
+      whereArgs: whereArgs,
+    );
+    return result.isNotEmpty ? true : false;
   }
 
   Future<int> deleteGoalById(String id) async {
@@ -130,16 +137,17 @@ class DBLocalStorage {
 
   Future<int> delteAllGoals() async {
     final db = await database;
-    final result = await db.delete(
-      'Goal',
-    );
+    final result = await db.delete('Goal');
     return result;
   }
 
   Future<List<GoalModel>> getGoalsByDate(String date) async {
     final db = await database;
-    final result =
-        await db.query('Goal', where: 'date = ? ', whereArgs: [date]);
+    final result = await db.rawQuery(
+      'SELECT * FROM Goal JOIN Task ON Task.id = Goal.id_task WHERE Goal.date = ?',
+      [date],
+    );
+    print(result);
     List<GoalModel> list = result.isNotEmpty
         ? result.map((goal) => GoalModel.fromJson(goal)).toList()
         : [];

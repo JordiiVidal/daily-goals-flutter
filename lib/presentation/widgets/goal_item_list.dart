@@ -5,22 +5,11 @@ import 'package:provider/provider.dart';
 import 'package:daily_goals/domain/models/goal_model.dart';
 import 'package:daily_goals/presentation/providers/goal_providert.dart';
 
-import '../../domain/models/task_model.dart';
-
-class TaskItemList extends StatelessWidget {
-  final TaskModel task;
+class GoalItemList extends StatelessWidget {
+  final GoalModel goal;
   final Function onDismiss;
-  const TaskItemList({this.task, this.onDismiss});
 
-  void createGoal(BuildContext context) async {
-    final goal = GoalModel(
-      idTask: task.id,
-      date: context.read<GoalProvider>().selectedDateText,
-    );
-    await context.read<GoalProvider>().createGoal(goal);
-
-    ///Navigator.pop(context);
-  }
+  const GoalItemList({Key key, this.goal, this.onDismiss}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,8 +18,8 @@ class TaskItemList extends StatelessWidget {
       child: Dismissible(
         movementDuration: Duration(seconds: 2),
         direction: DismissDirection.endToStart,
-        key: Key(task.id),
-        onDismissed: (direction) => onDismiss(task.id),
+        key: Key(goal.id),
+        onDismissed: (direction) => onDismiss(goal.id),
         background: Container(
           color: Colors.transparent,
           child: Padding(
@@ -56,9 +45,10 @@ class TaskItemList extends StatelessWidget {
               color: Colors.white,
             ),
             child: ListTile(
-              onTap: () => createGoal(context),
-              title: Text(task.name),
-              trailing: Text('${task.exigency.index}'),
+              onTap: () => null,
+              leading:  Text('${goal.status.index}'),
+              title: Text(goal.task.name),
+              trailing: Text('${goal.task.exigency.index}'),
             ),
           ),
         ),

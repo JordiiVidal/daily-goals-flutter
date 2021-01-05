@@ -7,25 +7,24 @@ import 'package:daily_goals/presentation/providers/task_provider.dart';
 import '../widgets/task_item_list.dart';
 
 class TaskListScreen extends StatelessWidget {
-  
+  const TaskListScreen();
   @override
   Widget build(BuildContext context) {
     final taskProvider = context.watch<TaskProvider>();
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Tasks'),
         actions: [
           IconButton(
-            icon: const Icon(Icons.add),
-            onPressed: () => Navigator.pushNamed(context, AppRoutes.createTask),
+            icon: const Icon(Icons.search),
+            onPressed: () => null,
           ),
           IconButton(
-            icon: const Icon(Icons.delete),
-            onPressed: () => context.read<TaskProvider>().deleteAllTasks(),
-          )
+            icon: Icon(Icons.add),
+            onPressed: () => Navigator.pushNamed(context, AppRoutes.createTask),
+          ),
         ],
       ),
-      body: Container(
+      body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: ListView.builder(
           itemCount: taskProvider.tasksList.length,

@@ -34,12 +34,12 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider<GoalProvider>(
           create: (ctx) => GoalProvider(
             ctx.read<GoalRepositoryInterface>(),
-          ),
+          )..loadGoals(),
         ),
         ChangeNotifierProvider<TaskProvider>(
           create: (ctx) => TaskProvider(
             ctx.read<TaskRepositoryInterface>(),
-          )..getAllTasks(),
+          )..loadTasks(),
         ),
       ],
       child: MaterialApp(

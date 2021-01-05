@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:chips_choice/chips_choice.dart';
-import 'package:daily_goals/widgets/back_button.dart';
+import 'package:daily_goals/presentation/widgets/back_button.dart';
 
 
 class FormCreateTask extends StatefulWidget {
@@ -66,7 +66,7 @@ class _FormCreateTaskState extends State<FormCreateTask> {
                 ),
                 cursorWidth: 2,
                 decoration: InputDecoration(
-                  hintText: ' Enter a new activity',
+                  hintText: ' Enter a new task',
                   border: InputBorder.none,
                 ),
               ),
@@ -118,7 +118,7 @@ class _FormCreateTaskState extends State<FormCreateTask> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                const Text('New activity'),
+                const Text('New Task'),
                 const SizedBox(width: 20),
                 const Icon(Icons.keyboard_arrow_up),
               ],
