@@ -1,17 +1,15 @@
-import '../widgets/form_activity.dart';
 import 'package:flutter/material.dart';
 
-class AddActivityPage extends StatelessWidget {
-  static const routeName = '/add-activity';
-  const AddActivityPage({Key key}) : super(key: key);
+import 'package:daily_goals/presentation/widgets/form_activity.dart';
 
+class CreateTaskScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
-          child: FormActivity(),
+          child: FormCreateTask(),
         ),
       ),
     );

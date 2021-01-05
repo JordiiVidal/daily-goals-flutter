@@ -1,18 +1,11 @@
+import 'package:daily_goals/presentation/providers/goal_providert.dart';
+import 'package:daily_goals/presentation/routes/app_routes.dart';
+import 'package:daily_goals/presentation/widgets/bottom_sheet_calendar.dart';
+import 'package:daily_goals/presentation/widgets/goal_item_list.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
-import 'add_goal_page.dart';
-import '../providers/goals_provider.dart';
-import '../models/activity.dart';
-import '../pages/menu_page.dart';
-import '../widgets/activity_litem_list.dart';
-import '../widgets/bottom_sheet_calendar.dart';
-
-class HomePage extends StatelessWidget {
-  static const routeName = '/home';
-  const HomePage({Key key}) : super(key: key);
-
+class HomeScreen extends StatelessWidget {
   void _showModalBottomSheetCalendar(BuildContext context) {
     showModalBottomSheet(
       context: context,
@@ -31,13 +24,14 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final goalProvider = context.watch<GoalProvider>();
     return Scaffold(
       backgroundColor: Color(0xffF4F6FD),
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.transparent,
         leading: InkWell(
-          onTap: () => Navigator.pushNamed(context, MenuPage.routeName),
+          onTap: () => null,
           child: Hero(
             tag: 'icon-appbar-menu',
             child: Icon(
@@ -49,24 +43,20 @@ class HomePage extends StatelessWidget {
         ),
         actions: [
           Center(
-            child: Consumer<GoalsProvider>(
-              builder: (_, provider, __) {
-                return Text(
-                  DateFormat.yMMMd().format(provider.selectDateTime),
-                  style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black54,
-                  ),
-                );
-              },
+            child: Text(
+              goalProvider.selectedDateText,
+              style: const TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: Colors.black54,
+              ),
             ),
           ),
           IconButton(
             icon: Icon(
               Icons.calendar_today,
               color: Colors.black54,
-              size: 25,
+              size: 22,
             ),
             onPressed: () => _showModalBottomSheetCalendar(context),
           ),
@@ -90,7 +80,7 @@ class HomePage extends StatelessWidget {
             ),
             const Text(
               ' TASKS',
-              style: const TextStyle(
+              style: TextStyle(
                 color: Colors.black54,
                 fontWeight: FontWeight.w400,
                 letterSpacing: 1.2,
@@ -100,31 +90,11 @@ class HomePage extends StatelessWidget {
               height: 25.0,
             ),
             Expanded(
-              child: Consumer<GoalsProvider>(
-                child: const Center(
-                  child: const Text(
-                    'Empty',
-                    style: const TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.grey,
-                    ),
-                  ),
+              child: ListView.builder(
+                itemCount: goalProvider.goalsDate.length,
+                itemBuilder: (_, i) => GoalItemList(
+                  goal: goalProvider.goalsDate[i],
                 ),
-                builder: (_, provider, child) {
-                  final List<Activity> list = provider.getGoalsByDate();
-                  return (list.length == 0)
-                      ? child
-                      : ListView.builder(
-                          itemCount: list.length,
-                          itemBuilder: (_, i) {
-                            return ActivityItemList(
-                              activity: list[i],
-                              onDismiss: provider.removeChecked,
-                            );
-                          },
-                        );
-                },
               ),
             ),
           ],
@@ -132,7 +102,7 @@ class HomePage extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         elevation: 6,
-        onPressed: () => Navigator.pushNamed(context, AddGoalPage.routeName),
+        onPressed: () => Navigator.pushNamed(context, AppRoutes.tasks),
         child: const Icon(
           Icons.add,
           size: 30,

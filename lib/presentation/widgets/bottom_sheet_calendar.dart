@@ -1,17 +1,16 @@
-import 'package:daily_goals/providers/goals_provider.dart';
+import 'package:daily_goals/presentation/providers/goal_providert.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:table_calendar/table_calendar.dart';
 
-class CalendarPage extends StatefulWidget {
-  static const routeName = '/calendar';
-  const CalendarPage({Key key}) : super(key: key);
+class BottomSheetCalendar extends StatefulWidget {
+  const BottomSheetCalendar();
 
   @override
-  _CalendarPageState createState() => _CalendarPageState();
+  _BottomSheetCalendarState createState() => _BottomSheetCalendarState();
 }
 
-class _CalendarPageState extends State<CalendarPage> {
+class _BottomSheetCalendarState extends State<BottomSheetCalendar> {
   var _calendarController;
 
   @override
@@ -28,18 +27,19 @@ class _CalendarPageState extends State<CalendarPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Calendar'),
-      ),
-      body: Container(
+    return Container(
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.only(
+            topRight: Radius.circular(20),
+          ),
+        ),
         child: TableCalendar(
           calendarController: _calendarController,
           initialSelectedDay:
-              Provider.of<GoalsProvider>(context).selectDateTime,
+              context.watch<GoalProvider>().selectedDate,
           onDaySelected: (da, l, ls) =>
-              Provider.of<GoalsProvider>(context, listen: false)
-                  .changeSelectedDate(da),
+               context.read<GoalProvider>().changeSelectedDate(da),
           availableCalendarFormats: {CalendarFormat.month: 'Month'},
           headerStyle: HeaderStyle(
             centerHeaderTitle: true,

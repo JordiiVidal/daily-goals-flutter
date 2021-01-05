@@ -1,17 +1,21 @@
-import 'package:daily_goals/pages/add_goal_page.dart';
-import 'package:daily_goals/pages/calendar_page.dart';
-import 'package:daily_goals/pages/home_page.dart';
-import 'package:daily_goals/pages/menu_page.dart';
-import 'package:daily_goals/providers/activity_provider.dart';
-import 'package:daily_goals/providers/goals_provider.dart';
-import 'package:provider/provider.dart';
-
-import 'pages/activity_list_page.dart';
-import 'pages/activity_page.dart';
-import 'pages/add_activity_page.dart';
+import 'package:daily_goals/data/repositories/goal_repository_impl.dart';
+import 'package:daily_goals/presentation/providers/task_provider.dart';
+import 'package:daily_goals/presentation/routes/app_routes.dart';
+import 'package:daily_goals/presentation/screens/create_task_screen.dart';
+import 'package:daily_goals/presentation/screens/home_screen.dart';
+import 'package:daily_goals/presentation/theme.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+import 'package:provider/provider.dart';
+
+import 'data/repositories/task_repositorty_impl.dart';
+import 'domain/repositories/goal_repository.dart';
+import 'domain/repositories/task_respository.dart';
+
+import 'presentation/providers/goal_providert.dart';
+import 'presentation/screens/task_list_screen.dart';
+
+void main() async {
   runApp(MyApp());
 }
 
@@ -21,26 +25,32 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider<ActivityProvider>(
-            create: (_) => ActivityProvider()),
-        ChangeNotifierProvider<GoalsProvider>(create: (_) => GoalsProvider()),
+        Provider<TaskRepositoryInterface>(
+          create: (_) => TaskRepositoryImpl(),
+        ),
+        Provider<GoalRepositoryInterface>(
+          create: (_) => GoalRepositoryImpl(),
+        ),
+        ChangeNotifierProvider<GoalProvider>(
+          create: (ctx) => GoalProvider(
+            ctx.read<GoalRepositoryInterface>(),
+          )..loadGoals(),
+        ),
+        ChangeNotifierProvider<TaskProvider>(
+          create: (ctx) => TaskProvider(
+            ctx.read<TaskRepositoryInterface>(),
+          )..loadTasks(),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Daily Goals',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-          visualDensity: VisualDensity.adaptivePlatformDensity,
-        ),
-        initialRoute: HomePage.routeName,
+        theme: lightTheme,
+        initialRoute: AppRoutes.home,
         routes: {
-          HomePage.routeName: (_) => HomePage(),
-          AddGoalPage.routeName: (_) => AddGoalPage(),
-          ActivityListPage.routeName: (_) => ActivityListPage(),
-          ActivityPage.routeName: (_) => ActivityPage(),
-          AddActivityPage.routeName: (_) => AddActivityPage(),
-          CalendarPage.routeName: (_) => CalendarPage(),
-          MenuPage.routeName: (_) => MenuPage(),
+          AppRoutes.home: (_) => HomeScreen(),
+          AppRoutes.tasks: (_) => TaskListScreen(),
+          AppRoutes.createTask: (_) => CreateTaskScreen(),
         },
       ),
     );
