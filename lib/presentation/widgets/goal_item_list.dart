@@ -16,18 +16,30 @@ class GoalItemList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: const EdgeInsets.only(bottom: 8),
       padding: const EdgeInsets.all(3),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: AppColors.primaryColor,
+        borderRadius: BorderRadius.circular(15),
       ),
       child: ListTile(
+        contentPadding: const EdgeInsets.symmetric(
+          vertical: 0,
+          horizontal: 10,
+        ),
         onTap: () => context.read<GoalProvider>().updateStatus(
               goal.id,
               goal.status == Status.Pending ? Status.Done : Status.Pending,
             ),
         leading: goal.status == Status.Pending
-            ? Icon(Icons.check_box_outline_blank)
-            : Icon(Icons.check),
+            ? Icon(
+                Icons.panorama_fish_eye,
+                color: AppColors.accentColor,
+              )
+            : Icon(
+                Icons.check,
+                color: AppColors.secondaryAccentColor,
+              ),
         title: Text(
           '  ${goal.task.name}  ',
           style: TextStyle(
@@ -36,11 +48,16 @@ class GoalItemList extends StatelessWidget {
                 ? TextDecoration.lineThrough
                 : TextDecoration.none,
           ),
-          softWrap: true,
-          overflow: TextOverflow.ellipsis,
+          softWrap: false,
+          maxLines: 1,
+          overflow: TextOverflow.fade,
         ),
-        trailing: Text(
-          '${goal.task.exigency.index}',
+        trailing: IconButton(
+          icon: Icon(
+            Icons.chevron_right,
+            color: AppColors.secondaryTextColor,
+          ),
+          onPressed: () => print('dasda'),
         ),
       ),
     );

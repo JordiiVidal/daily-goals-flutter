@@ -2,21 +2,30 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AppColors {
-  static final white = Color(0XFFffffff);
-  static final lightGrey = Color(0XFFfbfbfb);
-  static final black = Color(0XFF2a2a2a);
-  static final primaryColor = Color(0xff4b6bf1);
-  static final secondaryColor = Color(0xffdbe2f9);
+  static final primaryColor = Color(0XFF042d55);
+  static final secondaryColor = Color(0XFF3450a1);
+  static final accentColor = Color(0XFFeb06ff);
+  static final secondaryAccentColor = Color(0XFF2dff06);
+  static final primaryTextColor = Color(0XFFFFFFFF);
+  static final secondaryTextColor = Color(0XFF8facf3);
+  static final accentTextColor = Color(0XFFa33751);
 }
 
-final lightTheme = ThemeData(
+final darkTheme = ThemeData(
+  scaffoldBackgroundColor: AppColors.secondaryColor,
+  primaryColor: AppColors.primaryColor,
+  buttonColor: AppColors.primaryColor,
   textTheme: GoogleFonts.robotoTextTheme().apply(
-    bodyColor: AppColors.black,
+    bodyColor: AppColors.primaryTextColor,
   ),
+  backgroundColor: AppColors.secondaryColor,
   buttonTheme: ButtonThemeData(
-    buttonColor: AppColors.black,
+    buttonColor: AppColors.accentColor,
+  ),
+  iconTheme: IconThemeData(
+    color: AppColors.secondaryTextColor,
   ),
   floatingActionButtonTheme: FloatingActionButtonThemeData(
-    backgroundColor: AppColors.primaryColor,
+    backgroundColor: AppColors.accentColor,
   ),
 );

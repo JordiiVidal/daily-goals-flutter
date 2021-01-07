@@ -5,7 +5,9 @@ import 'package:provider/provider.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class BottomSheetCalendar extends StatefulWidget {
-  const BottomSheetCalendar();
+  final bool closeOnClick;
+  const BottomSheetCalendar({closeOnClick})
+      : this.closeOnClick = closeOnClick ?? false;
 
   @override
   _BottomSheetCalendarState createState() => _BottomSheetCalendarState();
@@ -40,24 +42,35 @@ class _BottomSheetCalendarState extends State<BottomSheetCalendar> {
           calendarController: _calendarController,
           startingDayOfWeek: StartingDayOfWeek.monday,
           calendarStyle: CalendarStyle(
+            highlightToday: true,
             contentPadding: const EdgeInsets.all(5),
-            selectedColor: AppColors.primaryColor,
+            selectedColor: AppColors.accentColor,
             cellMargin: const EdgeInsets.all(5),
-            todayColor: AppColors.secondaryColor,
-            selectedStyle: TextStyle(
-              fontSize: 17,
-              color: AppColors.white,
-              fontWeight: FontWeight.w500,
+            todayColor: Colors.grey[200],
+            todayStyle: TextStyle(
+              color: AppColors.primaryColor,
+              fontSize: 18,
+            ),
+            weekdayStyle: TextStyle(
+              color: AppColors.primaryColor,
+              fontSize: 18,
             ),
           ),
           initialSelectedDay: context.watch<GoalProvider>().selectedDate,
-          onDaySelected: (da, l, ls) =>
-              context.read<GoalProvider>().changeSelectedDate(da),
+          onDaySelected: (da, l, ls) async {
+            await context.read<GoalProvider>().changeSelectedDate(da);
+            if (widget.closeOnClick) Navigator.pop(context);
+          },
           availableCalendarFormats: {
             CalendarFormat.month: 'Month',
           },
           headerStyle: HeaderStyle(
             centerHeaderTitle: true,
+            titleTextStyle: TextStyle(
+              color: Colors.black,
+              fontSize: 25,
+              fontWeight: FontWeight.bold
+            ),
           ),
         ),
       ),

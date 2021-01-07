@@ -20,7 +20,7 @@ class TaskProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void createTask(TaskModel task) async {
+  Future<void> createTask(TaskModel task) async {
     _isLoading = true;
     await taskRepositoryInterface.createTask(task);
     await loadTasks();

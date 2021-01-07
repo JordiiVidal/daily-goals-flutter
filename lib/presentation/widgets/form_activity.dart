@@ -1,11 +1,14 @@
+import 'package:daily_goals/domain/models/goal_model.dart';
 import 'package:daily_goals/domain/models/task_model.dart';
+import 'package:daily_goals/presentation/providers/goal_providert.dart';
 import 'package:daily_goals/presentation/providers/task_provider.dart';
+import 'package:daily_goals/presentation/theme.dart';
+import 'package:daily_goals/presentation/widgets/calendar_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:chips_choice/chips_choice.dart';
 import 'package:daily_goals/presentation/widgets/back_button.dart';
-
 
 class FormCreateTask extends StatefulWidget {
   @override
@@ -30,12 +33,16 @@ class _FormCreateTaskState extends State<FormCreateTask> {
   void onChangeCheckBox(int selected) =>
       setState(() => _indexSelected = selected);
 
-  void saveForm() {
+  void saveForm() async {
+    final String date = context.read<GoalProvider>().selectedDateString;
     final task = TaskModel(
       exigency: _exigencies[_indexSelected],
       name: _nameController.text,
     );
-    context.read<TaskProvider>().createTask(task);
+    await context.read<TaskProvider>().createTask(task);
+    await context.read<GoalProvider>().createGoal(
+          GoalModel.fromTask(task, date),
+        );
     Navigator.pop(context);
   }
 
@@ -52,7 +59,7 @@ class _FormCreateTaskState extends State<FormCreateTask> {
               const Text(
                 'Create',
                 style: TextStyle(
-                  fontSize: 30,
+                  fontSize: 40,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -89,7 +96,8 @@ class _FormCreateTaskState extends State<FormCreateTask> {
                     horizontal: 10.0,
                     vertical: 8.0,
                   ),
-                  borderColor: Colors.blue,
+                  color: AppColors.primaryColor,
+                  borderColor: AppColors.primaryColor,
                   elevation: 0,
                 ),
                 onChanged: (val) => setState(() => _indexSelected = val),
@@ -99,6 +107,10 @@ class _FormCreateTaskState extends State<FormCreateTask> {
                   label: (i, v) => exigencyToString(v),
                 ),
               ),
+              const SizedBox(
+                height: 20,
+              ),
+              CalendarPicker(),
             ],
           ),
         ),
@@ -112,15 +124,15 @@ class _FormCreateTaskState extends State<FormCreateTask> {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(30),
             ),
-            color: Colors.blue,
             textColor: Colors.white,
+            color: AppColors.primaryColor,
             onPressed: saveForm,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 const Text('New Task'),
                 const SizedBox(width: 20),
-                const Icon(Icons.keyboard_arrow_up),
+                const Icon(Icons.add),
               ],
             ),
           ),

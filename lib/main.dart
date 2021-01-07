@@ -13,7 +13,6 @@ import 'domain/repositories/goal_repository.dart';
 import 'domain/repositories/task_respository.dart';
 
 import 'presentation/providers/goal_providert.dart';
-import 'presentation/screens/task_list_screen.dart';
 
 void main() async {
   runApp(MyApp());
@@ -45,11 +44,10 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Daily Goals',
-        theme: lightTheme,
+        theme: darkTheme,
         initialRoute: AppRoutes.home,
         routes: {
           AppRoutes.home: (_) => HomeScreen(),
-          AppRoutes.tasks: (_) => TaskListScreen(),
           AppRoutes.createTask: (_) => CreateTaskScreen(),
         },
       ),

@@ -7,10 +7,7 @@ class CreateTaskScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: FormCreateTask(),
-        ),
+        child: FormCreateTask(),
       ),
     );
   }

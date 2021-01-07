@@ -35,6 +35,10 @@ class GoalModel {
           },
         ),
       );
+  factory GoalModel.fromTask(TaskModel task, String date) => GoalModel(
+        date: date,
+        idTask: task.id,
+      );
 
   Map<String, dynamic> toJson() => {
         "id": id,
