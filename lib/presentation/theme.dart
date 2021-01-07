@@ -9,19 +9,6 @@ class AppColors {
   static final secondaryColor = Color(0xffdbe2f9);
 }
 
-class AppShadows {
-  static final firstShadow = BoxShadow(
-    blurRadius: 20,
-    color: Colors.grey[200],
-    offset: Offset(0, -2),
-  );
-  static final lastShadow = BoxShadow(
-    blurRadius: 20,
-    color: Colors.grey[200],
-    offset: Offset(0, 20),
-  );
-}
-
 final lightTheme = ThemeData(
   textTheme: GoogleFonts.robotoTextTheme().apply(
     bodyColor: AppColors.black,
