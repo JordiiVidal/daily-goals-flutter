@@ -19,12 +19,6 @@ class GoalItemList extends StatelessWidget {
       padding: const EdgeInsets.all(3),
       decoration: BoxDecoration(
         color: Colors.white,
-        boxShadow: [
-          if (isFirst)
-            AppShadows.firstShadow
-          else if (isLast)
-            AppShadows.lastShadow
-        ],
       ),
       child: ListTile(
         onTap: () => context.read<GoalProvider>().updateStatus(
@@ -35,9 +29,12 @@ class GoalItemList extends StatelessWidget {
             ? Icon(Icons.check_box_outline_blank)
             : Icon(Icons.check),
         title: Text(
-          goal.task.name,
+          '  ${goal.task.name}  ',
           style: TextStyle(
             fontSize: 18,
+            decoration: (goal.status == Status.Done)
+                ? TextDecoration.lineThrough
+                : TextDecoration.none,
           ),
           softWrap: true,
           overflow: TextOverflow.ellipsis,
