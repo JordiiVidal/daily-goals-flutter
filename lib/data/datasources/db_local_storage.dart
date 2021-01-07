@@ -117,6 +117,7 @@ class DBLocalStorage {
       where: where,
       whereArgs: whereArgs,
     );
+    print(result);
     return result.isNotEmpty ? true : false;
   }
 
@@ -134,10 +135,11 @@ class DBLocalStorage {
   Future<List<GoalModel>> getGoalsByDate(String date) async {
     final db = await database;
     final result = await db.rawQuery(
-      'SELECT Goal.id as id, Goal.date as date, Goal.status as status, Goal.id_task as id_task, Task.name as name_task, Task.description as description_task, Task.exigency as exigency_task  FROM Goal JOIN Task ON Task.id = Goal.id_task WHERE Goal.date = ?',
+      'SELECT Goal.id as id, Goal.date as date, Goal.status as status, Goal.id_task as id_task,'
+      'Task.name as name_task, Task.description as description_task,'
+      'Task.exigency as exigency_task FROM Goal JOIN Task ON Task.id = Goal.id_task WHERE Goal.date = ?',
       [date],
     );
-    print(result);
     List<GoalModel> list = result.isNotEmpty
         ? result.map((goal) => GoalModel.fromJson(goal)).toList()
         : [];

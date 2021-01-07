@@ -16,7 +16,9 @@ class GoalProvider extends ChangeNotifier {
 
   List<GoalModel> get goalsDate => _goalsDate;
   DateTime get selectedDate => DateTime.parse(_selectedDate);
-  String get selectedDateText => _selectedDate;
+  String get selectedDateString => _selectedDate;
+  String get selectedDateText =>
+      DateFormat.yMMMMd().format(DateTime.parse(_selectedDate));
   bool get isLoading => _isLoading;
 
   Future<void> changeSelectedDate(DateTime selected) async {

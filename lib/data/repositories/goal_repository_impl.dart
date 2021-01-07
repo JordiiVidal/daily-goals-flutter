@@ -5,8 +5,9 @@ import 'package:daily_goals/domain/repositories/goal_repository.dart';
 class GoalRepositoryImpl extends GoalRepositoryInterface {
   @override
   Future<void> createGoal(GoalModel goal) async {
-    final bool exist =
-        await DBLocalStorage.db.existGoalWhere('id_task = ?', [goal.idTask]);
+    final bool exist = await DBLocalStorage.db
+        .existGoalWhere('id_task = ? AND date = ?', [goal.idTask, goal.date]);
+    print(exist);
     if (!exist) await DBLocalStorage.db.createGoal(goal);
   }
 
@@ -19,5 +20,6 @@ class GoalRepositoryImpl extends GoalRepositoryInterface {
       await DBLocalStorage.db.getGoalsByDate(date);
 
   @override
-  Future<int> updateStatus(String id, int status) async => await DBLocalStorage.db.updateStatus(id,status);
+  Future<int> updateStatus(String id, int status) async =>
+      await DBLocalStorage.db.updateStatus(id, status);
 }
