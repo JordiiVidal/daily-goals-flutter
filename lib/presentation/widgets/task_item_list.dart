@@ -16,7 +16,7 @@ class TaskItemList extends StatelessWidget {
   void createGoal(BuildContext context) async {
     final goal = GoalModel(
       idTask: task.id,
-      date: context.read<GoalProvider>().selectedDateText,
+      date: context.read<GoalProvider>().selectedDateString,
     );
     await context.read<GoalProvider>().createGoal(goal);
 
