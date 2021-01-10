@@ -17,6 +17,10 @@ class TaskRepositoryImpl extends TaskRepositoryInterface {
       await DBLocalStorage.db.deleteTaskById(id);
 
   @override
-  Future<List<TaskModel>> getAllTasks() async => await DBLocalStorage.db.getAllTasks();
+  Future<List<TaskModel>> getAllTasks() async =>
+      await DBLocalStorage.db.getAllTasks();
 
+  @override
+  Future<List<TaskModel>> searchListTasks(String name) async =>
+      await DBLocalStorage.db.getSearchListTasks(name);
 }

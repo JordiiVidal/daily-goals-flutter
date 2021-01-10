@@ -1,5 +1,6 @@
 import 'package:daily_goals/presentation/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:provider/provider.dart';
 
 import 'package:daily_goals/presentation/providers/goal_providert.dart';
@@ -17,47 +18,62 @@ class GoalItemList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(bottom: 8),
-      padding: const EdgeInsets.all(3),
-      decoration: BoxDecoration(
-        color: AppColors.primaryColor,
-        borderRadius: BorderRadius.circular(15),
-      ),
-      child: ListTile(
-        contentPadding: const EdgeInsets.symmetric(
-          vertical: 0,
-          horizontal: 10,
-        ),
-        onTap: () => context.read<GoalProvider>().updateStatus(
-              goal.id,
-              goal.status == Status.Pending ? Status.Done : Status.Pending,
+      child: Slidable(
+        key: UniqueKey(),
+        actionPane: SlidableDrawerActionPane(),
+        secondaryActions: [
+          GestureDetector(
+            onTap: () => context.read<GoalProvider>().deleteGoalById(goal.id),
+            child: Padding(
+              padding: const EdgeInsets.only(left: 25.0),
+              child: const Text('Delete'),
             ),
-        leading: goal.status == Status.Pending
-            ? Icon(
-                Icons.panorama_fish_eye,
-                color: AppColors.accentColor,
-              )
-            : Icon(
-                Icons.check,
-                color: AppColors.secondaryAccentColor,
+          ),
+        ],
+        child: Container(
+          padding: const EdgeInsets.all(3),
+          decoration: BoxDecoration(
+            color: AppColors.primaryColor,
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: ListTile(
+            contentPadding: const EdgeInsets.symmetric(
+              vertical: 0,
+              horizontal: 10,
+            ),
+            onTap: () => context.read<GoalProvider>().updateStatus(
+                  goal.id,
+                  goal.status == Status.Pending ? Status.Done : Status.Pending,
+                ),
+            leading: goal.status == Status.Pending
+                ? Icon(
+                    Icons.panorama_fish_eye,
+                    color: AppColors.accentColor,
+                  )
+                : Icon(
+                    Icons.check,
+                    color: AppColors.secondaryAccentColor,
+                  ),
+            title: Text(
+              '  ${goal.task.name}  ',
+              style: TextStyle(
+                fontSize: 18,
+                decoration: (goal.status == Status.Done)
+                    ? TextDecoration.lineThrough
+                    : TextDecoration.none,
               ),
-        title: Text(
-          '  ${goal.task.name}  ',
-          style: TextStyle(
-            fontSize: 18,
-            decoration: (goal.status == Status.Done)
-                ? TextDecoration.lineThrough
-                : TextDecoration.none,
+              softWrap: false,
+              maxLines: 1,
+              overflow: TextOverflow.fade,
+            ),
+            trailing: IconButton(
+              icon: Icon(
+                Icons.chevron_right,
+                color: AppColors.secondaryTextColor,
+              ),
+              onPressed: () => print('dasda'),
+            ),
           ),
-          softWrap: false,
-          maxLines: 1,
-          overflow: TextOverflow.fade,
-        ),
-        trailing: IconButton(
-          icon: Icon(
-            Icons.chevron_right,
-            color: AppColors.secondaryTextColor,
-          ),
-          onPressed: () => print('dasda'),
         ),
       ),
     );

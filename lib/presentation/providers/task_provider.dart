@@ -35,4 +35,6 @@ class TaskProvider extends ChangeNotifier {
     await loadTasks();
   }
 
+  Future<List<TaskModel>> searchListTasks(String name) async =>
+      taskRepositoryInterface.searchListTasks(name);
 }

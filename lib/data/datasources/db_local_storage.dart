@@ -68,6 +68,17 @@ class DBLocalStorage {
     return result.isNotEmpty ? TaskModel.fromJson(result.first) : null;
   }
 
+  Future<List<TaskModel>> getSearchListTasks(String name) async {
+    final db = await database;
+    final result =
+        await db.rawQuery("SELECT * FROM TASK WHERE name LIKE '%$name%'");
+    List<TaskModel> list = result.isNotEmpty
+        ? result.map((task) => TaskModel.fromJson(task)).toList()
+        : [];
+
+    return list;
+  }
+
   Future<int> deleteTaskById(String id) async {
     final db = await database;
     final result = await db.delete(

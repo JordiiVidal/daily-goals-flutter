@@ -1,4 +1,6 @@
+import 'package:daily_goals/presentation/providers/task_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'package:daily_goals/presentation/widgets/bottom_sheet_calendar.dart';
 import 'package:daily_goals/presentation/widgets/task_search_delegate.dart';

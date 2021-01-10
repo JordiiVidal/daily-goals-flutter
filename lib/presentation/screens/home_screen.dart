@@ -84,7 +84,7 @@ class HomeScreen extends StatelessWidget {
                               height: 50,
                             ),
                             Text(
-                              'Hey\nyou are\nfree today',
+                              'Empty',
                               style: TextStyle(
                                 color: AppColors.secondaryTextColor,
                                 fontSize: 40,

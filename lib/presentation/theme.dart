@@ -25,6 +25,9 @@ final darkTheme = ThemeData(
   iconTheme: IconThemeData(
     color: AppColors.secondaryTextColor,
   ),
+  appBarTheme: AppBarTheme(
+    elevation: 0.0,
+  ),
   floatingActionButtonTheme: FloatingActionButtonThemeData(
     backgroundColor: AppColors.accentColor,
   ),
