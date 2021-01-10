@@ -1,4 +1,5 @@
 import 'package:daily_goals/presentation/theme.dart';
+import 'package:daily_goals/presentation/widgets/search_task_list.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -35,34 +36,10 @@ class TaskSearchDelegate extends SearchDelegate<TaskModel> {
       );
 
   @override
-  Widget buildResults(BuildContext context) {
-    return FutureBuilder<List<TaskModel>>(
-      future: Provider.of<TaskProvider>(context).searchListTasks(query),
-      builder: (_, snapshot) {
-        if (snapshot.hasData) {
-          final List<TaskModel> list = snapshot.data;
-          return ListView.builder(
-            padding: const EdgeInsets.only(top: 8),
-            physics: BouncingScrollPhysics(),
-            itemCount: list.length,
-            itemBuilder: (_, i) => TaskItemList(list[i]),
-          );
-        }
-        return CircularProgressIndicator();
-      },
-    );
-  }
+  Widget buildResults(BuildContext context) => SearchTaskList(query);
 
   @override
-  Widget buildSuggestions(BuildContext context) {
-    final taskProvider = context.watch<TaskProvider>();
-    return ListView.builder(
-      padding: const EdgeInsets.only(top: 8),
-      physics: BouncingScrollPhysics(),
-      itemCount: taskProvider.tasksList.length,
-      itemBuilder: (_, i) => TaskItemList(taskProvider.tasksList[i]),
-    );
-  }
+  Widget buildSuggestions(BuildContext context) => SearchTaskList(query);
 
   @override
   ThemeData appBarTheme(BuildContext context) {
