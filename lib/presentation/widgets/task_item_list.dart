@@ -1,3 +1,4 @@
+import 'package:daily_goals/presentation/routes/app_routes.dart';
 import 'package:daily_goals/presentation/theme.dart';
 import 'package:flutter/material.dart';
 
@@ -39,6 +40,13 @@ class TaskItemList extends StatelessWidget {
           onPressed: () => createGoal(context),
         ),
         title: Text(task.name),
+        trailing: IconButton(
+          icon: Icon(
+            Icons.chevron_right,
+            color: AppColors.secondaryTextColor,
+          ),
+          onPressed: () => Navigator.pushNamed(context, AppRoutes.detailsTask),
+        ),
       ),
     );
   }

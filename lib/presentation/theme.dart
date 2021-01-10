@@ -22,6 +22,11 @@ final darkTheme = ThemeData(
   buttonTheme: ButtonThemeData(
     buttonColor: AppColors.accentColor,
   ),
+  inputDecorationTheme: InputDecorationTheme(
+    hintStyle: TextStyle(
+      color: AppColors.secondaryTextColor,
+    ),
+  ),
   iconTheme: IconThemeData(
     color: AppColors.secondaryTextColor,
   ),

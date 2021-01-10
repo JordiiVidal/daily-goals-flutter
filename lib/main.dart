@@ -2,6 +2,7 @@ import 'package:daily_goals/data/repositories/goal_repository_impl.dart';
 import 'package:daily_goals/presentation/providers/task_provider.dart';
 import 'package:daily_goals/presentation/routes/app_routes.dart';
 import 'package:daily_goals/presentation/screens/create_task_screen.dart';
+import 'package:daily_goals/presentation/screens/details_task_screen.dart';
 import 'package:daily_goals/presentation/screens/home_screen.dart';
 import 'package:daily_goals/presentation/theme.dart';
 import 'package:flutter/material.dart';
@@ -49,6 +50,7 @@ class MyApp extends StatelessWidget {
         routes: {
           AppRoutes.home: (_) => HomeScreen(),
           AppRoutes.createTask: (_) => CreateTaskScreen(),
+          AppRoutes.detailsTask: (_) => DetailsTaskScreen(),
         },
       ),
     );
