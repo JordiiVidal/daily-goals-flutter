@@ -1,53 +1,43 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
-import 'package:daily_goals/domain/models/goal_model.dart';
-import 'package:daily_goals/domain/repositories/goal_repository.dart';
+import '../widgets/helpers.dart';
+
+import '../../domain/repositories/goal_repository.dart';
+import '../../domain/models/goal_model.dart';
 
 class GoalProvider extends ChangeNotifier {
   final GoalRepositoryInterface goalRepositoryInterface;
   GoalProvider(this.goalRepositoryInterface);
 
-  List<GoalModel> _goalsDate = <GoalModel>[];
-  String _selectedDate = DateFormat("yyyy-MM-dd").format(DateTime.now());
-  bool _isLoading = true;
+  List<GoalModel> _goalsList = <GoalModel>[];
+  DateTime _selectedDate = DateTime.now();
 
-  List<GoalModel> get goalsDate => _goalsDate;
-  DateTime get selectedDate => DateTime.parse(_selectedDate);
-  String get selectedDateString => _selectedDate;
-  String get selectedDateText =>
-      DateFormat.yMMMMd().format(DateTime.parse(_selectedDate));
-      String get selectedDateyMd =>
-      DateFormat.yMd().format(DateTime.parse(_selectedDate));
+  List<GoalModel> get goalsList => _goalsList;
+  DateTime get selectedDate => _selectedDate;
 
-  bool get isLoading => _isLoading;
-
-  Future<void> changeSelectedDate(DateTime selected) async {
-    _isLoading = true;
-    _selectedDate = DateFormat("yyyy-MM-dd").format(selected);
+  Future<void> setSelectedDate(DateTime dateTime) async {
+    _selectedDate = dateTime;
     await loadGoals();
   }
 
   Future<void> loadGoals() async {
-    final result = await goalRepositoryInterface.getGoalsByDate(_selectedDate);
-    _goalsDate = result;
-    _isLoading = false;
+    final result = await goalRepositoryInterface
+        .getGoalsByDate(Formatter.db(_selectedDate));
+    _goalsList = result;
     notifyListeners();
   }
 
   Future<void> createGoal(GoalModel goal) async {
-    _isLoading = true;
     await goalRepositoryInterface.createGoal(goal);
     await loadGoals();
   }
 
-  void deleteGoalById(String id) async {
-    _isLoading = true;
+  Future<void> deleteGoalById(String id) async {
     await goalRepositoryInterface.deleteGoalById(id);
     await loadGoals();
   }
 
-  void updateStatus(String id, Status status) async {
+  Future<void> updateStatus(String id, Status status) async {
     await goalRepositoryInterface.updateStatus(id, status.index);
     await loadGoals();
   }

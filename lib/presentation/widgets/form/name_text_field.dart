@@ -10,7 +10,7 @@ class NameTextField extends StatelessWidget {
         fontSize: 21,
       ),
       cursorWidth: 2,
-      onChanged: (s) => context.read<FormProvider>(),
+      onChanged: (text) => context.read<FormProvider>().setName(text),
       decoration: InputDecoration(
         hintText: ' Enter a new task ',
         border: InputBorder.none,

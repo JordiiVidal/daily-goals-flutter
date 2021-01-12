@@ -3,25 +3,21 @@ import 'package:flutter/material.dart';
 import '../../domain/models/task_model.dart';
 import '../../domain/repositories/task_respository.dart';
 
+
 class TaskProvider extends ChangeNotifier {
   final TaskRepositoryInterface taskRepositoryInterface;
   TaskProvider(this.taskRepositoryInterface);
 
   List<TaskModel> _tasksList = <TaskModel>[];
-  bool _isLoading = true;
-
   List<TaskModel> get tasksList => _tasksList;
-  bool get isLoading => _isLoading;
 
-  Future loadTasks() async {
+  Future<void> loadTasks() async {
     final result = await taskRepositoryInterface.getAllTasks();
     _tasksList = result;
-    _isLoading = false;
     notifyListeners();
   }
 
-  Future<void> createTask(TaskModel task) async {
-    _isLoading = true;
+  Future<int> createTask(TaskModel task) async {
     await taskRepositoryInterface.createTask(task);
     await loadTasks();
   }
@@ -29,8 +25,7 @@ class TaskProvider extends ChangeNotifier {
   Future<TaskModel> getById(String id) async =>
       taskRepositoryInterface.getTaskById(id);
 
-  void deleteById(String id) async {
-    _isLoading = true;
+  Future<void> deleteById(String id) async {
     await taskRepositoryInterface.deleteTaskById(id);
     await loadTasks();
   }

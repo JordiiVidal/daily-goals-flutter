@@ -1,19 +1,18 @@
-import 'package:daily_goals/data/repositories/goal_repository_impl.dart';
-import 'package:daily_goals/presentation/providers/task_provider.dart';
-import 'package:daily_goals/presentation/routes/app_routes.dart';
-import 'package:daily_goals/presentation/screens/form_screen.dart';
-import 'package:daily_goals/presentation/screens/details_task_screen.dart';
-import 'package:daily_goals/presentation/screens/home_screen.dart';
-import 'package:daily_goals/presentation/theme.dart';
 import 'package:flutter/material.dart';
-
 import 'package:provider/provider.dart';
 
 import 'data/repositories/task_repositorty_impl.dart';
+import 'data/repositories/goal_repository_impl.dart';
+
 import 'domain/repositories/goal_repository.dart';
 import 'domain/repositories/task_respository.dart';
 
 import 'presentation/providers/goal_providert.dart';
+import 'presentation/providers/task_provider.dart';
+import 'presentation/routes/app_routes.dart';
+import 'presentation/screens/form_screen.dart';
+import 'presentation/screens/home_screen.dart';
+import 'presentation/theme.dart';
 
 void main() async {
   runApp(MyApp());
@@ -49,8 +48,7 @@ class MyApp extends StatelessWidget {
         initialRoute: AppRoutes.home,
         routes: {
           AppRoutes.home: (_) => HomeScreen(),
-          AppRoutes.createTask: (_) => FormScreen(),
-          AppRoutes.detailsTask: (_) => DetailsTaskScreen(),
+          AppRoutes.form: (_) => FormScreen(),
         },
       ),
     );

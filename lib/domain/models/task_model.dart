@@ -1,3 +1,4 @@
+import 'package:daily_goals/domain/models/form_model.dart';
 import 'package:flutter/material.dart';
 import 'package:uuid/uuid.dart';
 
@@ -24,6 +25,9 @@ class TaskModel {
       exigency: Exigency.values[json["exigency"]],
     );
   }
+
+  factory TaskModel.fromForm(FormModel form) =>
+      TaskModel(name: form.name, exigency: form.exigency);
 
   Map<String, dynamic> toJson() => {
         "id": id,

@@ -17,7 +17,7 @@ class SearchTaskItem extends StatelessWidget {
   void createGoal(BuildContext context) async {
     final goal = GoalModel(
       idTask: task.id,
-      date: context.read<GoalProvider>().selectedDateString,
+      date: DateTime.now(),
     );
     await context.read<GoalProvider>().createGoal(goal);
 
@@ -46,11 +46,7 @@ class SearchTaskItem extends StatelessWidget {
             Icons.chevron_right,
             color: AppColors.secondaryTextColor,
           ),
-          onPressed: () => Navigator.pushNamed(
-            context,
-            AppRoutes.detailsTask,
-            arguments: task,
-          ),
+          onPressed: () => print('not yet'),
         ),
       ),
     );

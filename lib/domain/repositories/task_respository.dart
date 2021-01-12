@@ -5,5 +5,5 @@ abstract class TaskRepositoryInterface {
   Future<TaskModel> getTaskById(String id);
   Future<int> deleteTaskById(String id);
   Future<List<TaskModel>> getAllTasks();
-   Future<List<TaskModel>> searchListTasks(String name);
+  Future<List<TaskModel>> searchListTasks(String name);
 }

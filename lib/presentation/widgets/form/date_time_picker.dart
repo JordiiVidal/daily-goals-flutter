@@ -1,13 +1,17 @@
-import 'package:daily_goals/presentation/widgets/form/item_picker.dart';
+import 'package:daily_goals/presentation/providers/form_provider.dart';
+import 'package:daily_goals/presentation/widgets/helpers.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:daily_goals/presentation/providers/goal_providert.dart';
+import '../../providers/goal_providert.dart';
+import '../../widgets/bottom_sheet_time.dart';
+import '../../widgets/form/item_picker.dart';
 
 import '../bottom_sheet_calendar.dart';
 
 class DateTimePicker extends StatelessWidget {
   void _showModalBottomSheetCalendar(BuildContext context) {
+    final readFormProvider = context.read<FormProvider>();
     showModalBottomSheet(
       context: context,
       elevation: 3,
@@ -17,14 +21,37 @@ class DateTimePicker extends StatelessWidget {
           topLeft: Radius.circular(30),
         ),
       ),
-      builder: (context) {
-        return BottomSheetCalendar(closeOnClick: true);
-      },
+      builder: (context) => BottomSheetCalendar(
+        closeOnClick: true,
+        initDateTime: readFormProvider.dateForm,
+        onDaySelected: readFormProvider.setDate,
+      ),
+    );
+  }
+
+  void _showModalBottomSheetTime(BuildContext context) {
+    final readFormProvider = context.read<FormProvider>();
+
+    showModalBottomSheet(
+      context: context,
+      elevation: 3,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topRight: Radius.circular(30),
+          topLeft: Radius.circular(30),
+        ),
+      ),
+      builder: (ctx) => BottomSheetTime(
+        initDateTime: readFormProvider.timeForm,
+        onTimeChange: readFormProvider.setTime,
+      ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
+    final formProvider = context.watch<FormProvider>();
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -44,15 +71,17 @@ class DateTimePicker extends StatelessWidget {
               ItemPicker(
                 onTap: () => _showModalBottomSheetCalendar(context),
                 iconData: Icons.calendar_today,
-                text: context.watch<GoalProvider>().selectedDateyMd,
+                text: Formatter.ui(formProvider.dateForm),
               ),
               SizedBox(
                 width: 10,
               ),
               ItemPicker(
-                onTap: () => _showModalBottomSheetCalendar(context),
+                onTap: () => _showModalBottomSheetTime(context),
                 iconData: Icons.timer,
-                text: 'Select Time',
+                text: (formProvider.useTime)
+                    ? Formatter.ui(formProvider.timeForm, time: true)
+                    : 'Select Time',
               ),
             ],
           ),

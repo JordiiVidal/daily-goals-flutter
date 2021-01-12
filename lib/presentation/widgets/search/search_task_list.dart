@@ -1,4 +1,4 @@
-import 'package:daily_goals/presentation/widgets/task/task_button.dart';
+import 'package:daily_goals/presentation/widgets/task_button.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

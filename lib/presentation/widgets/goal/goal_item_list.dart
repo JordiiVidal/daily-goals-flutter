@@ -1,4 +1,5 @@
 import 'package:daily_goals/presentation/theme.dart';
+import 'package:daily_goals/presentation/widgets/helpers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:provider/provider.dart';
@@ -8,11 +9,7 @@ import 'package:daily_goals/domain/models/goal_model.dart';
 
 class GoalItemList extends StatelessWidget {
   final GoalModel goal;
-  final bool isLast;
-  final bool isFirst;
-  const GoalItemList({this.goal, isLast, isFirst})
-      : this.isLast = isLast ?? false,
-        this.isFirst = isFirst ?? false;
+  const GoalItemList(this.goal);
 
   @override
   Widget build(BuildContext context) {
@@ -65,6 +62,20 @@ class GoalItemList extends StatelessWidget {
               softWrap: false,
               maxLines: 1,
               overflow: TextOverflow.fade,
+            ),
+            trailing: Column(
+              children: [
+                SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  (goal.useTime) ? Formatter.ui(goal.time, time: true) : '',
+                  style: TextStyle(
+                    color: AppColors.secondaryTextColor,
+                    fontSize: 12,
+                  ),
+                ),
+              ],
             ),
           ),
         ),

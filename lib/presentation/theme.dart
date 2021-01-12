@@ -37,4 +37,7 @@ final darkTheme = ThemeData(
   floatingActionButtonTheme: FloatingActionButtonThemeData(
     backgroundColor: AppColors.accentColor,
   ),
+  bottomNavigationBarTheme: BottomNavigationBarThemeData(
+    elevation: 0,
+  ),
 );

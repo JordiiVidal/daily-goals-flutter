@@ -1,5 +1,6 @@
-import 'package:daily_goals/presentation/providers/task_provider.dart';
+import 'package:daily_goals/presentation/providers/goal_providert.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'package:daily_goals/presentation/widgets/bottom_sheet_calendar.dart';
 import 'package:daily_goals/presentation/widgets/search/search_task_delegate.dart';
@@ -8,6 +9,7 @@ class AppBarHome extends StatelessWidget {
   const AppBarHome({Key key}) : super(key: key);
 
   void _showModalBottomSheetCalendar(BuildContext context) {
+    final goalProvider = context.read<GoalProvider>();
     showModalBottomSheet(
       context: context,
       elevation: 3,
@@ -17,9 +19,10 @@ class AppBarHome extends StatelessWidget {
           topLeft: Radius.circular(30),
         ),
       ),
-      builder: (context) {
-        return BottomSheetCalendar();
-      },
+      builder: (context) => BottomSheetCalendar(
+        onDaySelected: goalProvider.setSelectedDate,
+        initDateTime: goalProvider.selectedDate,
+      ),
     );
   }
 
@@ -42,7 +45,7 @@ class AppBarHome extends StatelessWidget {
               Icons.sort,
               size: 28,
             ),
-            onPressed: () => Scaffold.of(context).openDrawer(),
+            onPressed: () => null,
           ),
           Expanded(
             child: Row(

@@ -1,10 +1,11 @@
 import 'dart:io';
 
-import 'package:daily_goals/domain/models/goal_model.dart';
-import 'package:daily_goals/domain/models/task_model.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
+
+import 'package:daily_goals/domain/models/goal_model.dart';
+import 'package:daily_goals/domain/models/task_model.dart';
 
 class DBLocalStorage {
   static Database _database;
@@ -41,7 +42,9 @@ class DBLocalStorage {
           'CREATE TABLE Goal('
           'id VARCHAR(300) PRIMARY KEY,'
           'date VARCHAR(300),'
+          'time VARCHAR(300),'
           'id_task VARCHAR(300),'
+          'use_time INT(1),'
           'status INT(1)'
           ')',
         );
@@ -147,7 +150,7 @@ class DBLocalStorage {
   Future<List<GoalModel>> getGoalsByDate(String date) async {
     final db = await database;
     final result = await db.rawQuery(
-      'SELECT Goal.id as id, Goal.date as date, Goal.status as status, Goal.id_task as id_task,'
+      'SELECT Goal.id as id, Goal.date as date, Goal.status as status, Goal.id_task as id_task, Goal.time as time, Goal.use_time as use_time,'
       'Task.name as name_task, Task.description as description_task,'
       'Task.exigency as exigency_task FROM Goal JOIN Task ON Task.id = Goal.id_task WHERE Goal.date = ?',
       [date],
