@@ -1,17 +1,18 @@
-import 'package:daily_goals/presentation/routes/app_routes.dart';
-import 'package:daily_goals/presentation/theme.dart';
 import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
 
+import 'package:daily_goals/presentation/routes/app_routes.dart';
+import 'package:daily_goals/presentation/theme.dart';
+
 import 'package:daily_goals/domain/models/goal_model.dart';
 import 'package:daily_goals/presentation/providers/goal_providert.dart';
+import '../../../domain/models/task_model.dart';
 
-import '../../domain/models/task_model.dart';
 
-class TaskItemList extends StatelessWidget {
+class SearchTaskItem extends StatelessWidget {
   final TaskModel task;
-  const TaskItemList(this.task);
+  const SearchTaskItem(this.task);
 
   void createGoal(BuildContext context) async {
     final goal = GoalModel(
@@ -45,7 +46,11 @@ class TaskItemList extends StatelessWidget {
             Icons.chevron_right,
             color: AppColors.secondaryTextColor,
           ),
-          onPressed: () => Navigator.pushNamed(context, AppRoutes.detailsTask),
+          onPressed: () => Navigator.pushNamed(
+            context,
+            AppRoutes.detailsTask,
+            arguments: task,
+          ),
         ),
       ),
     );

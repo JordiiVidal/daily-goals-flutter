@@ -4,18 +4,18 @@ import 'package:daily_goals/presentation/providers/goal_providert.dart';
 import 'package:daily_goals/presentation/providers/task_provider.dart';
 import 'package:daily_goals/presentation/theme.dart';
 import 'package:daily_goals/presentation/widgets/calendar_picker.dart';
+import 'package:daily_goals/presentation/widgets/custom_chip.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:chips_choice/chips_choice.dart';
-import 'package:daily_goals/presentation/widgets/back_button.dart';
 
-class FormCreateTask extends StatefulWidget {
+class TaskFormCreate extends StatefulWidget {
   @override
-  _FormCreateTaskState createState() => _FormCreateTaskState();
+  _TaskFormCreateState createState() => _TaskFormCreateState();
 }
 
-class _FormCreateTaskState extends State<FormCreateTask> {
+class _TaskFormCreateState extends State<TaskFormCreate> {
   final _nameController = TextEditingController();
   static const List<Exigency> _exigencies = [
     Exigency.Low,
@@ -78,28 +78,31 @@ class _FormCreateTaskState extends State<FormCreateTask> {
                 ),
               ),
               const SizedBox(
-                height: 40,
+                height: 30,
+              ),
+              const Text(
+                'Exigency',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 15,
+                ),
+              ),
+              const SizedBox(
+                height: 10,
               ),
               ChipsChoice<int>.single(
                 padding: const EdgeInsets.all(0),
                 value: _indexSelected,
-                choiceStyle: C2ChoiceStyle(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 10.0,
-                    vertical: 8.0,
-                  ),
-                  borderColor: Colors.grey[300],
-                  elevation: 2,
-                ),
-                choiceActiveStyle: C2ChoiceStyle(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 10.0,
-                    vertical: 8.0,
-                  ),
-                  color: AppColors.primaryColor,
-                  borderColor: AppColors.primaryColor,
-                  elevation: 0,
-                ),
+                choiceBuilder: (item) {
+                  return CustomChip(
+                    label: item.label,
+                    width: 90,
+                    height: 35,
+                    color: AppColors.accentColor,
+                    selected: item.selected,
+                    onSelect: item.select,
+                  );
+                },
                 onChanged: (val) => setState(() => _indexSelected = val),
                 choiceItems: C2Choice.listFrom<int, Exigency>(
                   source: _exigencies,
@@ -108,13 +111,22 @@ class _FormCreateTaskState extends State<FormCreateTask> {
                 ),
               ),
               const SizedBox(
-                height: 20,
+                height: 30,
+              ),
+               const Text(
+                'Choose date & time',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 15,
+                ),
+              ),
+              const SizedBox(
+                height: 10,
               ),
               CalendarPicker(),
             ],
           ),
         ),
-        TopBackButton(),
         Positioned(
           bottom: 30,
           right: 30,

@@ -72,6 +72,7 @@ class DBLocalStorage {
     final db = await database;
     final result =
         await db.rawQuery("SELECT * FROM TASK WHERE name LIKE '%$name%'");
+    print(result);
     List<TaskModel> list = result.isNotEmpty
         ? result.map((task) => TaskModel.fromJson(task)).toList()
         : [];

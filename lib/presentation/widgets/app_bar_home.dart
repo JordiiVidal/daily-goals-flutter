@@ -2,7 +2,7 @@ import 'package:daily_goals/presentation/providers/task_provider.dart';
 import 'package:flutter/material.dart';
 
 import 'package:daily_goals/presentation/widgets/bottom_sheet_calendar.dart';
-import 'package:daily_goals/presentation/widgets/task_search_delegate.dart';
+import 'package:daily_goals/presentation/widgets/search/search_task_delegate.dart';
 
 class AppBarHome extends StatelessWidget {
   const AppBarHome({Key key}) : super(key: key);

@@ -1,11 +1,12 @@
-import 'package:daily_goals/domain/models/task_model.dart';
-import 'package:daily_goals/presentation/providers/task_provider.dart';
-import 'package:daily_goals/presentation/routes/app_routes.dart';
-import 'package:daily_goals/presentation/theme.dart';
-import 'package:daily_goals/presentation/widgets/button_task.dart';
-import 'package:daily_goals/presentation/widgets/task_item_list.dart';
+import 'package:daily_goals/presentation/widgets/task/task_button.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import 'package:daily_goals/presentation/providers/task_provider.dart';
+import 'package:daily_goals/presentation/theme.dart';
+import 'package:daily_goals/presentation/widgets/search/search_task_item.dart';
+
+import 'package:daily_goals/domain/models/task_model.dart';
 
 class SearchTaskList extends StatelessWidget {
   final String query;
@@ -39,7 +40,7 @@ class SearchTaskList extends StatelessWidget {
                 Container(
                   width: 200,
                   padding: const EdgeInsets.all(20.0),
-                  child: ButtonTask(),
+                  child: TaskButton(),
                 ),
               ],
             );
@@ -48,7 +49,7 @@ class SearchTaskList extends StatelessWidget {
             padding: const EdgeInsets.only(top: 8),
             physics: BouncingScrollPhysics(),
             itemCount: list.length,
-            itemBuilder: (_, i) => TaskItemList(list[i]),
+            itemBuilder: (_, i) => SearchTaskItem(list[i]),
           );
         }
         return Center(

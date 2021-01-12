@@ -17,6 +17,8 @@ class GoalProvider extends ChangeNotifier {
   String get selectedDateString => _selectedDate;
   String get selectedDateText =>
       DateFormat.yMMMMd().format(DateTime.parse(_selectedDate));
+      String get selectedDateyMd =>
+      DateFormat.yMd().format(DateTime.parse(_selectedDate));
 
   bool get isLoading => _isLoading;
 

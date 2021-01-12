@@ -61,16 +61,11 @@ class _BottomSheetCalendarState extends State<BottomSheetCalendar> {
             await context.read<GoalProvider>().changeSelectedDate(da);
             if (widget.closeOnClick) Navigator.pop(context);
           },
-          availableCalendarFormats: {
-            CalendarFormat.month: 'Month',
-          },
+          availableCalendarFormats: {CalendarFormat.month: 'Month'},
           headerStyle: HeaderStyle(
             centerHeaderTitle: true,
             titleTextStyle: TextStyle(
-              color: Colors.black,
-              fontSize: 25,
-              fontWeight: FontWeight.bold
-            ),
+                color: Colors.black, fontSize: 25, fontWeight: FontWeight.bold),
           ),
         ),
       ),

@@ -66,13 +66,6 @@ class GoalItemList extends StatelessWidget {
               maxLines: 1,
               overflow: TextOverflow.fade,
             ),
-            // trailing: IconButton(
-            //   icon: Icon(
-            //     Icons.chevron_right,
-            //     color: AppColors.secondaryTextColor,
-            //   ),
-            //   onPressed: () => print('dasda'),
-            // ),
           ),
         ),
       ),

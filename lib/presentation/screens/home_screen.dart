@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:daily_goals/presentation/providers/goal_providert.dart';
 import 'package:daily_goals/presentation/routes/app_routes.dart';
 import 'package:daily_goals/presentation/widgets/app_bar_home.dart';
-import 'package:daily_goals/presentation/widgets/goal_item_list.dart';
+import 'package:daily_goals/presentation/widgets/goal/goal_item_list.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen();

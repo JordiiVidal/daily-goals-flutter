@@ -2,8 +2,8 @@ import 'package:daily_goals/presentation/routes/app_routes.dart';
 import 'package:daily_goals/presentation/theme.dart';
 import 'package:flutter/material.dart';
 
-class ButtonTask extends StatelessWidget {
-  const ButtonTask({Key key}) : super(key: key);
+class TaskButton extends StatelessWidget {
+  const TaskButton({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
