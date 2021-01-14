@@ -12,29 +12,11 @@ import 'helpers.dart';
 class AppBarHome extends StatelessWidget {
   const AppBarHome({Key key}) : super(key: key);
 
-  void _showModalBottomSheetCalendar(BuildContext context) {
-    final goalProvider = context.read<GoalProvider>();
-    showModalBottomSheet(
-      context: context,
-      elevation: 3,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.only(
-          topRight: Radius.circular(30),
-          topLeft: Radius.circular(30),
-        ),
-      ),
-      builder: (context) => BottomSheetCalendar(
-        onDaySelected: goalProvider.setSelectedDate,
-        initDateTime: goalProvider.selectedDate,
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     final double _statusBarHeight = MediaQuery.of(context).padding.top;
     return Container(
-      padding: EdgeInsets.only(top: _statusBarHeight),
+      padding: EdgeInsets.only(top: _statusBarHeight + 15, bottom: 15),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(30),
@@ -45,14 +27,15 @@ class AppBarHome extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           Expanded(
-            child: Align(
-              alignment: Alignment.centerLeft,
-              child: InkWell(
-                child: Icon(
-                  Icons.calendar_today,
-                  size: 25,
+            child: Container(
+              child: Text(
+                Formatter.momentDay(),
+                textAlign: TextAlign.start,
+                style: TextStyle(
+                  fontSize: 30,
+                  color: AppColors.primaryTextColor,
+                  fontWeight: FontWeight.bold,
                 ),
-                onTap: () => _showModalBottomSheetCalendar(context),
               ),
             ),
           ),
@@ -67,6 +50,7 @@ class AppBarHome extends StatelessWidget {
             ),
           ),
           InkWell(
+            borderRadius: BorderRadius.circular(20),
             child: Icon(
               Icons.add,
               size: 25,

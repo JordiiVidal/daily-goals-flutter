@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:daily_goals/domain/models/category_model.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
@@ -48,6 +49,20 @@ class DBLocalStorage {
           'status INT(1)'
           ')',
         );
+        await db.execute(
+          'CREATE TABLE Category('
+          'id VARCHAR(300) PRIMARY KEY,'
+          'name VARCHAR(300),'
+          'color VARCHAR(100),'
+          'icon VARCHAR(100)'
+          ')',
+        );
+
+        await db.rawInsert(
+          'INSERT INTO Category VALUES (?,?,?,?)',
+          ['001-001', 'Sport', 0xffff0606, 58726],
+        );
+        
       },
     );
   }
@@ -182,5 +197,15 @@ class DBLocalStorage {
     );
 
     return result;
+  }
+
+  // Category
+
+  Future<List<CategoryModel>> getAllCategories() async {
+    final db = await database;
+    final result = await db.query('Category');
+    return result.isNotEmpty
+        ? result.map((cat) => CategoryModel.fromJson(cat)).toList()
+        : [];
   }
 }
