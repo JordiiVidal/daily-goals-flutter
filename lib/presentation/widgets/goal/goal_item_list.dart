@@ -1,9 +1,9 @@
-import 'package:daily_goals/presentation/theme.dart';
-import 'package:daily_goals/presentation/widgets/helpers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:provider/provider.dart';
 
+import 'package:daily_goals/presentation/theme.dart';
+import 'package:daily_goals/presentation/widgets/goal/custom_trailing.dart';
 import 'package:daily_goals/presentation/providers/goal_providert.dart';
 import 'package:daily_goals/domain/models/goal_model.dart';
 
@@ -27,54 +27,48 @@ class GoalItemList extends StatelessWidget {
             ),
           ),
         ],
-        child: Container(
-          padding: const EdgeInsets.all(3),
-          decoration: BoxDecoration(
-            color: AppColors.primaryColor,
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: ListTile(
-            contentPadding: const EdgeInsets.symmetric(
-              vertical: 0,
-              horizontal: 10,
-            ),
-            onTap: () => context.read<GoalProvider>().updateStatus(
-                  goal.id,
-                  goal.status == Status.Pending ? Status.Done : Status.Pending,
-                ),
-            leading: goal.status == Status.Pending
-                ? Icon(
-                    Icons.panorama_fish_eye,
-                    color: AppColors.accentColor,
-                  )
-                : Icon(
-                    Icons.check,
-                    color: AppColors.secondaryAccentColor,
-                  ),
-            title: Text(
-              '  ${goal.task.name}  ',
-              style: TextStyle(
-                fontSize: 18,
-                decoration: (goal.status == Status.Done)
-                    ? TextDecoration.lineThrough
-                    : TextDecoration.none,
+        child: InkWell(
+          onTap: () => context.read<GoalProvider>().updateStatus(
+                goal.id,
+                goal.status == Status.Pending ? Status.Done : Status.Pending,
               ),
-              softWrap: false,
-              maxLines: 1,
-              overflow: TextOverflow.fade,
+          child: Container(
+            padding: const EdgeInsets.all(6),
+            decoration: BoxDecoration(
+              color: AppColors.primaryColor,
+              borderRadius: BorderRadius.circular(5),
             ),
-            trailing: Column(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  (goal.useTime) ? Formatter.ui(goal.time, time: true) : '',
-                  style: TextStyle(
-                    color: AppColors.secondaryTextColor,
-                    fontSize: 12,
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Icon(
+                    goal.status == Status.Pending
+                        ? Icons.panorama_fish_eye
+                        : Icons.check,
+                    color: goal.status == Status.Pending
+                        ? AppColors.accentColor
+                        : AppColors.secondaryAccentColor,
                   ),
                 ),
+                Expanded(
+                  child: Text(
+                    '  ${goal.task.name}  ',
+                    style: TextStyle(
+                      fontSize: 18,
+                      decoration: (goal.status == Status.Done)
+                          ? TextDecoration.lineThrough
+                          : TextDecoration.none,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    softWrap: false,
+                    maxLines: 1,
+                    overflow: TextOverflow.fade,
+                  ),
+                ),
+                CustomTrailing(goal),
               ],
             ),
           ),

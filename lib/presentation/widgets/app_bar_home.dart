@@ -1,9 +1,13 @@
-import 'package:daily_goals/presentation/providers/goal_providert.dart';
+import 'package:daily_goals/presentation/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'package:daily_goals/presentation/providers/goal_providert.dart';
 import 'package:daily_goals/presentation/widgets/bottom_sheet_calendar.dart';
 import 'package:daily_goals/presentation/widgets/search/search_task_delegate.dart';
+
+import '../theme.dart';
+import 'helpers.dart';
 
 class AppBarHome extends StatelessWidget {
   const AppBarHome({Key key}) : super(key: key);
@@ -38,39 +42,37 @@ class AppBarHome extends StatelessWidget {
         ),
       ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.end,
         children: [
+          Expanded(
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: InkWell(
+                child: Icon(
+                  Icons.calendar_today,
+                  size: 25,
+                ),
+                onTap: () => _showModalBottomSheetCalendar(context),
+              ),
+            ),
+          ),
           IconButton(
             icon: Icon(
-              Icons.sort,
-              size: 28,
+              Icons.search,
+              size: 25,
             ),
-            onPressed: () => null,
+            onPressed: () => showSearch(
+              context: context,
+              delegate: TaskSearchDelegate(),
+            ),
           ),
-          Expanded(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                IconButton(
-                  icon: Icon(
-                    Icons.search,
-                    size: 25,
-                  ),
-                  onPressed: () => showSearch(
-                    context: context,
-                    delegate: TaskSearchDelegate(),
-                  ),
-                ),
-                IconButton(
-                  icon: Icon(
-                    Icons.calendar_today,
-                    size: 25,
-                  ),
-                  onPressed: () => _showModalBottomSheetCalendar(context),
-                ),
-              ],
+          InkWell(
+            child: Icon(
+              Icons.add,
+              size: 25,
             ),
-          )
+            onTap: () => Navigator.pushNamed(context, AppRoutes.form),
+          ),
         ],
       ),
     );
