@@ -1,3 +1,5 @@
+import 'package:daily_goals/data/repositories/category_repositiory_impl.dart';
+import 'package:daily_goals/domain/repositories/category_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -7,6 +9,7 @@ import 'data/repositories/goal_repository_impl.dart';
 import 'domain/repositories/goal_repository.dart';
 import 'domain/repositories/task_respository.dart';
 
+import 'presentation/providers/category_provider.dart';
 import 'presentation/providers/goal_providert.dart';
 import 'presentation/providers/task_provider.dart';
 import 'presentation/routes/app_routes.dart';
@@ -30,6 +33,9 @@ class MyApp extends StatelessWidget {
         Provider<GoalRepositoryInterface>(
           create: (_) => GoalRepositoryImpl(),
         ),
+        Provider<CategoryRepositoryInterface>(
+          create: (_) => CategoryRepositoryImpl(),
+        ),
         ChangeNotifierProvider<GoalProvider>(
           create: (ctx) => GoalProvider(
             ctx.read<GoalRepositoryInterface>(),
@@ -39,6 +45,11 @@ class MyApp extends StatelessWidget {
           create: (ctx) => TaskProvider(
             ctx.read<TaskRepositoryInterface>(),
           )..loadTasks(),
+        ),
+        ChangeNotifierProvider<CategoryProvider>(
+          create: (ctx) => CategoryProvider(
+            ctx.read<CategoryRepositoryInterface>(),
+          )..loadCategories(),
         ),
       ],
       child: MaterialApp(

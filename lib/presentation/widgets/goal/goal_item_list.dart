@@ -27,22 +27,24 @@ class GoalItemList extends StatelessWidget {
             ),
           ),
         ],
-        child: InkWell(
-          onTap: () => context.read<GoalProvider>().updateStatus(
-                goal.id,
-                goal.status == Status.Pending ? Status.Done : Status.Pending,
-              ),
-          child: Container(
-            padding: const EdgeInsets.all(6),
-            decoration: BoxDecoration(
-              color: AppColors.primaryColor,
-              borderRadius: BorderRadius.circular(5),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Padding(
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 10),
+          decoration: BoxDecoration(
+            color: AppColors.primaryColor,
+            borderRadius: BorderRadius.circular(5),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              InkWell(
+                onTap: () => context.read<GoalProvider>().updateStatus(
+                      goal.id,
+                      goal.status == Status.Pending
+                          ? Status.Done
+                          : Status.Pending,
+                    ),
+                child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   child: Icon(
                     goal.status == Status.Pending
@@ -53,24 +55,23 @@ class GoalItemList extends StatelessWidget {
                         : AppColors.secondaryAccentColor,
                   ),
                 ),
-                Expanded(
-                  child: Text(
-                    '  ${goal.task.name}  ',
-                    style: TextStyle(
-                      fontSize: 18,
-                      decoration: (goal.status == Status.Done)
-                          ? TextDecoration.lineThrough
-                          : TextDecoration.none,
-                      fontWeight: FontWeight.bold,
-                    ),
-                    softWrap: false,
-                    maxLines: 1,
-                    overflow: TextOverflow.fade,
+              ),
+              Expanded(
+                child: Text(
+                  '  ${goal.task.name}  ',
+                  style: TextStyle(
+                    fontSize: 18,
+                    decoration: (goal.status == Status.Done)
+                        ? TextDecoration.lineThrough
+                        : TextDecoration.none,
                   ),
+                  softWrap: false,
+                  maxLines: 1,
+                  overflow: TextOverflow.fade,
                 ),
-                CustomTrailing(goal),
-              ],
-            ),
+              ),
+              CustomTrailing(goal),
+            ],
           ),
         ),
       ),

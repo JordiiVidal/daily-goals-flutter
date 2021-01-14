@@ -15,7 +15,7 @@ final darkTheme = ThemeData(
   scaffoldBackgroundColor: AppColors.secondaryColor,
   primaryColor: AppColors.primaryColor,
   buttonColor: AppColors.primaryColor,
-  textTheme: GoogleFonts.nunitoTextTheme().apply(
+  textTheme: GoogleFonts.montserratTextTheme().apply(
     bodyColor: AppColors.primaryTextColor,
   ),
   backgroundColor: AppColors.secondaryColor,
@@ -39,5 +39,6 @@ final darkTheme = ThemeData(
   ),
   bottomNavigationBarTheme: BottomNavigationBarThemeData(
     elevation: 0,
+    backgroundColor: AppColors.primaryColor,
   ),
 );
