@@ -11,6 +11,12 @@ class AppColors {
   static final accentTextColor = Color(0XFFa33751);
 }
 
+class AppPadding {
+  static final screen = const EdgeInsets.symmetric(horizontal: 12.0);
+  static final title = const EdgeInsets.symmetric(vertical: 12.0);
+  static final form = const EdgeInsets.only(left: 25, right: 25, bottom: 50);
+}
+
 final darkTheme = ThemeData(
   scaffoldBackgroundColor: AppColors.secondaryColor,
   primaryColor: AppColors.primaryColor,

@@ -1,3 +1,4 @@
+import 'package:daily_goals/presentation/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:daily_goals/presentation/providers/category_provider.dart';
 import 'package:provider/provider.dart';
@@ -28,7 +29,8 @@ class HomeCategoryList extends StatelessWidget {
               ),
               IconButton(
                 icon: Icon(Icons.bookmark),
-                onPressed: () => null,
+                onPressed: () =>
+                    Navigator.pushNamed(context, AppRoutes.categories),
               ),
             ],
           ),

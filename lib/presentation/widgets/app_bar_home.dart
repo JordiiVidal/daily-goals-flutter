@@ -1,10 +1,7 @@
-import 'package:daily_goals/presentation/routes/app_routes.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
-import 'package:daily_goals/presentation/providers/goal_providert.dart';
-import 'package:daily_goals/presentation/widgets/bottom_sheet_calendar.dart';
 import 'package:daily_goals/presentation/widgets/search/search_task_delegate.dart';
+import 'package:daily_goals/presentation/routes/app_routes.dart';
 
 import '../theme.dart';
 import 'helpers.dart';
@@ -51,9 +48,12 @@ class AppBarHome extends StatelessWidget {
           ),
           InkWell(
             borderRadius: BorderRadius.circular(20),
-            child: Icon(
-              Icons.add,
-              size: 25,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Icon(
+                Icons.add,
+                size: 25,
+              ),
             ),
             onTap: () => Navigator.pushNamed(context, AppRoutes.form),
           ),

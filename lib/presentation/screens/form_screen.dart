@@ -1,4 +1,5 @@
 import 'package:daily_goals/presentation/providers/form_provider.dart';
+import 'package:daily_goals/presentation/theme.dart';
 import 'package:daily_goals/presentation/widgets/form/date_time_picker.dart';
 import 'package:daily_goals/presentation/widgets/form/exigency_chips.dart';
 import 'package:daily_goals/presentation/widgets/form/name_text_field.dart';
@@ -15,14 +16,10 @@ class FormScreen extends StatelessWidget {
       appBar: AppBar(),
       body: ChangeNotifierProvider(
         create: (_) => FormProvider(),
-        child: Stack(
+        builder: (context, _) => Stack(
           children: [
-            Container(
-              padding: const EdgeInsets.only(
-                left: 25,
-                right: 25,
-                bottom: 50,
-              ),
+            Padding(
+              padding: AppPadding.form,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -34,7 +31,11 @@ class FormScreen extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  NameTextField(),
+                  NameTextField(
+                    onChangeText: (t) =>
+                        context.read<FormProvider>().setName(t),
+                    hintText: ' Enter a new task ',
+                  ),
                   const SizedBox(
                     height: 30,
                   ),

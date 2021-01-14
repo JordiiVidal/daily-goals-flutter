@@ -1,8 +1,10 @@
-import 'package:daily_goals/presentation/providers/form_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class NameTextField extends StatelessWidget {
+  final Function onChangeText;
+  final String hintText;
+
+  const NameTextField({@required this.hintText, @required this.onChangeText});
   @override
   Widget build(BuildContext context) {
     return TextField(
@@ -10,9 +12,9 @@ class NameTextField extends StatelessWidget {
         fontSize: 21,
       ),
       cursorWidth: 2,
-      onChanged: (text) => context.read<FormProvider>().setName(text),
+      onChanged: onChangeText,
       decoration: InputDecoration(
-        hintText: ' Enter a new task ',
+        hintText: hintText,
         border: InputBorder.none,
       ),
     );

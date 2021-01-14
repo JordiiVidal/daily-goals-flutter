@@ -1,5 +1,7 @@
 import 'package:daily_goals/data/repositories/category_repositiory_impl.dart';
 import 'package:daily_goals/domain/repositories/category_repository.dart';
+import 'package:daily_goals/presentation/screens/categories_screen.dart';
+import 'package:daily_goals/presentation/screens/form_category_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -60,6 +62,8 @@ class MyApp extends StatelessWidget {
         routes: {
           AppRoutes.home: (_) => HomeScreen(),
           AppRoutes.form: (_) => FormScreen(),
+          AppRoutes.categories: (_) => CategoriesScreen(),
+          AppRoutes.formCategory: (_) => FormCategoryScreen(),
         },
       ),
     );
