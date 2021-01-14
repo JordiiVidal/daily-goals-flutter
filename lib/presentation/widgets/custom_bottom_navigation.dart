@@ -9,7 +9,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return BottomNavigationBar(
       elevation: 0,
-      currentIndex: 1,
+      currentIndex: 2,
       iconSize: 25,
       unselectedIconTheme: IconThemeData(
         color: AppColors.secondaryTextColor,
@@ -19,6 +19,10 @@ class CustomBottomNavigationBar extends StatelessWidget {
         BottomNavigationBarItem(
           title: Container(),
           icon: Icon(Icons.home),
+        ),
+        BottomNavigationBarItem(
+          title: Container(),
+          icon: Icon(Icons.graphic_eq),
         ),
         BottomNavigationBarItem(
           title: Container(),
@@ -36,6 +40,10 @@ class CustomBottomNavigationBar extends StatelessWidget {
               ),
             ),
           ),
+        ),
+        BottomNavigationBarItem(
+          title: Container(),
+          icon: Icon(Icons.alarm),
         ),
         BottomNavigationBarItem(
           title: Container(),

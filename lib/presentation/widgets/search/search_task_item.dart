@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
 
-import 'package:daily_goals/presentation/routes/app_routes.dart';
 import 'package:daily_goals/presentation/theme.dart';
 
 import 'package:daily_goals/domain/models/goal_model.dart';
@@ -20,7 +19,6 @@ class SearchTaskItem extends StatelessWidget {
       date: DateTime.now(),
     );
     await context.read<GoalProvider>().createGoal(goal);
-
     ///Navigator.pop(context);
   }
 

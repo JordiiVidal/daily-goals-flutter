@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AppColors {
-  static final primaryColor = Color(0XFF042d55);
-  static final secondaryColor = Color(0XFF3450a1);
+  static final primaryColor = Color(0XFF292e3c);
+  static final secondaryColor = Color(0XFF1d1f25);
   static final accentColor = Color(0XFFeb06ff);
   static final secondaryAccentColor = Color(0XFF2dff06);
   static final primaryTextColor = Color(0XFFFFFFFF);
@@ -15,7 +15,7 @@ final darkTheme = ThemeData(
   scaffoldBackgroundColor: AppColors.secondaryColor,
   primaryColor: AppColors.primaryColor,
   buttonColor: AppColors.primaryColor,
-  textTheme: GoogleFonts.robotoTextTheme().apply(
+  textTheme: GoogleFonts.nunitoTextTheme().apply(
     bodyColor: AppColors.primaryTextColor,
   ),
   backgroundColor: AppColors.secondaryColor,

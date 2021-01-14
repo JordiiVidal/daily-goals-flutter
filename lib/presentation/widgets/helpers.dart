@@ -5,8 +5,9 @@ class Formatter {
       ? DateFormat('yyyy-MM-dd').format(datetime)
       : DateFormat('yyyy-MM-dd HH:mm').format(datetime);
   static String ui(DateTime datetime, {bool time = false}) => (!time)
-      ? DateFormat('yMMMEd').format(datetime)
+      ? DateFormat('yMMMd').format(datetime)
       : DateFormat('HH:mm').format(datetime);
+  static String month(DateTime datetime) => DateFormat('MMMM').format(datetime);
 
   static String momentDay() {
     var timeNow = DateTime.now().hour;
