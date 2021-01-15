@@ -12,3 +12,25 @@ const pickerColors = <Color>[
   Color(0XFFffee06),
   Color(0XFFff7006),
 ];
+
+const pickerIcons = <IconData>[
+  Icons.airline_seat_individual_suite,
+  Icons.airplanemode_active,
+  Icons.airport_shuttle,
+  Icons.alarm,
+  Icons.album,
+  Icons.alternate_email,
+  Icons.archive,
+  Icons.assessment,
+  Icons.assistant_photo,
+  Icons.audiotrack,
+  Icons.beach_access,
+  Icons.brightness_3,
+  Icons.brightness_low,
+  Icons.build,
+  Icons.card_travel,
+  Icons.color_lens,
+  Icons.directions_walk,
+  Icons.fitness_center,
+  Icons.pets
+];

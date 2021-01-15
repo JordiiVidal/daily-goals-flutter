@@ -18,6 +18,7 @@ class CircleIcon extends StatelessWidget {
       child: Icon(
         iconData,
         color: Color(0XFFFFFFFF),
+        size: 18,
       ),
     );
   }

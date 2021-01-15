@@ -2,7 +2,8 @@ import 'package:daily_goals/data/datasources/local_data.dart';
 import 'package:flutter/material.dart';
 
 class ColorPicker extends StatelessWidget {
-  const ColorPicker({Key key}) : super(key: key);
+  final Function onTap;
+  const ColorPicker({@required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -25,10 +26,13 @@ class ColorPicker extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             itemCount: pickerColors.length,
             itemBuilder: (_, i) => Padding(
-              padding: const EdgeInsets.symmetric(horizontal :5.0),
-              child: CircleAvatar(
-                radius: 20,
-                backgroundColor: pickerColors[i],
+              padding: const EdgeInsets.symmetric(horizontal: 5.0),
+              child: GestureDetector(
+                onTap: () => onTap(context, pickerColors[i]),
+                child: CircleAvatar(
+                  radius: 20,
+                  backgroundColor: pickerColors[i],
+                ),
               ),
             ),
           ),

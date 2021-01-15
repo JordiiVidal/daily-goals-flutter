@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:daily_goals/domain/models/category_model.dart';
+import 'package:daily_goals/domain/models/db_model.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
@@ -62,19 +63,32 @@ class DBLocalStorage {
           'INSERT INTO Category VALUES (?,?,?,?)',
           ['001-001', 'Sport', 0xffff0606, 58726],
         );
-        
       },
     );
   }
 
-  Future<int> createTask(TaskModel task) async {
+  //GLOBAL CRUD
+
+  Future<int> createByModel(String table, DBModel model) async {
     final db = await database;
     final result = await db.insert(
-      'Task',
-      task.toJson(),
+      table,
+      model.toJson(),
     );
     return result;
   }
+
+  Future<int> deleteById(String table, String id) async {
+    final db = await database;
+    final result = await db.delete(
+      table,
+      where: 'id = ?',
+      whereArgs: [id],
+    );
+    return result;
+  }
+
+  ///TASK
 
   Future<TaskModel> getTaskById(String id) async {
     final db = await database;
@@ -98,16 +112,6 @@ class DBLocalStorage {
     return list;
   }
 
-  Future<int> deleteTaskById(String id) async {
-    final db = await database;
-    final result = await db.delete(
-      'Task',
-      where: 'id = ?',
-      whereArgs: [id],
-    );
-    return result;
-  }
-
   Future<List<TaskModel>> getAllTasks() async {
     final db = await database;
     final result = await db.query('Task');
@@ -119,15 +123,6 @@ class DBLocalStorage {
   }
 
   //GOALS
-
-  Future<int> createGoal(GoalModel goal) async {
-    final db = await database;
-    final result = await db.insert(
-      'Goal',
-      goal.toJson(),
-    );
-    return result;
-  }
 
   Future<GoalModel> getGoalById(String id) async {
     final db = await database;
@@ -149,17 +144,6 @@ class DBLocalStorage {
     );
     print(result);
     return result.isNotEmpty ? true : false;
-  }
-
-  Future<int> deleteGoalById(String id) async {
-    final db = await database;
-    final result = await db.delete(
-      'Goal',
-      where: 'id = ?',
-      whereArgs: [id],
-    );
-
-    return result;
   }
 
   Future<List<GoalModel>> getGoalsByDate(String date) async {

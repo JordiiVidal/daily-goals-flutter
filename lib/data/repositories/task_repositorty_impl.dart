@@ -4,9 +4,10 @@ import 'package:daily_goals/domain/models/task_model.dart';
 import 'package:daily_goals/domain/repositories/task_respository.dart';
 
 class TaskRepositoryImpl extends TaskRepositoryInterface {
+  static final String table = 'Task';
   @override
   Future<int> createTask(TaskModel task) async =>
-      await DBLocalStorage.db.createTask(task);
+      await DBLocalStorage.db.createByModel(table, task);
 
   @override
   Future<TaskModel> getTaskById(String id) async =>
@@ -14,7 +15,7 @@ class TaskRepositoryImpl extends TaskRepositoryInterface {
 
   @override
   Future<int> deleteTaskById(String id) async =>
-      await DBLocalStorage.db.deleteTaskById(id);
+      await DBLocalStorage.db.deleteById(table, id);
 
   @override
   Future<List<TaskModel>> getAllTasks() async =>

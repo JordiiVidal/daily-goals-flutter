@@ -2,19 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AppColors {
-  static final primaryColor = Color(0XFF292e3c);
-  static final secondaryColor = Color(0XFF1d1f25);
-  static final accentColor = Color(0XFFeb06ff);
-  static final secondaryAccentColor = Color(0XFF2dff06);
-  static final primaryTextColor = Color(0XFFFFFFFF);
-  static final secondaryTextColor = Color(0XFF8facf3);
-  static final accentTextColor = Color(0XFFa33751);
+  static final primaryColor = const Color(0XFF292e3c);
+  static final secondaryColor =const Color(0XFF1d1f25);
+  static final accentColor = const Color(0XFFeb06ff);
+  static final secondaryAccentColor = const Color(0XFF2dff06);
+  static final primaryTextColor = const Color(0XFFFFFFFF);
+  static final secondaryTextColor = const Color(0XFF8facf3);
+  static final accentTextColor = const Color(0XFFa33751);
 }
 
 class AppPadding {
   static final screen = const EdgeInsets.symmetric(horizontal: 12.0);
   static final title = const EdgeInsets.symmetric(vertical: 12.0);
-  static final form = const EdgeInsets.only(left: 25, right: 25, bottom: 50);
+  static final form = const EdgeInsets.only(left: 25, right: 25, bottom: 20);
 }
 
 final darkTheme = ThemeData(

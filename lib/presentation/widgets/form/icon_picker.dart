@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
+import 'package:daily_goals/data/datasources/local_data.dart';
+
 class IconPicker extends StatelessWidget {
-  const IconPicker({Key key}) : super(key: key);
+  final Function onTap;
+  const IconPicker({@required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -19,9 +22,17 @@ class IconPicker extends StatelessWidget {
           height: 10,
         ),
         Container(
-          height: 50,
-          child: Row(
-            children: [CircleAvatar(radius: 30)],
+          height: 30,
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: pickerIcons.length,
+            itemBuilder: (_, i) => IconButton(
+              icon: Icon(
+                pickerIcons[i],
+                color: Colors.white,
+              ),
+              onPressed: () => onTap(context, pickerIcons[i]),
+            ),
           ),
         )
       ],

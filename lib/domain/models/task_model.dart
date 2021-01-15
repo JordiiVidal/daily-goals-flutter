@@ -1,10 +1,11 @@
+import 'package:daily_goals/domain/models/db_model.dart';
 import 'package:daily_goals/domain/models/form_model.dart';
 import 'package:flutter/material.dart';
 import 'package:uuid/uuid.dart';
 
 enum Exigency { Low, Medium, High }
 
-class TaskModel {
+class TaskModel extends DBModel {
   TaskModel({
     String id,
     @required this.name,

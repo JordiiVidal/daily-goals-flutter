@@ -34,8 +34,5 @@ class FormProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void setName(String name) {
-    print(name);
-    _formState.name = name;
-  }
+  void setName(String name) => _formState.name = name;
 }

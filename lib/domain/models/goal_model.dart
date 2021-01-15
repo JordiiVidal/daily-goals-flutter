@@ -1,3 +1,4 @@
+import 'package:daily_goals/domain/models/db_model.dart';
 import 'package:daily_goals/domain/models/form_model.dart';
 import 'package:daily_goals/domain/models/task_model.dart';
 import 'package:daily_goals/presentation/widgets/helpers.dart';
@@ -6,7 +7,7 @@ import 'package:uuid/uuid.dart';
 
 enum Status { Pending, Suspended, Done }
 
-class GoalModel {
+class GoalModel extends DBModel{
   GoalModel({
     String id,
     @required this.date,
@@ -55,6 +56,7 @@ class GoalModel {
         useTime: form.useTime,
       );
 
+  @override
   Map<String, dynamic> toJson() => {
         "id": this.id,
         "date": Formatter.db(this.date),
