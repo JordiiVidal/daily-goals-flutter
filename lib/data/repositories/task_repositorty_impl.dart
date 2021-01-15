@@ -6,8 +6,14 @@ import 'package:daily_goals/domain/repositories/task_respository.dart';
 class TaskRepositoryImpl extends TaskRepositoryInterface {
   static final String table = 'Task';
   @override
-  Future<int> createTask(TaskModel task) async =>
-      await DBLocalStorage.db.createByModel(table, task);
+  Future<int> createTask(TaskModel task) async {
+    final exist = await DBLocalStorage.db.existByWhere(
+      table,
+      'name = ?',
+      [task.name],
+    );
+    if (!exist) await DBLocalStorage.db.createByModel(table, task);
+  }
 
   @override
   Future<TaskModel> getTaskById(String id) async =>

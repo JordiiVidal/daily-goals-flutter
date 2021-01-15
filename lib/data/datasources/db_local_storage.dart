@@ -78,6 +78,16 @@ class DBLocalStorage {
     return result;
   }
 
+  Future<bool> existByWhere(
+      String table, String where, List<dynamic> whereArgs) async {
+    final db = await database;
+    final result = await db.rawQuery(
+      'Select id FROM $table WHERE $where',
+      whereArgs,
+    );
+    return result.isEmpty ? false : true;
+  }
+
   Future<int> deleteById(String table, String id) async {
     final db = await database;
     final result = await db.delete(
@@ -133,17 +143,6 @@ class DBLocalStorage {
     );
 
     return result.isNotEmpty ? GoalModel.fromJson(result.first) : null;
-  }
-
-  Future<bool> existGoalWhere(String where, List<String> whereArgs) async {
-    final db = await database;
-    final result = await db.query(
-      'Goal',
-      where: where,
-      whereArgs: whereArgs,
-    );
-    print(result);
-    return result.isNotEmpty ? true : false;
   }
 
   Future<List<GoalModel>> getGoalsByDate(String date) async {

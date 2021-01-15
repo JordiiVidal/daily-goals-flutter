@@ -18,7 +18,8 @@ class CategoryTile extends StatelessWidget {
       actionPane: SlidableDrawerActionPane(),
       secondaryActions: [
         GestureDetector(
-          onTap: () => context.read<CategoryProvider>(),
+          onTap: () =>
+              context.read<CategoryProvider>().delteCategory(category.id),
           child: Container(
             color: Colors.red,
             child: Center(child: const Text('Delete')),

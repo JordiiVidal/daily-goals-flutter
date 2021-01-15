@@ -21,9 +21,9 @@ class GoalItemList extends StatelessWidget {
         secondaryActions: [
           GestureDetector(
             onTap: () => context.read<GoalProvider>().deleteGoalById(goal.id),
-            child: Padding(
-              padding: const EdgeInsets.only(left: 25.0),
-              child: const Text('Delete'),
+            child: Container(
+              color: Colors.red,
+              child: Center(child: const Text('Delete')),
             ),
           ),
         ],

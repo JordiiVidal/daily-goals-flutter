@@ -14,13 +14,12 @@ class CategoryProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> createCategory(CategoryModel categoryModel) async {
-    await categoryRepositoryInterface.createCategory(categoryModel);
-    loadCategories();
-  }
+  Future<bool> createCategory(CategoryModel categoryModel) async =>
+      await categoryRepositoryInterface.createCategory(categoryModel);
 
   Future<void> delteCategory(String id) async {
     await categoryRepositoryInterface.deleteCategory(id);
-    loadCategories();
+    _categoryList.removeWhere((element) => element.id == id);
+    notifyListeners();
   }
 }

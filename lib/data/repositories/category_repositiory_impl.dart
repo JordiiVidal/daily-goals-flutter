@@ -10,8 +10,16 @@ class CategoryRepositoryImpl extends CategoryRepositoryInterface {
       DBLocalStorage.db.getAllCategories();
 
   @override
-  Future<void> createCategory(CategoryModel category) =>
-      DBLocalStorage.db.createByModel(table, category);
+  Future<bool> createCategory(CategoryModel category) async {
+    final exist = await DBLocalStorage.db.existByWhere(
+      table,
+      'name = ?',
+      [category.name],
+    );
+    if (exist) return false;
+    await DBLocalStorage.db.createByModel(table, category);
+    return true;
+  }
 
   @override
   Future<void> deleteCategory(String id) =>
