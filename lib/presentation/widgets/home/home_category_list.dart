@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:daily_goals/presentation/providers/category_provider.dart';
 import 'package:provider/provider.dart';
 
-import '../theme.dart';
-import 'category_card.dart';
+import '../../theme.dart';
+import '../category/category_card.dart';
 
 class HomeCategoryList extends StatelessWidget {
   const HomeCategoryList({Key key}) : super(key: key);

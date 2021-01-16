@@ -1,23 +1,22 @@
 import 'package:daily_goals/domain/models/db_model.dart';
 import 'package:daily_goals/domain/models/form_model.dart';
 import 'package:daily_goals/domain/models/task_model.dart';
-import 'package:daily_goals/presentation/widgets/helpers.dart';
+import 'package:daily_goals/presentation/helpers.dart';
 import 'package:flutter/material.dart';
 import 'package:uuid/uuid.dart';
 
 enum Status { Pending, Suspended, Done }
 
-class GoalModel extends DBModel{
+class GoalModel extends DBModel {
   GoalModel({
     String id,
     @required this.date,
     @required this.idTask,
     this.time,
-    TaskModel task,
+    this.task,
     Status status,
     bool useTime,
   })  : this.id = id ?? Uuid().v4(),
-        this.task = task,
         this.status = status ?? Status.Pending,
         this.useTime = useTime ?? false;
 
@@ -63,6 +62,6 @@ class GoalModel extends DBModel{
         "time": Formatter.db(this.date, time: true),
         "id_task": this.idTask,
         "status": this.status.index,
-        "use_time": this.useTime ? 1 : 0
+        "use_time": this.useTime ? 1 : 0,
       };
 }

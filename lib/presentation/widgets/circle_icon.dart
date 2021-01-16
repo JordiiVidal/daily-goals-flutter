@@ -12,7 +12,7 @@ class CircleIcon extends StatelessWidget {
       width: 35,
       height: 35,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(35),
+        borderRadius: BorderRadius.circular(10),
         color: Color(color),
       ),
       child: Icon(

@@ -7,28 +7,32 @@ class CategoryModel extends DBModel {
   CategoryModel({
     String id,
     @required this.name,
-    int color,
     @required this.icon,
+    int color,
+    int total,
   })  : this.id = id ?? Uuid().v4(),
-        this.color = color ?? 0XFFeb06ff;
+        this.color = color ?? 0XFFeb06ff,
+        this.total = total ?? 0;
 
   String id;
   String name;
   int color;
   int icon;
+  int total;
 
   factory CategoryModel.fromJson(Map<String, dynamic> json) => CategoryModel(
         id: json["id"],
         name: json["name"],
         color: int.parse(json["color"]),
         icon: int.parse(json["icon"]),
+        total: json['total'],
       );
   factory CategoryModel.fromForm(FormCategoryModel form) => CategoryModel(
         name: form.name,
         color: form.color.value,
         icon: form.icon.codePoint,
       );
-      
+
   @override
   Map<String, dynamic> toJson() => {
         "id": id,

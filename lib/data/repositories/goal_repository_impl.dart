@@ -1,7 +1,7 @@
 import 'package:daily_goals/data/datasources/db_local_storage.dart';
 import 'package:daily_goals/domain/models/goal_model.dart';
 import 'package:daily_goals/domain/repositories/goal_repository.dart';
-import 'package:daily_goals/presentation/widgets/helpers.dart';
+import 'package:daily_goals/presentation/helpers.dart';
 
 class GoalRepositoryImpl extends GoalRepositoryInterface {
   static final String table = 'Goal';

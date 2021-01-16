@@ -2,10 +2,10 @@ import 'package:daily_goals/presentation/providers/goal_providert.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../theme.dart';
-import 'bottom_sheet_calendar.dart';
-import 'goal/goal_item_list.dart';
-import 'helpers.dart';
+import '../../theme.dart';
+import '../bottom_sheet_calendar.dart';
+import '../goal/goal_item_list.dart';
+import '../../helpers.dart';
 
 class HomeGoalList extends StatelessWidget {
   const HomeGoalList({Key key}) : super(key: key);

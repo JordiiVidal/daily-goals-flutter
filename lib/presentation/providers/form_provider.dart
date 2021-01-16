@@ -17,9 +17,15 @@ class FormProvider extends ChangeNotifier {
   DateTime get timeForm => _formState.time;
   DateTime get dateForm => _formState.date;
   bool get useTime => _formState.useTime;
+  String get categoryState => _formState.idCategory;
 
   void setExigency(int index) {
     _formState.exigency = _chipsItems[index];
+    notifyListeners();
+  }
+
+  void setCategory(String idCategory) {
+    _formState.idCategory = idCategory;
     notifyListeners();
   }
 

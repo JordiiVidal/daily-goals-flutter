@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:daily_goals/presentation/widgets/search/search_task_delegate.dart';
 import 'package:daily_goals/presentation/routes/app_routes.dart';
 
-import '../theme.dart';
-import 'helpers.dart';
+import '../../theme.dart';
+import '../../helpers.dart';
 
 class AppBarHome extends StatelessWidget {
   const AppBarHome({Key key}) : super(key: key);

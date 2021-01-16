@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../widgets/helpers.dart';
+import '../helpers.dart';
 
 import '../../domain/repositories/goal_repository.dart';
 import '../../domain/models/goal_model.dart';

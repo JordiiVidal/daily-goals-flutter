@@ -2,7 +2,7 @@ import 'package:daily_goals/domain/models/goal_model.dart';
 import 'package:flutter/material.dart';
 
 import '../../theme.dart';
-import '../helpers.dart';
+import '../../helpers.dart';
 
 class CustomTrailing extends StatelessWidget {
   final GoalModel goalModel;

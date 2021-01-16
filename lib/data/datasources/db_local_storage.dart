@@ -37,7 +37,8 @@ class DBLocalStorage {
           'id VARCHAR(300) PRIMARY KEY,'
           'name VARCHAR(300),'
           'description TEXT,'
-          'exigency INT(1)'
+          'exigency INT(1),'
+          'id_category VARCHAR(300)'
           ')',
         );
         await db.execute(
@@ -186,7 +187,10 @@ class DBLocalStorage {
 
   Future<List<CategoryModel>> getAllCategories() async {
     final db = await database;
-    final result = await db.query('Category');
+    final result = await db.rawQuery(
+      'SELECT Category.* FROM Category',
+    );
+    print(result);
     return result.isNotEmpty
         ? result.map((cat) => CategoryModel.fromJson(cat)).toList()
         : [];

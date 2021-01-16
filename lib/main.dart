@@ -15,7 +15,7 @@ import 'presentation/providers/category_provider.dart';
 import 'presentation/providers/goal_providert.dart';
 import 'presentation/providers/task_provider.dart';
 import 'presentation/routes/app_routes.dart';
-import 'presentation/screens/form_screen.dart';
+import 'presentation/screens/form_goal_screen.dart';
 import 'presentation/screens/home_screen.dart';
 import 'presentation/theme.dart';
 
@@ -61,7 +61,7 @@ class MyApp extends StatelessWidget {
         initialRoute: AppRoutes.home,
         routes: {
           AppRoutes.home: (_) => HomeScreen(),
-          AppRoutes.form: (_) => FormScreen(),
+          AppRoutes.form: (_) => FormGoalScreen(),
           AppRoutes.categories: (_) => CategoriesScreen(),
           AppRoutes.formCategory: (_) => FormCategoryScreen(),
         },

@@ -1,9 +1,10 @@
+import 'package:daily_goals/domain/models/category_model.dart';
 import 'package:daily_goals/domain/models/task_model.dart';
 
 class FormModel {
   FormModel({
     this.name,
-    this.category,
+    String idCategory,
     DateTime time,
     DateTime date,
     Exigency exigency,
@@ -11,12 +12,13 @@ class FormModel {
   })  : this.exigency = exigency ?? Exigency.Medium,
         this.date = date ?? DateTime.now(),
         this.time = time ?? DateTime.now(),
-        this.useTime = useTime ?? true;
+        this.useTime = useTime ?? true,
+        this.idCategory = idCategory ?? '';
 
   String name;
   Exigency exigency;
   DateTime date;
   DateTime time;
-  String category;
+  String idCategory;
   bool useTime;
 }

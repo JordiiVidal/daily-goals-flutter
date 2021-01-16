@@ -35,7 +35,7 @@ class CategoryTile extends StatelessWidget {
         trailing: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('0'),
+            Text('${category.total}'),
             Text(
               'Tasks',
               style: TextStyle(

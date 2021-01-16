@@ -1,5 +1,5 @@
 import 'package:daily_goals/presentation/providers/form_provider.dart';
-import 'package:daily_goals/presentation/widgets/helpers.dart';
+import 'package:daily_goals/presentation/helpers.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -65,6 +65,7 @@ class DateTimePicker extends StatelessWidget {
           height: 10,
         ),
         Container(
+          padding: const EdgeInsets.only(left: 5),
           child: Row(
             children: [
               ItemPicker(
@@ -84,6 +85,9 @@ class DateTimePicker extends StatelessWidget {
               ),
             ],
           ),
+        ),
+        const SizedBox(
+          height: 20,
         ),
       ],
     );
