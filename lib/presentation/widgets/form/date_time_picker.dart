@@ -14,12 +14,12 @@ class DateTimePicker extends StatelessWidget {
     showModalBottomSheet(
       context: context,
       elevation: 3,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.only(
-          topRight: Radius.circular(30),
-          topLeft: Radius.circular(30),
-        ),
-      ),
+      // shape: RoundedRectangleBorder(
+      //   borderRadius: BorderRadius.only(
+      //     topRight: Radius.circular(30),
+      //     topLeft: Radius.circular(30),
+      //   ),
+      // ),
       builder: (context) => BottomSheetCalendar(
         closeOnClick: true,
         initDateTime: readFormProvider.dateForm,
@@ -34,12 +34,13 @@ class DateTimePicker extends StatelessWidget {
     showModalBottomSheet(
       context: context,
       elevation: 3,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.only(
-          topRight: Radius.circular(30),
-          topLeft: Radius.circular(30),
-        ),
-      ),
+      enableDrag: false,
+      // shape: RoundedRectangleBorder(
+      //   borderRadius: BorderRadius.only(
+      //     topRight: Radius.circular(30),
+      //     topLeft: Radius.circular(30),
+      //   ),
+      // ),
       builder: (ctx) => BottomSheetTime(
         initDateTime: readFormProvider.timeForm,
         onTimeChange: readFormProvider.setTime,

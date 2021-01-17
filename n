@@ -1,0 +1,42 @@
+[33m9da217f[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;32mslivers[m[33m)[m fix time
+[33m8a09be0[m hero animation home
+[33m972084f[m category & task widgets
+[33m1dac4fe[m fix category form
+[33m5160c86[m global crud & dbmodel
+[33m19c5f09[m Merge branch 'master' of https://github.com/JordiiVidal/daily-goals-flutter
+[33m918261e[m form category & screen
+[33m0e2218e[m Update README.md
+[33mfa2aa00[m new screenshots
+[33m6e3a196[m Merge pull request #6 from JordiiVidal/ui
+[33m045145e[m[33m ([m[1;31morigin/ui[m[33m, [m[1;32mui[m[33m)[m category model
+[33m97f4431[m Merge pull request #5 from JordiiVidal/ui
+[33me9e779c[m theme data
+[33m01d716f[m refactor date format all sites & add features
+[33mc57a97b[m form provider
+[33mff7954c[m split widgets & details task
+[33ma498b7c[m fix auto search & suggestion
+[33m191a9fb[m search delegate query & provider
+[33mfdc1f42[m Merge branch 'master' of https://github.com/JordiiVidal/daily-goals-flutter
+[33m4ed5adc[m Update README.md
+[33m974999d[m background
+[33m7debe47[m Update README.md
+[33m38742f9[m add screenshot folder
+[33m41def4f[m Merge branch 'master' of https://github.com/JordiiVidal/daily-goals-flutter
+[33m029761e[m search delegate & adding theme colors
+[33m5ea7373[m Merge pull request #4 from JordiiVidal/main
+[33mb4f11b6[m Merge pull request #3 from JordiiVidal/master
+[33m51803c7[m add strike done goal & remove shadox goal item
+[33m94f69c9[m Merge pull request #2 from JordiiVidal/clean_architecture
+[33m51a5cfe[m[33m ([m[1;31morigin/clean_architecture[m[33m, [m[1;32mclean_architecture[m[33m)[m fix database inner join & UI HomeScreen
+[33m433b4b4[m Merge pull request #1 from JordiiVidal/clean_architecture
+[33m2bc694f[m refactor completed
+[33m730dfa8[m change user flow & rawquery
+[33m21b14d8[m implement mvvc
+[33m2a2696f[m improve UI & general syntax
+[33mc6d8d3e[m ui homepage & calendar
+[33mb770d2c[m app state done
+[33m0b5961a[m fix items
+[33m5ae7671[m Merge branch 'main' of https://github.com/JordiiVidal/daily-goals-flutter into main
+[33ma32de7b[m init provider state management
+[33m9ea8c02[m Update README.md
+[33m5657e57[m init project & structure (no state management)

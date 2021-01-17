@@ -18,6 +18,7 @@ class FormGoalScreen extends StatelessWidget {
 
   void onSubmit(BuildContext context) async {
     final formModel = context.read<FormProvider>().formState;
+    if (formModel.name == '') return;
     print('${formModel.time} -  SUBMIT');
     final task = TaskModel.fromForm(formModel);
     await context.read<TaskProvider>().createTask(task);

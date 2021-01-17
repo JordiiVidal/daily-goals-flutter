@@ -20,7 +20,7 @@ class BottomSheetTime extends StatelessWidget {
               child: TimePickerSpinner(
                 time: initDateTime,
                 isForce2Digits: true,
-                minutesInterval: 5,
+                minutesInterval: 1,
                 is24HourMode: true,
                 spacing: 10,
                 normalTextStyle: TextStyle(
@@ -34,33 +34,38 @@ class BottomSheetTime extends StatelessWidget {
                 onTimeChange: (time) => onTimeChange(time),
               ),
             ),
-            Container(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  RaisedButton(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Text('Clear'),
-                    onPressed: () {
-                      onTimeChange(initDateTime, useTime: false);
-                      Navigator.pop(context);
-                    },
-                  ),
-                  RaisedButton(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Text('Last Time'),
-                    onPressed: () {
-                      onTimeChange(initDateTime);
-                      Navigator.pop(context);
-                    },
-                  ),
-                ],
-              ),
-            )
+            // Container(
+            //   child: Column(
+            //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            //     children: [
+            //       RaisedButton(
+            //         shape: RoundedRectangleBorder(
+            //           borderRadius: BorderRadius.circular(10),
+            //         ),
+            //         child: Text(
+            //           'Clear',
+            //           style: TextStyle(
+            //             color: AppColors.primaryTextColor,
+            //           ),
+            //         ),
+            //         onPressed: () {
+            //           onTimeChange(initDateTime, useTime: false);
+            //           Navigator.pop(context);
+            //         },
+            //       ),
+            //       RaisedButton(
+            //         shape: RoundedRectangleBorder(
+            //           borderRadius: BorderRadius.circular(10),
+            //         ),
+            //         child: Text('Last Time'),
+            //         onPressed: () {
+            //           onTimeChange(initDateTime);
+            //           Navigator.pop(context);
+            //         },
+            //       ),
+            //     ],
+            //   ),
+            // )
           ],
         ),
       ),

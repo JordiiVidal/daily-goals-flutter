@@ -33,7 +33,7 @@ class _NameTextFieldState extends State<NameTextField> {
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
       focusNode: _textFocusNode,
       controller: _textController,
       style: TextStyle(
@@ -41,11 +41,13 @@ class _NameTextFieldState extends State<NameTextField> {
       ),
       cursorWidth: 2,
       onChanged: widget.onChangeText,
+      autocorrect: true,
+      maxLength: 40,
+      validator: (text) => null,
       decoration: InputDecoration(
         hintText: widget.hintText,
         border: InputBorder.none,
       ),
-      onSubmitted: (_) => FocusScope.of(context).unfocus(),
     );
   }
 }
