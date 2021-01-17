@@ -19,9 +19,8 @@ class _NameTextFieldState extends State<NameTextField> {
   void initState() {
     _textController = TextEditingController();
     _textFocusNode = FocusNode();
-    KeyboardVisibilityNotification().addNewListener(
-      onHide: () => FocusScope.of(context).unfocus(),
-    );
+    KeyboardVisibilityNotification()
+        .addNewListener(onHide: () => FocusScope.of(context).unfocus());
     super.initState();
   }
 

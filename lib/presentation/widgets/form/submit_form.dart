@@ -9,10 +9,8 @@ class SubmitForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TextStyle style = Theme.of(context).textTheme.headline6.copyWith(
-          fontSize: 20,
-          fontWeight: FontWeight.w700,
-        );
+    final TextStyle style =
+        Theme.of(context).textTheme.headline6.copyWith(fontSize: 20);
     return GestureDetector(
       onTap: () => onTap(context),
       child: Container(

@@ -59,7 +59,7 @@ class GoalModel extends DBModel {
   Map<String, dynamic> toJson() => {
         "id": this.id,
         "date": Formatter.db(this.date),
-        "time": Formatter.db(this.date, time: true),
+        "time": Formatter.db(this.time, time: true),
         "id_task": this.idTask,
         "status": this.status.index,
         "use_time": this.useTime ? 1 : 0,

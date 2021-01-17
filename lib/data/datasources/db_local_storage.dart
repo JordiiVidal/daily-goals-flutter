@@ -76,6 +76,7 @@ class DBLocalStorage {
       table,
       model.toJson(),
     );
+    print(model.toJson());
     return result;
   }
 
@@ -115,7 +116,6 @@ class DBLocalStorage {
     final db = await database;
     final result =
         await db.rawQuery("SELECT * FROM TASK WHERE name LIKE '%$name%'");
-    print(result);
     List<TaskModel> list = result.isNotEmpty
         ? result.map((task) => TaskModel.fromJson(task)).toList()
         : [];
@@ -190,7 +190,6 @@ class DBLocalStorage {
     final result = await db.rawQuery(
       'SELECT Category.* FROM Category',
     );
-    print(result);
     return result.isNotEmpty
         ? result.map((cat) => CategoryModel.fromJson(cat)).toList()
         : [];

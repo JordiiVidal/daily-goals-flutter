@@ -32,6 +32,7 @@ class FormProvider extends ChangeNotifier {
   void setTime(DateTime dateTime, {bool useTime = true}) {
     _formState.time = dateTime;
     _formState.useTime = useTime;
+    print('${_formState.time} -  SET TIME');
     notifyListeners();
   }
 

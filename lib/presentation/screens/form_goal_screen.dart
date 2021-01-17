@@ -1,4 +1,3 @@
-import 'package:daily_goals/presentation/widgets/form/category_chips.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -19,9 +18,11 @@ class FormGoalScreen extends StatelessWidget {
 
   void onSubmit(BuildContext context) async {
     final formModel = context.read<FormProvider>().formState;
+    print('${formModel.time} -  SUBMIT');
     final task = TaskModel.fromForm(formModel);
     await context.read<TaskProvider>().createTask(task);
     final goal = GoalModel.fromForm(formModel, task.id);
+    print('${goal.time} -  SUBMIT GOAL');
     await context.read<GoalProvider>().createGoal(goal);
     Navigator.pop(context);
   }
@@ -64,7 +65,7 @@ class FormGoalScreen extends StatelessWidget {
                 ),
                 ExigencyChips(),
                 DateTimePicker(),
-                CategoryChips(),
+                // CategoryChips(),
                 Expanded(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.end,
