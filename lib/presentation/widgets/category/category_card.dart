@@ -1,8 +1,8 @@
+import 'package:flutter/material.dart';
+
 import 'package:daily_goals/domain/models/category_model.dart';
-import 'package:daily_goals/presentation/routes/app_routes.dart';
 import 'package:daily_goals/presentation/theme.dart';
 import 'package:daily_goals/presentation/widgets/circle_icon.dart';
-import 'package:flutter/material.dart';
 
 class CategoryCard extends StatelessWidget {
   final CategoryModel categoryModel;

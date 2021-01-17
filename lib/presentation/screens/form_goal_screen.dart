@@ -69,9 +69,12 @@ class FormGoalScreen extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      SubmitForm(
-                        onTap: onSubmit,
-                        title: 'Create Task',
+                      Hero(
+                        tag: 'btn-frm',
+                        child: SubmitForm(
+                          onTap: onSubmit,
+                          title: 'Create Task',
+                        ),
                       ),
                     ],
                   ),

@@ -1,4 +1,3 @@
-import 'package:daily_goals/domain/models/category_model.dart';
 import 'package:daily_goals/domain/models/task_model.dart';
 
 class FormModel {

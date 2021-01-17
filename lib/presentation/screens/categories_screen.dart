@@ -1,10 +1,10 @@
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
 import 'package:daily_goals/presentation/providers/category_provider.dart';
 import 'package:daily_goals/presentation/routes/app_routes.dart';
 import 'package:daily_goals/presentation/theme.dart';
 import 'package:daily_goals/presentation/widgets/category/category_tile.dart';
-import 'package:daily_goals/presentation/widgets/circle_icon.dart';
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class CategoriesScreen extends StatelessWidget {
   const CategoriesScreen({Key key}) : super(key: key);

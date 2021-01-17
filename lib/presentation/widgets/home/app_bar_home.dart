@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:daily_goals/presentation/widgets/search/search_task_delegate.dart';
-import 'package:daily_goals/presentation/routes/app_routes.dart';
 
 import '../../theme.dart';
 import '../../helpers.dart';
@@ -51,11 +50,11 @@ class AppBarHome extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Icon(
-                Icons.add,
+                Icons.notifications,
                 size: 25,
               ),
             ),
-            onTap: () => Navigator.pushNamed(context, AppRoutes.form),
+            onTap: () => null,
           ),
         ],
       ),
