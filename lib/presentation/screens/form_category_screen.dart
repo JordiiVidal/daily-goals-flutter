@@ -85,9 +85,12 @@ class FormCategoryScreen extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      SubmitForm(
-                        onTap: onSubmit,
-                        title: 'Create Category',
+                      Hero(
+                        tag: 'btn-frm-ctg',
+                        child: SubmitForm(
+                          onTap: onSubmit,
+                          title: 'Create Category',
+                        ),
                       ),
                     ],
                   ),

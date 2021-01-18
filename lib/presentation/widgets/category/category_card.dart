@@ -13,7 +13,8 @@ class CategoryCard extends StatelessWidget {
     return GestureDetector(
       onTap: () => null,
       child: Container(
-        margin: const EdgeInsets.only(right: 8),
+        margin: const EdgeInsets.only(right: 16),
+        padding: const EdgeInsets.only(right: 8),
         decoration: BoxDecoration(
           color: AppColors.primaryColor,
           borderRadius: BorderRadius.circular(10),
@@ -32,7 +33,14 @@ class CategoryCard extends StatelessWidget {
                 ),
               ),
               SizedBox(width: 10),
-              Text(categoryModel.name),
+              Expanded(
+                child: Text(
+                  categoryModel.name,
+                  maxLines: 1,
+                  overflow: TextOverflow.fade,
+                  softWrap: false,
+                ),
+              ),
             ],
           ),
         ),

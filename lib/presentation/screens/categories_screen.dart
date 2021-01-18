@@ -1,3 +1,4 @@
+import 'package:daily_goals/presentation/widgets/button_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -14,35 +15,49 @@ class CategoriesScreen extends StatelessWidget {
     final categoryProvider = context.watch<CategoryProvider>();
     return Scaffold(
       appBar: AppBar(),
-      body: Padding(
-        padding: AppPadding.screen,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: AppPadding.title,
-              child: Text(
-                'Categories',
-                style: TextStyle(
-                  fontSize: 30,
-                  color: AppColors.primaryTextColor,
-                  fontWeight: FontWeight.bold,
+      body: Stack(
+        children: [
+          Padding(
+            padding: AppPadding.screen,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: AppPadding.title,
+                  child: Text(
+                    'Categories',
+                    style: TextStyle(
+                      fontSize: 30,
+                      color: AppColors.primaryTextColor,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ),
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: categoryProvider.categoryList.length,
+                    itemBuilder: (_, i) =>
+                        CategoryTile(categoryProvider.categoryList[i]),
+                  ),
+                )
+              ],
+            ),
+          ),
+          Positioned(
+            bottom: 18,
+            right: 60,
+            left: 60,
+            child: Hero(
+              tag: 'btn-frm-ctg',
+              child: ButtonIcon(
+                onTap: () =>
+                    Navigator.pushNamed(context, AppRoutes.formCategory),
+                title: 'Category',
+                icon: Icons.add,
               ),
             ),
-            Expanded(
-              child: ListView.builder(
-                itemCount: categoryProvider.categoryList.length,
-                itemBuilder: (_, i) =>
-                    CategoryTile(categoryProvider.categoryList[i]),
-              ),
-            )
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => Navigator.pushNamed(context, AppRoutes.formCategory),
-        child: const Icon(Icons.add),
+          )
+        ],
       ),
     );
   }

@@ -37,6 +37,7 @@ class HomeCategoryList extends StatelessWidget {
           Container(
             height: 60,
             child: ListView.builder(
+              physics: BouncingScrollPhysics(),
               scrollDirection: Axis.horizontal,
               itemCount: categoryPorivder.categoryList.length,
               itemBuilder: (_, i) =>

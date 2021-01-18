@@ -21,7 +21,13 @@ class CategoryTile extends StatelessWidget {
           onTap: () =>
               context.read<CategoryProvider>().delteCategory(category.id),
           child: Container(
-            color: Colors.red,
+            margin: const EdgeInsets.only(
+              top: 3.0,
+              bottom: 3.0,
+              left: 10,
+            ),
+            decoration: BoxDecoration(
+                color: Colors.red, borderRadius: BorderRadius.circular(5)),
             child: Center(child: const Text('Delete')),
           ),
         ),

@@ -1,10 +1,8 @@
 import 'package:daily_goals/presentation/widgets/empty_list.dart';
-import 'package:daily_goals/presentation/widgets/task_button.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:daily_goals/presentation/providers/task_provider.dart';
-import 'package:daily_goals/presentation/theme.dart';
 import 'package:daily_goals/presentation/widgets/search/search_task_item.dart';
 
 import 'package:daily_goals/domain/models/task_model.dart';

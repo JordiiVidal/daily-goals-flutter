@@ -151,7 +151,7 @@ class DBLocalStorage {
     final result = await db.rawQuery(
       'SELECT Goal.id as id, Goal.date as date, Goal.status as status, Goal.id_task as id_task, Goal.time as time, Goal.use_time as use_time,'
       'Task.name as name_task, Task.description as description_task,'
-      'Task.priority as priority_task FROM Goal JOIN Task ON Task.id = Goal.id_task WHERE Goal.date = ?',
+      'Task.priority as priority_task FROM Goal JOIN Task ON Task.id = Goal.id_task WHERE Goal.date = ? ORDER BY Goal.time DESC',
       [date],
     );
     List<GoalModel> list = result.isNotEmpty
