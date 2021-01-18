@@ -1,5 +1,5 @@
 import 'package:daily_goals/domain/models/db_model.dart';
-import 'package:daily_goals/domain/models/form_model.dart';
+import 'package:daily_goals/domain/models/goal_form_model.dart';
 import 'package:daily_goals/domain/models/task_model.dart';
 import 'package:daily_goals/presentation/helpers.dart';
 import 'package:flutter/material.dart';
@@ -40,7 +40,7 @@ class GoalModel extends DBModel {
             'id': json['id_task'],
             'name': json['name_task'],
             'description': json['description_task'],
-            'exigency': json['exigency_task'],
+            'priority': json['priority_task'],
           },
         ),
       );
@@ -48,7 +48,7 @@ class GoalModel extends DBModel {
         date: date,
         idTask: task.id,
       );
-  factory GoalModel.fromForm(FormModel form, String idTask) => GoalModel(
+  factory GoalModel.fromForm(GoalFormModel form, String idTask) => GoalModel(
         date: form.date,
         idTask: idTask,
         time: form.time,

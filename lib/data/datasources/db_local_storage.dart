@@ -37,7 +37,7 @@ class DBLocalStorage {
           'id VARCHAR(300) PRIMARY KEY,'
           'name VARCHAR(300),'
           'description TEXT,'
-          'exigency INT(1),'
+          'priority INT(1),'
           'id_category VARCHAR(300)'
           ')',
         );
@@ -151,7 +151,7 @@ class DBLocalStorage {
     final result = await db.rawQuery(
       'SELECT Goal.id as id, Goal.date as date, Goal.status as status, Goal.id_task as id_task, Goal.time as time, Goal.use_time as use_time,'
       'Task.name as name_task, Task.description as description_task,'
-      'Task.exigency as exigency_task FROM Goal JOIN Task ON Task.id = Goal.id_task WHERE Goal.date = ?',
+      'Task.priority as priority_task FROM Goal JOIN Task ON Task.id = Goal.id_task WHERE Goal.date = ?',
       [date],
     );
     List<GoalModel> list = result.isNotEmpty

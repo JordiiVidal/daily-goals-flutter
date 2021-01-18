@@ -13,6 +13,7 @@ class TaskRepositoryImpl extends TaskRepositoryInterface {
       [task.name],
     );
     if (!exist) await DBLocalStorage.db.createByModel(table, task);
+    return 1;
   }
 
   @override
@@ -30,4 +31,8 @@ class TaskRepositoryImpl extends TaskRepositoryInterface {
   @override
   Future<List<TaskModel>> searchListTasks(String name) async =>
       await DBLocalStorage.db.getSearchListTasks(name);
+
+  @override
+  Future<bool> existTaskByName(String name) async =>
+      await DBLocalStorage.db.existByWhere(table, 'name = ?', [name]);
 }

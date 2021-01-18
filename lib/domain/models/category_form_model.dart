@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class FormCategoryModel {
-  FormCategoryModel({
+class CategoryFormModel {
+  CategoryFormModel({
     this.name,
     this.color,
     this.icon,

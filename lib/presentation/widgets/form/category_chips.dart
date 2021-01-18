@@ -5,7 +5,7 @@ import 'package:daily_goals/domain/models/category_model.dart';
 import 'package:daily_goals/presentation/providers/category_provider.dart';
 
 import 'package:chips_choice/chips_choice.dart';
-import 'package:daily_goals/presentation/providers/form_provider.dart';
+import 'package:daily_goals/presentation/providers/goal_form_provider.dart';
 
 import '../custom_chip.dart';
 
@@ -28,7 +28,7 @@ class CategoryChips extends StatelessWidget {
           ),
           ChipsChoice<String>.single(
             padding: const EdgeInsets.all(0),
-            value: context.watch<FormProvider>().categoryState,
+            value: context.watch<GoalFormProvider>().categoryState,
             choiceBuilder: (item) {
               final int color =
                   context.read<CategoryProvider>().getColorById(item.value);
@@ -41,7 +41,7 @@ class CategoryChips extends StatelessWidget {
                 onSelect: item.select,
               );
             },
-            onChanged: (i) => context.read<FormProvider>().setCategory(i),
+            onChanged: (i) => context.read<GoalFormProvider>().setCategory(i),
             choiceItems: C2Choice.listFrom<String, CategoryModel>(
               source: context.watch<CategoryProvider>().categoryList,
               value: (i, v) => v.id,

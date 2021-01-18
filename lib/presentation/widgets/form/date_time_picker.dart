@@ -1,4 +1,4 @@
-import 'package:daily_goals/presentation/providers/form_provider.dart';
+import 'package:daily_goals/presentation/providers/goal_form_provider.dart';
 import 'package:daily_goals/presentation/helpers.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -10,7 +10,7 @@ import '../bottom_sheet_calendar.dart';
 
 class DateTimePicker extends StatelessWidget {
   void _showModalBottomSheetCalendar(BuildContext context) {
-    final readFormProvider = context.read<FormProvider>();
+    final readFormProvider = context.read<GoalFormProvider>();
     showModalBottomSheet(
       context: context,
       elevation: 3,
@@ -29,7 +29,7 @@ class DateTimePicker extends StatelessWidget {
   }
 
   void _showModalBottomSheetTime(BuildContext context) {
-    final readFormProvider = context.read<FormProvider>();
+    final readFormProvider = context.read<GoalFormProvider>();
 
     showModalBottomSheet(
       context: context,
@@ -50,7 +50,7 @@ class DateTimePicker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final formProvider = context.watch<FormProvider>();
+    final formProvider = context.watch<GoalFormProvider>();
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,

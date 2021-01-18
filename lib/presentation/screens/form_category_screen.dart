@@ -3,40 +3,34 @@ import 'package:provider/provider.dart';
 
 import 'package:daily_goals/domain/models/category_model.dart';
 import 'package:daily_goals/presentation/providers/category_provider.dart';
-import 'package:daily_goals/presentation/providers/form_category_provider.dart';
+import 'package:daily_goals/presentation/providers/category_form_provider.dart';
 import 'package:daily_goals/presentation/theme.dart';
 import 'package:daily_goals/presentation/widgets/form/color_picker.dart';
 import 'package:daily_goals/presentation/widgets/form/icon_picker.dart';
-import 'package:daily_goals/presentation/widgets/form/name_text_field.dart';
 import 'package:daily_goals/presentation/widgets/form/submit_form.dart';
 
 class FormCategoryScreen extends StatelessWidget {
   const FormCategoryScreen({Key key}) : super(key: key);
 
   void onSubmit(BuildContext context) async {
-    final formCategory = context.read<FormCategoryProvider>().categoryState;
-    final created = await context
+    final categoryFormProvider = context.read<CategoryFormProvider>();
+    if (categoryFormProvider.errorName != null) return;
+    final formCategory = categoryFormProvider.categoryState;
+    await context
         .read<CategoryProvider>()
         .createCategory(CategoryModel.fromForm(formCategory));
-    if (created) {
-      Navigator.pop(context);
-    } else {
-      Scaffold.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Exist category with same name!'),
-        ),
-      );
-    }
+
+    Navigator.pop(context);
   }
 
   void onChangeColor(BuildContext context, Color color) {
     FocusScope.of(context).unfocus();
-    context.read<FormCategoryProvider>().setColor(color);
+    context.read<CategoryFormProvider>().setColor(color);
   }
 
   void onChangeIcon(BuildContext context, IconData iconData) {
     FocusScope.of(context).unfocus();
-    context.read<FormCategoryProvider>().setIcon(iconData);
+    context.read<CategoryFormProvider>().setIcon(iconData);
   }
 
   @override
@@ -53,7 +47,7 @@ class FormCategoryScreen extends StatelessWidget {
         resizeToAvoidBottomInset: true,
         appBar: AppBar(),
         body: ChangeNotifierProvider(
-          create: (_) => FormCategoryProvider(),
+          create: (_) => CategoryFormProvider(),
           builder: (context, _) => Padding(
             padding: AppPadding.form,
             child: Column(
@@ -67,10 +61,17 @@ class FormCategoryScreen extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                NameTextField(
-                  onChangeText: (text) =>
-                      context.read<FormCategoryProvider>().setName(text),
-                  hintText: ' Enter a new category ',
+                TextFormField(
+                  style: TextStyle(fontSize: 21),
+                  cursorWidth: 2,
+                  autovalidate: true,
+                  onChanged: (text) =>
+                      context.read<CategoryFormProvider>().setName(text),
+                  decoration: InputDecoration(
+                    hintText: '  Enter a new category  ',
+                    errorText: context.watch<CategoryFormProvider>().errorName,
+                    border: InputBorder.none,
+                  ),
                 ),
                 const SizedBox(height: 30),
                 ColorPicker(

@@ -1,3 +1,4 @@
+import 'package:daily_goals/presentation/widgets/empty_list.dart';
 import 'package:daily_goals/presentation/widgets/task_button.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -24,26 +25,7 @@ class SearchTaskList extends StatelessWidget {
               child: Text('No results'),
             );
           } else if (list.length == 0 && query.isEmpty) {
-            return Column(
-              children: [
-                Expanded(
-                  child: Center(
-                    child: Text(
-                      'No task created',
-                      style: TextStyle(
-                        fontSize: 30,
-                        color: AppColors.secondaryTextColor,
-                      ),
-                    ),
-                  ),
-                ),
-                Container(
-                  width: 200,
-                  padding: const EdgeInsets.all(20.0),
-                  child: TaskButton(),
-                ),
-              ],
-            );
+            return EmptyList();
           }
           return ListView.builder(
             padding: const EdgeInsets.only(top: 8),

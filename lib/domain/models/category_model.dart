@@ -1,7 +1,8 @@
 import 'package:daily_goals/domain/models/db_model.dart';
-import 'package:daily_goals/domain/models/form_category_model.dart';
 import 'package:flutter/material.dart';
 import 'package:uuid/uuid.dart';
+
+import 'category_form_model.dart';
 
 class CategoryModel extends DBModel {
   CategoryModel({
@@ -27,7 +28,7 @@ class CategoryModel extends DBModel {
         icon: int.parse(json["icon"]),
         total: json['total'],
       );
-  factory CategoryModel.fromForm(FormCategoryModel form) => CategoryModel(
+  factory CategoryModel.fromForm(CategoryFormModel form) => CategoryModel(
         name: form.name,
         color: form.color.value,
         icon: form.icon.codePoint,

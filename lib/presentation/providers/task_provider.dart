@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import '../../domain/models/task_model.dart';
 import '../../domain/repositories/task_respository.dart';
 
-
 class TaskProvider extends ChangeNotifier {
   final TaskRepositoryInterface taskRepositoryInterface;
   TaskProvider(this.taskRepositoryInterface);
@@ -15,10 +14,6 @@ class TaskProvider extends ChangeNotifier {
     final result = await taskRepositoryInterface.getAllTasks();
     _tasksList = result;
     notifyListeners();
-  }
-
-  Future<bool> existByName() async{
-    
   }
 
   Future<void> createTask(TaskModel task) async {
@@ -34,6 +29,15 @@ class TaskProvider extends ChangeNotifier {
     await loadTasks();
   }
 
+  Future<bool> existName(String name) async =>
+      await taskRepositoryInterface.existTaskByName(name);
+
   Future<List<TaskModel>> searchListTasks(String name) async =>
       taskRepositoryInterface.searchListTasks(name);
+
+  Future<String> validateName(String name) async {
+    if (name.length < 3) return 'Minimum 3 characters';
+    final exist = await taskRepositoryInterface.existTaskByName(name);
+    return (exist) ? 'This name was created' : '';
+  }
 }

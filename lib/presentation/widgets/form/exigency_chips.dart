@@ -3,12 +3,12 @@ import 'package:provider/provider.dart';
 
 import 'package:chips_choice/chips_choice.dart';
 import 'package:daily_goals/domain/models/task_model.dart';
-import 'package:daily_goals/presentation/providers/form_provider.dart';
+import 'package:daily_goals/presentation/providers/goal_form_provider.dart';
 
 import '../../theme.dart';
 import '../custom_chip.dart';
 
-class ExigencyChips extends StatelessWidget {
+class PriorityChips extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -16,7 +16,7 @@ class ExigencyChips extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Text(
-            'Exigency',
+            'Priority',
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 15,
@@ -27,7 +27,7 @@ class ExigencyChips extends StatelessWidget {
           ),
           ChipsChoice<int>.single(
             padding: const EdgeInsets.all(0),
-            value: context.watch<FormProvider>().exigencyState,
+            value: context.watch<GoalFormProvider>().priorityState,
             choiceBuilder: (item) {
               return CustomChip(
                 label: item.label,
@@ -38,11 +38,11 @@ class ExigencyChips extends StatelessWidget {
                 onSelect: item.select,
               );
             },
-            onChanged: (i) => context.read<FormProvider>().setExigency(i),
-            choiceItems: C2Choice.listFrom<int, Exigency>(
-              source: context.watch<FormProvider>().chipsItems,
+            onChanged: (i) => context.read<GoalFormProvider>().setPriority(i),
+            choiceItems: C2Choice.listFrom<int, Priority>(
+              source: context.watch<GoalFormProvider>().chipsItems,
               value: (i, v) => v.index,
-              label: (i, v) => exigencyToString(v),
+              label: (i, v) => priorityToString(v),
             ),
           ),
           const SizedBox(

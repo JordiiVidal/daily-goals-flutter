@@ -3,7 +3,7 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:provider/provider.dart';
 
 import 'package:daily_goals/presentation/theme.dart';
-import 'package:daily_goals/presentation/widgets/goal/custom_trailing.dart';
+import 'package:daily_goals/presentation/widgets/goal/info_goal.dart';
 import 'package:daily_goals/presentation/providers/goal_providert.dart';
 import 'package:daily_goals/domain/models/goal_model.dart';
 
@@ -22,7 +22,13 @@ class GoalItemList extends StatelessWidget {
           GestureDetector(
             onTap: () => context.read<GoalProvider>().deleteGoalById(goal.id),
             child: Container(
-              color: Colors.red,
+              margin: const EdgeInsets.only(
+                top: 3.0,
+                bottom: 3.0,
+                left: 10,
+              ),
+              decoration: BoxDecoration(
+                  color: Colors.red, borderRadius: BorderRadius.circular(5)),
               child: Center(child: const Text('Delete')),
             ),
           ),
@@ -70,7 +76,7 @@ class GoalItemList extends StatelessWidget {
                   overflow: TextOverflow.fade,
                 ),
               ),
-              CustomTrailing(goal),
+              InfoGoal(goal),
             ],
           ),
         ),

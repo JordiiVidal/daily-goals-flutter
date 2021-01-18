@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import '../../theme.dart';
 import '../../helpers.dart';
 
-class CustomTrailing extends StatelessWidget {
+class InfoGoal extends StatelessWidget {
   final GoalModel goalModel;
-  const CustomTrailing(this.goalModel);
+  const InfoGoal(this.goalModel);
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +35,7 @@ class CustomTrailing extends StatelessWidget {
                 height: 4,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10.0),
-                  color: goalModel.task.exigency.index >= 0
+                  color: goalModel.task.priority.index >= 0
                       ? AppColors.accentColor
                       : AppColors.secondaryTextColor,
                 ),
@@ -46,7 +46,7 @@ class CustomTrailing extends StatelessWidget {
                 height: 4,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  color: goalModel.task.exigency.index >= 1
+                  color: goalModel.task.priority.index >= 1
                       ? AppColors.accentColor
                       : AppColors.secondaryTextColor,
                 ),
@@ -57,7 +57,7 @@ class CustomTrailing extends StatelessWidget {
                 height: 4,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  color: goalModel.task.exigency.index == 2
+                  color: goalModel.task.priority.index == 2
                       ? AppColors.accentColor
                       : AppColors.secondaryTextColor,
                 ),

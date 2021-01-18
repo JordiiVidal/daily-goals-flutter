@@ -1,4 +1,5 @@
 import 'package:daily_goals/presentation/providers/goal_providert.dart';
+import 'package:daily_goals/presentation/widgets/empty_list.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -57,12 +58,15 @@ class HomeGoalList extends StatelessWidget {
             ],
           ),
           Expanded(
-            child: ListView.builder(
-              padding: const EdgeInsets.only(top: 12),
-              physics: BouncingScrollPhysics(),
-              itemCount: goalProvider.goalsList.length,
-              itemBuilder: (_, i) => GoalItemList(goalProvider.goalsList[i]),
-            ),
+            child: (goalProvider.goalsList.length > 0)
+                ? ListView.builder(
+                    padding: const EdgeInsets.only(top: 12),
+                    physics: BouncingScrollPhysics(),
+                    itemCount: goalProvider.goalsList.length,
+                    itemBuilder: (_, i) =>
+                        GoalItemList(goalProvider.goalsList[i]),
+                  )
+                : EmptyList(),
           ),
         ],
       ),

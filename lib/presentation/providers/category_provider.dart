@@ -19,10 +19,9 @@ class CategoryProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<bool> createCategory(CategoryModel categoryModel) async {
+  Future<void> createCategory(CategoryModel categoryModel) async {
     await categoryRepositoryInterface.createCategory(categoryModel);
     await loadCategories();
-    return true;
   }
 
   Future<void> delteCategory(String id) async {

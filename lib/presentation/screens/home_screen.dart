@@ -21,12 +21,10 @@ class HomeScreen extends StatelessWidget {
           ],
         ),
       ),
-      floatingActionButton:
-         FloatingActionButton(
-           heroTag: 'btn-frm',
-          child: Icon(Icons.add),
-          onPressed: () => Navigator.pushNamed(context, AppRoutes.form),
-        
+      floatingActionButton: FloatingActionButton(
+        heroTag: 'btn-frm',
+        child: Icon(Icons.add),
+        onPressed: () => Navigator.pushNamed(context, AppRoutes.form),
       ),
     );
   }
