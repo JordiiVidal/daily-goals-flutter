@@ -188,7 +188,7 @@ class DBLocalStorage {
   Future<List<CategoryModel>> getAllCategories() async {
     final db = await database;
     final result = await db.rawQuery(
-      'SELECT Category.* FROM Category',
+      'SELECT Category.*, (SELECT COUNT(id) FROM task WHERE id_category = Category.id) as total FROM Category',
     );
     return result.isNotEmpty
         ? result.map((cat) => CategoryModel.fromJson(cat)).toList()

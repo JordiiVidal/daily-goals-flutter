@@ -1,3 +1,4 @@
+import 'package:daily_goals/presentation/providers/category_provider.dart';
 import 'package:daily_goals/presentation/widgets/form/category_chips.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -15,6 +16,7 @@ import 'package:daily_goals/presentation/providers/task_provider.dart';
 
 class FormGoalScreen extends StatelessWidget {
   void onSubmit(BuildContext context) async {
+    ///TODO IMPROVE THIS CODE
     final formProvider = context.read<GoalFormProvider>();
     if (formProvider.errorName != null) return;
     final formModel = formProvider.formState;
@@ -22,6 +24,7 @@ class FormGoalScreen extends StatelessWidget {
     await context.read<TaskProvider>().createTask(task);
     final goal = GoalModel.fromForm(formModel, task.id);
     await context.read<GoalProvider>().createGoal(goal);
+    await context.read<CategoryProvider>().loadCategories();
     Navigator.pop(context);
   }
 

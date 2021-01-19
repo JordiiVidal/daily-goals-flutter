@@ -7,7 +7,9 @@ class CategoryProvider extends ChangeNotifier {
   CategoryProvider(this.categoryRepositoryInterface);
 
   List<CategoryModel> _categoryList = <CategoryModel>[];
+
   List<CategoryModel> get categoryList => _categoryList;
+
 
   int getColorById(String id) {
     final _category = _categoryList.firstWhere((element) => element.id == id);

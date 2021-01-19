@@ -30,7 +30,10 @@ class TaskModel extends DBModel {
       );
 
   factory TaskModel.fromForm(GoalFormModel form) => TaskModel(
-      name: form.name, priority: form.priority, idCategory: form.idCategory);
+        name: form.name,
+        priority: form.priority,
+        idCategory: form.idCategory,
+      );
 
   Map<String, dynamic> toJson() => {
         "id": id,

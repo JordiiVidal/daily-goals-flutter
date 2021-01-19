@@ -9,7 +9,7 @@ import '../goal/goal_item_list.dart';
 import '../../helpers.dart';
 
 class HomeGoalList extends StatelessWidget {
-  const HomeGoalList({Key key}) : super(key: key);
+  const HomeGoalList();
   void _showModalBottomSheetCalendar(BuildContext context) {
     final goalProvider = context.read<GoalProvider>();
     showModalBottomSheet(
