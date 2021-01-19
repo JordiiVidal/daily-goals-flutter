@@ -1,3 +1,4 @@
+import 'package:daily_goals/presentation/widgets/form/category_chips.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -34,12 +35,12 @@ class FormGoalScreen extends StatelessWidget {
           currentFocus.focusedChild.unfocus();
         }
       },
-      child: Scaffold(
-        resizeToAvoidBottomInset: true,
-        appBar: AppBar(),
-        body: ChangeNotifierProvider(
-          create: (_) => GoalFormProvider(),
-          builder: (context, _) => Padding(
+      child: ChangeNotifierProvider(
+        create: (_) => GoalFormProvider(),
+        builder: (context, _) => Scaffold(
+          resizeToAvoidBottomInset: true,
+          appBar: AppBar(),
+          body: SingleChildScrollView(
             padding: AppPadding.form,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -64,24 +65,16 @@ class FormGoalScreen extends StatelessWidget {
                     border: InputBorder.none,
                   ),
                 ),
-                const SizedBox(
-                  height: 30,
-                ),
+                const SizedBox(height: 30),
                 PriorityChips(),
                 DateTimePicker(),
-                // CategoryChips(),
-                Expanded(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Hero(
-                        tag: 'btn-frm',
-                        child: SubmitForm(
-                          onTap: onSubmit,
-                          title: 'Create Task',
-                        ),
-                      ),
-                    ],
+                CategoryChips(),
+                const SizedBox(height: 30),
+                Hero(
+                  tag: 'btn-frm',
+                  child: SubmitForm(
+                    onTap: onSubmit,
+                    title: 'Create Task',
                   ),
                 )
               ],

@@ -9,6 +9,7 @@ class TaskProvider extends ChangeNotifier {
 
   List<TaskModel> _tasksList = <TaskModel>[];
   List<TaskModel> get tasksList => _tasksList;
+  
 
   Future<void> loadTasks() async {
     final result = await taskRepositoryInterface.getAllTasks();

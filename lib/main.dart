@@ -1,9 +1,6 @@
-import 'package:daily_goals/data/repositories/category_repositiory_impl.dart';
-import 'package:daily_goals/domain/repositories/category_repository.dart';
-import 'package:daily_goals/presentation/screens/categories_screen.dart';
-import 'package:daily_goals/presentation/screens/form_category_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter/services.dart';
 
 import 'data/repositories/task_repositorty_impl.dart';
 import 'data/repositories/goal_repository_impl.dart';
@@ -19,7 +16,17 @@ import 'presentation/screens/form_goal_screen.dart';
 import 'presentation/screens/home_screen.dart';
 import 'presentation/theme.dart';
 
+import 'package:daily_goals/data/repositories/category_repositiory_impl.dart';
+import 'package:daily_goals/domain/repositories/category_repository.dart';
+import 'package:daily_goals/presentation/screens/categories_screen.dart';
+import 'package:daily_goals/presentation/screens/form_category_screen.dart';
+
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
+  SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle(statusBarColor: AppColors.secondaryColor));
   runApp(MyApp());
 }
 

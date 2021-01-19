@@ -43,12 +43,12 @@ class FormCategoryScreen extends StatelessWidget {
           currentFocus.focusedChild.unfocus();
         }
       },
-      child: Scaffold(
-        resizeToAvoidBottomInset: true,
-        appBar: AppBar(),
-        body: ChangeNotifierProvider(
-          create: (_) => CategoryFormProvider(),
-          builder: (context, _) => Padding(
+      child: ChangeNotifierProvider(
+        create: (_) => CategoryFormProvider(),
+        builder: (context, _) => Scaffold(
+          resizeToAvoidBottomInset: true,
+          appBar: AppBar(),
+          body: SingleChildScrollView(
             padding: AppPadding.form,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -74,25 +74,15 @@ class FormCategoryScreen extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 30),
-                ColorPicker(
-                  onTap: onChangeColor,
-                ),
+                ColorPicker(onTap: onChangeColor),
                 const SizedBox(height: 15),
-                IconPicker(
-                  onTap: onChangeIcon,
-                ),
-                Expanded(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Hero(
-                        tag: 'btn-frm-ctg',
-                        child: SubmitForm(
-                          onTap: onSubmit,
-                          title: 'Create Category',
-                        ),
-                      ),
-                    ],
+                IconPicker(onTap: onChangeIcon),
+                const SizedBox(height: 30),
+                Hero(
+                  tag: 'btn-frm-ctg',
+                  child: SubmitForm(
+                    onTap: onSubmit,
+                    title: 'Create Category',
                   ),
                 )
               ],

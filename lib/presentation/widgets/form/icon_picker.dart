@@ -26,9 +26,13 @@ class IconPicker extends StatelessWidget {
           height: 10,
         ),
         Container(
-          height: 60,
-          child: ListView.builder(
-            scrollDirection: Axis.horizontal,
+          height: 220,
+          child: GridView.builder(
+            physics: BouncingScrollPhysics(),
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 4,
+              crossAxisSpacing: 30,
+            ),
             itemCount: pickerIcons.length,
             itemBuilder: (_, i) => GestureDetector(
               onTap: () => onTap(context, pickerIcons[i]),
@@ -55,3 +59,25 @@ class IconPicker extends StatelessWidget {
     );
   }
 }
+//  ListView.builder(
+//             scrollDirection: Axis.horizontal,
+//             itemCount: pickerIcons.length,
+//             itemBuilder: (_, i) => GestureDetector(
+//               onTap: () => onTap(context, pickerIcons[i]),
+//               child: AnimatedContainer(
+//                 duration: Duration(milliseconds: 300),
+//                 width: 60,
+//                 height: 60,
+//                 decoration: BoxDecoration(
+//                     borderRadius: BorderRadius.circular(30),
+//                     color: pickerIcons[i] == iconSelected
+//                         ? AppColors.primaryColor
+//                         : Colors.transparent),
+//                 child: Center(
+//                   child: Icon(
+//                     pickerIcons[i],
+//                     color: Colors.white,
+//                   ),
+//                 ),
+//               ),
+//             ),
