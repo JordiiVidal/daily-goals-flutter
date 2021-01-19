@@ -10,16 +10,17 @@ import '../bottom_sheet_calendar.dart';
 
 class DateTimePicker extends StatelessWidget {
   void _showModalBottomSheetCalendar(BuildContext context) {
+    FocusScope.of(context).unfocus();
     final readFormProvider = context.read<GoalFormProvider>();
     showModalBottomSheet(
       context: context,
       elevation: 3,
-      // shape: RoundedRectangleBorder(
-      //   borderRadius: BorderRadius.only(
-      //     topRight: Radius.circular(30),
-      //     topLeft: Radius.circular(30),
-      //   ),
-      // ),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topRight: Radius.circular(30),
+          topLeft: Radius.circular(30),
+        ),
+      ),
       builder: (context) => BottomSheetCalendar(
         closeOnClick: true,
         initDateTime: readFormProvider.dateForm,
@@ -29,18 +30,18 @@ class DateTimePicker extends StatelessWidget {
   }
 
   void _showModalBottomSheetTime(BuildContext context) {
+    FocusScope.of(context).unfocus();
     final readFormProvider = context.read<GoalFormProvider>();
-
     showModalBottomSheet(
       context: context,
       elevation: 3,
       enableDrag: false,
-      // shape: RoundedRectangleBorder(
-      //   borderRadius: BorderRadius.only(
-      //     topRight: Radius.circular(30),
-      //     topLeft: Radius.circular(30),
-      //   ),
-      // ),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topRight: Radius.circular(30),
+          topLeft: Radius.circular(30),
+        ),
+      ),
       builder: (ctx) => BottomSheetTime(
         initDateTime: readFormProvider.timeForm,
         onTimeChange: readFormProvider.setTime,

@@ -1,5 +1,6 @@
 import 'package:daily_goals/presentation/providers/category_provider.dart';
 import 'package:daily_goals/presentation/widgets/form/category_chips.dart';
+import 'package:daily_goals/presentation/widgets/form/name_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -15,6 +16,13 @@ import 'package:daily_goals/presentation/providers/goal_providert.dart';
 import 'package:daily_goals/presentation/providers/task_provider.dart';
 
 class FormGoalScreen extends StatelessWidget {
+  void onChangeCategory(BuildContext context, String id) async {
+    FocusScope.of(context).unfocus();
+    context.read<GoalFormProvider>().setCategory(id);
+  }
+
+  
+
   void onSubmit(BuildContext context) async {
     ///TODO IMPROVE THIS CODE
     final formProvider = context.read<GoalFormProvider>();
@@ -56,22 +64,16 @@ class FormGoalScreen extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                TextFormField(
-                  style: TextStyle(fontSize: 21),
-                  cursorWidth: 2,
-                  autovalidate: true,
+                NameTextField(
+                  hintText: '  Enter a new task  ',
                   onChanged: (text) =>
                       context.read<GoalFormProvider>().setName(text),
-                  decoration: InputDecoration(
-                    hintText: '  Enter a new task  ',
-                    errorText: context.watch<GoalFormProvider>().errorName,
-                    border: InputBorder.none,
-                  ),
+                  errorText: context.watch<GoalFormProvider>().errorName,
                 ),
                 const SizedBox(height: 30),
                 PriorityChips(),
                 DateTimePicker(),
-                CategoryChips(),
+                CategoryChips(onChangeCategory),
                 const SizedBox(height: 30),
                 Hero(
                   tag: 'btn-frm',

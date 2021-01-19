@@ -10,6 +10,9 @@ import 'package:daily_goals/presentation/providers/goal_form_provider.dart';
 import '../custom_chip.dart';
 
 class CategoryChips extends StatelessWidget {
+  final Function onChange;
+
+  const CategoryChips(this.onChange);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -41,7 +44,7 @@ class CategoryChips extends StatelessWidget {
                 onSelect: item.select,
               );
             },
-            onChanged: (i) => context.read<GoalFormProvider>().setCategory(i),
+            onChanged: (id) => onChange(context, id),
             choiceItems: C2Choice.listFrom<String, CategoryModel>(
               source: context.watch<CategoryProvider>().categoryList,
               value: (i, v) => v.id,

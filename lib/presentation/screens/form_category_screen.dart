@@ -1,3 +1,4 @@
+import 'package:daily_goals/presentation/widgets/form/name_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -36,13 +37,7 @@ class FormCategoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        FocusScopeNode currentFocus = FocusScope.of(context);
-        if (!currentFocus.hasPrimaryFocus &&
-            currentFocus.focusedChild != null) {
-          currentFocus.focusedChild.unfocus();
-        }
-      },
+      onTap: () => FocusScope.of(context).unfocus(),
       child: ChangeNotifierProvider(
         create: (_) => CategoryFormProvider(),
         builder: (context, _) => Scaffold(
@@ -61,17 +56,11 @@ class FormCategoryScreen extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                TextFormField(
-                  style: TextStyle(fontSize: 21),
-                  cursorWidth: 2,
-                  autovalidate: true,
+                NameTextField(
+                  hintText: '  Enter a new category  ',
                   onChanged: (text) =>
                       context.read<CategoryFormProvider>().setName(text),
-                  decoration: InputDecoration(
-                    hintText: '  Enter a new category  ',
-                    errorText: context.watch<CategoryFormProvider>().errorName,
-                    border: InputBorder.none,
-                  ),
+                  errorText: context.watch<CategoryFormProvider>().errorName,
                 ),
                 const SizedBox(height: 30),
                 ColorPicker(onTap: onChangeColor),
