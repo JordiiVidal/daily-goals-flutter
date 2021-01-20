@@ -14,7 +14,7 @@ class TaskButton extends StatelessWidget {
       ),
       textColor: Colors.white,
       color: AppColors.primaryColor,
-      onPressed: () => Navigator.pushNamed(context, AppRoutes.form),
+      onPressed: () => Navigator.pushNamed(context, AppRoutes.goalForm),
       child: const Center(
         child: Text(
           'Create Task',

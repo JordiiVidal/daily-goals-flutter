@@ -5,7 +5,7 @@ import 'package:daily_goals/presentation/helpers.dart';
 import 'package:flutter/material.dart';
 import 'package:uuid/uuid.dart';
 
-enum Status { Pending, Suspended, Done }
+enum Status { Pending, Done }
 
 class GoalModel extends DBModel {
   GoalModel({
@@ -65,3 +65,5 @@ class GoalModel extends DBModel {
         "use_time": this.useTime ? 1 : 0,
       };
 }
+
+String statusToString(Status exc) => exc.toString().split('.').last;

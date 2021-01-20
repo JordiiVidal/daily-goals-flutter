@@ -1,3 +1,4 @@
+import 'package:daily_goals/presentation/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 
 import 'package:daily_goals/presentation/theme.dart';
@@ -17,13 +18,15 @@ class SearchTaskItem extends StatelessWidget {
         color: AppColors.primaryColor,
       ),
       child: ListTile(
+        onTap: () => Navigator.pushNamed(
+          context,
+          AppRoutes.taskDetails,
+          arguments: task,
+        ),
         title: Text(task.name),
-        trailing: IconButton(
-          icon: Icon(
-            Icons.chevron_right,
-            color: AppColors.secondaryTextColor,
-          ),
-          onPressed: () => print('not yet'),
+        trailing: Icon(
+          Icons.chevron_right,
+          color: AppColors.secondaryTextColor,
         ),
       ),
     );

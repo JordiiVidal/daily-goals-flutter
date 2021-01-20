@@ -15,7 +15,7 @@ import 'package:daily_goals/domain/models/task_model.dart';
 import 'package:daily_goals/presentation/providers/goal_providert.dart';
 import 'package:daily_goals/presentation/providers/task_provider.dart';
 
-class FormGoalScreen extends StatelessWidget {
+class GoalFormScreen extends StatelessWidget {
   void onChangeCategory(BuildContext context, String id) async {
     FocusScope.of(context).unfocus();
     context.read<GoalFormProvider>().setCategory(id);

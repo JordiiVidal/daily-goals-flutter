@@ -33,24 +33,22 @@ class GoalItemList extends StatelessWidget {
             ),
           ),
         ],
-        child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 10),
-          decoration: BoxDecoration(
-            color: AppColors.primaryColor,
-            borderRadius: BorderRadius.circular(5),
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              InkWell(
-                onTap: () => context.read<GoalProvider>().updateStatus(
-                      goal.id,
-                      goal.status == Status.Pending
-                          ? Status.Done
-                          : Status.Pending,
-                    ),
-                child: Padding(
+        child: GestureDetector(
+          onTap: () => context.read<GoalProvider>().updateStatus(
+                goal.id,
+                goal.status == Status.Pending ? Status.Done : Status.Pending,
+              ),
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 10),
+            decoration: BoxDecoration(
+              color: AppColors.primaryColor,
+              borderRadius: BorderRadius.circular(5),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   child: Icon(
                     goal.status == Status.Pending
@@ -61,23 +59,23 @@ class GoalItemList extends StatelessWidget {
                         : AppColors.secondaryAccentColor,
                   ),
                 ),
-              ),
-              Expanded(
-                child: Text(
-                  '  ${goal.task.name}  ',
-                  style: TextStyle(
-                    fontSize: 18,
-                    decoration: (goal.status == Status.Done)
-                        ? TextDecoration.lineThrough
-                        : TextDecoration.none,
+                Expanded(
+                  child: Text(
+                    '  ${goal.task.name}  ',
+                    style: TextStyle(
+                      fontSize: 18,
+                      decoration: (goal.status == Status.Done)
+                          ? TextDecoration.lineThrough
+                          : TextDecoration.none,
+                    ),
+                    softWrap: false,
+                    maxLines: 1,
+                    overflow: TextOverflow.fade,
                   ),
-                  softWrap: false,
-                  maxLines: 1,
-                  overflow: TextOverflow.fade,
                 ),
-              ),
-              InfoGoal(goal),
-            ],
+                InfoGoal(goal),
+              ],
+            ),
           ),
         ),
       ),

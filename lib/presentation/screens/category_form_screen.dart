@@ -10,8 +10,8 @@ import 'package:daily_goals/presentation/widgets/form/color_picker.dart';
 import 'package:daily_goals/presentation/widgets/form/icon_picker.dart';
 import 'package:daily_goals/presentation/widgets/form/submit_form.dart';
 
-class FormCategoryScreen extends StatelessWidget {
-  const FormCategoryScreen({Key key}) : super(key: key);
+class CategoryFormScreen extends StatelessWidget {
+  const CategoryFormScreen({Key key}) : super(key: key);
 
   void onSubmit(BuildContext context) async {
     final categoryFormProvider = context.read<CategoryFormProvider>();

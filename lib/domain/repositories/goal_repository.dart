@@ -5,4 +5,5 @@ abstract class GoalRepositoryInterface {
   Future<int> deleteGoalById(String id);
   Future<List<GoalModel>> getGoalsByDate(String date);
   Future<int> updateStatus(String id, int status);
+  Future<List<GoalModel>> getGoalsByTask(String idTask);
 }

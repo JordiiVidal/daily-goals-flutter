@@ -1,3 +1,4 @@
+import 'package:daily_goals/presentation/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 
 import 'package:daily_goals/presentation/widgets/search/search_task_delegate.dart';
@@ -45,16 +46,9 @@ class AppBarHome extends StatelessWidget {
               delegate: TaskSearchDelegate(),
             ),
           ),
-          InkWell(
-            borderRadius: BorderRadius.circular(20),
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Icon(
-                Icons.notifications,
-                size: 25,
-              ),
-            ),
-            onTap: () => null,
+          IconButton(
+            icon: Icon(Icons.bookmark),
+            onPressed: () => Navigator.pushNamed(context, AppRoutes.categories),
           ),
         ],
       ),

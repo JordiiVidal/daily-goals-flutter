@@ -21,9 +21,13 @@ class GoalRepositoryImpl extends GoalRepositoryInterface {
 
   @override
   Future<List<GoalModel>> getGoalsByDate(String date) async =>
-      await DBLocalStorage.db.getGoalsByDate(date);
+      await DBLocalStorage.db.getGoalsByWhere('Goal.date = ?', [date]);
 
   @override
   Future<int> updateStatus(String id, int status) async =>
       await DBLocalStorage.db.updateStatus(id, status);
+
+  @override
+  Future<List<GoalModel>> getGoalsByTask(String idTask) async =>
+      await DBLocalStorage.db.getGoalsByWhere('Goal.id_task = ?', [idTask]);
 }

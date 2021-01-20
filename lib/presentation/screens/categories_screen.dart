@@ -51,7 +51,7 @@ class CategoriesScreen extends StatelessWidget {
               tag: 'btn-frm-ctg',
               child: ButtonIcon(
                 onTap: () =>
-                    Navigator.pushNamed(context, AppRoutes.formCategory),
+                    Navigator.pushNamed(context, AppRoutes.categoryForm),
                 title: 'Category',
                 icon: Icons.add,
               ),

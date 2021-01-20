@@ -41,7 +41,7 @@ dependencies:
   table_calendar: ^2.3.3
   flutter_time_picker_spinner: ^1.0.6+1
   chips_choice: ^2.0.1
-  flutter_sparkline: ^0.1.0
+  flutter_circular_chart: ^0.1.0
   keyboard_visibility: ^0.5.6
 
 
