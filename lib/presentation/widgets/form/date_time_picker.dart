@@ -1,9 +1,11 @@
-import 'package:daily_goals/presentation/providers/goal_form_provider.dart';
-import 'package:daily_goals/presentation/helpers.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:provider/provider.dart';
 
-import '../../widgets/bottom_sheet_time.dart';
+import 'package:daily_goals/presentation/providers/goal_form_provider.dart';
+import 'package:daily_goals/presentation/helpers.dart';
+
 import '../../widgets/form/item_picker.dart';
 
 import '../bottom_sheet_calendar.dart';
@@ -12,9 +14,8 @@ class DateTimePicker extends StatelessWidget {
   void _showModalBottomSheetCalendar(BuildContext context) {
     FocusScope.of(context).unfocus();
     final readFormProvider = context.read<GoalFormProvider>();
-    showModalBottomSheet(
+    showBarModalBottomSheet(
       context: context,
-      elevation: 3,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
           topRight: Radius.circular(30),
@@ -32,20 +33,13 @@ class DateTimePicker extends StatelessWidget {
   void _showModalBottomSheetTime(BuildContext context) {
     FocusScope.of(context).unfocus();
     final readFormProvider = context.read<GoalFormProvider>();
-    showModalBottomSheet(
-      context: context,
-      elevation: 3,
-      enableDrag: false,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.only(
-          topRight: Radius.circular(30),
-          topLeft: Radius.circular(30),
-        ),
-      ),
-      builder: (ctx) => BottomSheetTime(
-        initDateTime: readFormProvider.timeForm,
-        onTimeChange: readFormProvider.setTime,
-      ),
+    DatePicker.showTimePicker(
+      context,
+      showTitleActions: true,
+      showSecondsColumn: false,
+      onChanged: (date) => readFormProvider.setTime(date),
+      onConfirm: (date) => readFormProvider.setTime(date),
+      currentTime: readFormProvider.timeForm,
     );
   }
 

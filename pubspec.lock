@@ -64,13 +64,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.5"
-  fading_edge_scrollview:
-    dependency: transitive
-    description:
-      name: fading_edge_scrollview
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.1.4"
   fake_async:
     dependency: transitive
     description:
@@ -104,6 +97,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.1.0"
+  flutter_datetime_picker:
+    dependency: "direct main"
+    description:
+      name: flutter_datetime_picker
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.5.0"
   flutter_slidable:
     dependency: "direct main"
     description:
@@ -158,13 +158,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.5.6"
-  marquee:
-    dependency: "direct main"
-    description:
-      name: marquee
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.6.1"
   matcher:
     dependency: transitive
     description:
@@ -179,6 +172,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.8"
+  modal_bottom_sheet:
+    dependency: "direct main"
+    description:
+      name: modal_bottom_sheet
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.0+1"
   nested:
     dependency: transitive
     description:

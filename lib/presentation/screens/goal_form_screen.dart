@@ -6,7 +6,6 @@ import 'package:daily_goals/presentation/providers/goal_form_provider.dart';
 import 'package:daily_goals/presentation/theme.dart';
 import 'package:daily_goals/presentation/widgets/form/date_time_picker.dart';
 import 'package:daily_goals/presentation/widgets/form/exigency_chips.dart';
-import 'package:daily_goals/presentation/widgets/form/submit_form.dart';
 
 import 'package:daily_goals/domain/models/goal_model.dart';
 import 'package:daily_goals/domain/models/task_model.dart';
@@ -14,7 +13,6 @@ import 'package:daily_goals/presentation/providers/goal_providert.dart';
 import 'package:daily_goals/presentation/providers/task_provider.dart';
 
 class GoalFormScreen extends StatelessWidget {
-  
   void onSubmit(BuildContext context) async {
     ///TODO IMPROVE THIS CODE
     final formProvider = context.read<GoalFormProvider>();
@@ -64,15 +62,23 @@ class GoalFormScreen extends StatelessWidget {
                 const SizedBox(height: 30),
                 PriorityChips(),
                 DateTimePicker(),
-                const SizedBox(height: 30),
-                Hero(
-                  tag: 'btn-frm',
-                  child: SubmitForm(
-                    onTap: onSubmit,
-                    title: 'Create Task',
-                  ),
-                )
               ],
+            ),
+          ),
+          floatingActionButton: FloatingActionButton.extended(
+            onPressed: () => onSubmit(context),
+            heroTag: 'btn-frm',
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+            label: Container(
+              width: MediaQuery.of(context).size.width - 72,
+              child: Center(
+                child: Text(
+                  'Create Task',
+                  style: TextStyle(fontSize: 20),
+                ),
+              ),
             ),
           ),
         ),
