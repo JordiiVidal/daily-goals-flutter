@@ -10,14 +10,16 @@ import 'package:daily_goals/domain/models/goal_model.dart';
 
 class GoalItemList extends StatelessWidget {
   final GoalModel goal;
-  const GoalItemList(this.goal);
+  final SlidableController slidableController;
+  const GoalItemList({this.goal, this.slidableController});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(bottom: 8),
       child: Slidable(
-        key: UniqueKey(),
+        key: Key(goal.id),
+        controller: slidableController,
         actionPane: SlidableDrawerActionPane(),
         secondaryActions: [
           GestureDetector(
@@ -54,7 +56,7 @@ class GoalItemList extends StatelessWidget {
               ),
               child: Center(
                 child: const Icon(
-                  Icons.close,
+                  Icons.delete,
                   color: Colors.red,
                   size: 26,
                 ),

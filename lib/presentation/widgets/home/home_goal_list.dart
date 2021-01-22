@@ -1,6 +1,7 @@
 import 'package:daily_goals/presentation/providers/goal_providert.dart';
 import 'package:daily_goals/presentation/widgets/empty_list.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:provider/provider.dart';
 
 import '../../theme.dart';
@@ -31,6 +32,7 @@ class HomeGoalList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final goalProvider = context.watch<GoalProvider>();
+    final SlidableController slidableController = SlidableController();
 
     return Expanded(
       child: Column(
@@ -63,8 +65,10 @@ class HomeGoalList extends StatelessWidget {
                     padding: const EdgeInsets.only(top: 12),
                     physics: BouncingScrollPhysics(),
                     itemCount: goalProvider.goalsList.length,
-                    itemBuilder: (_, i) =>
-                        GoalItemList(goalProvider.goalsList[i]),
+                    itemBuilder: (_, i) => GoalItemList(
+                      goal: goalProvider.goalsList[i],
+                      slidableController: slidableController,
+                    ),
                   )
                 : EmptyList(),
           ),
