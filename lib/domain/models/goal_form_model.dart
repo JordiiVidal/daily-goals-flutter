@@ -3,7 +3,6 @@ import 'package:daily_goals/domain/models/task_model.dart';
 class GoalFormModel {
   GoalFormModel({
     this.name,
-    String idCategory,
     DateTime time,
     DateTime date,
     Priority priority,
@@ -11,13 +10,12 @@ class GoalFormModel {
   })  : this.priority = priority ?? Priority.Medium,
         this.date = date ?? DateTime.now(),
         this.time = time ?? DateTime.now(),
-        this.useTime = useTime ?? true,
-        this.idCategory = idCategory ?? '';
+        this.useTime = useTime ?? true;
 
   String name;
   Priority priority;
   DateTime date;
   DateTime time;
-  String idCategory;
+
   bool useTime;
 }

@@ -46,10 +46,6 @@ class AppBarHome extends StatelessWidget {
               delegate: TaskSearchDelegate(),
             ),
           ),
-          IconButton(
-            icon: Icon(Icons.bookmark),
-            onPressed: () => Navigator.pushNamed(context, AppRoutes.categories),
-          ),
         ],
       ),
     );

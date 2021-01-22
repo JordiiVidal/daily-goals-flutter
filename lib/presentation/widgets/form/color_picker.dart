@@ -1,5 +1,4 @@
 import 'package:daily_goals/data/datasources/local_data.dart';
-import 'package:daily_goals/presentation/providers/category_form_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -9,7 +8,7 @@ class ColorPicker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final selectedColor = context.watch<CategoryFormProvider>().color;
+    final selectedColor = pickerColors[0];
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

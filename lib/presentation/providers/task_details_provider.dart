@@ -57,7 +57,7 @@ class TaskDetailsProvider extends ChangeNotifier {
       <CircularSegmentEntry>[
         new CircularSegmentEntry(
           pendingPercent,
-          AppColors.accentColor,
+          total > 0 ? AppColors.accentColor : AppColors.primaryColor,
           rankKey: 'pending',
         ),
         new CircularSegmentEntry(

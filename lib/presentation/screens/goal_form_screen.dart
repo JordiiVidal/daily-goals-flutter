@@ -1,5 +1,3 @@
-import 'package:daily_goals/presentation/providers/category_provider.dart';
-import 'package:daily_goals/presentation/widgets/form/category_chips.dart';
 import 'package:daily_goals/presentation/widgets/form/name_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -16,13 +14,7 @@ import 'package:daily_goals/presentation/providers/goal_providert.dart';
 import 'package:daily_goals/presentation/providers/task_provider.dart';
 
 class GoalFormScreen extends StatelessWidget {
-  void onChangeCategory(BuildContext context, String id) async {
-    FocusScope.of(context).unfocus();
-    context.read<GoalFormProvider>().setCategory(id);
-  }
-
   
-
   void onSubmit(BuildContext context) async {
     ///TODO IMPROVE THIS CODE
     final formProvider = context.read<GoalFormProvider>();
@@ -32,7 +24,6 @@ class GoalFormScreen extends StatelessWidget {
     await context.read<TaskProvider>().createTask(task);
     final goal = GoalModel.fromForm(formModel, task.id);
     await context.read<GoalProvider>().createGoal(goal);
-    await context.read<CategoryProvider>().loadCategories();
     Navigator.pop(context);
   }
 
@@ -73,7 +64,6 @@ class GoalFormScreen extends StatelessWidget {
                 const SizedBox(height: 30),
                 PriorityChips(),
                 DateTimePicker(),
-                CategoryChips(onChangeCategory),
                 const SizedBox(height: 30),
                 Hero(
                   tag: 'btn-frm',

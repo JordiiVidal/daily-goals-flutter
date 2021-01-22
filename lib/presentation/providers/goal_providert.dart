@@ -11,10 +11,9 @@ class GoalProvider extends ChangeNotifier {
 
   List<GoalModel> _goalsList = <GoalModel>[];
   DateTime _selectedDate = DateTime.now();
-  DateTime selectedDate = DateTime.now();
 
   List<GoalModel> get goalsList => _goalsList;
-  // DateTime get selectedDate => _selectedDate;
+  DateTime get selectedDate => _selectedDate;
 
   Future<void> setSelectedDate(DateTime dateTime) async {
     _selectedDate = dateTime;

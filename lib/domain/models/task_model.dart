@@ -11,35 +11,29 @@ class TaskModel extends DBModel {
     @required this.name,
     this.description,
     Priority priority,
-    String idCategory,
   })  : this.id = id ?? Uuid().v4(),
-        this.priority = priority ?? Priority.Medium,
-        this.idCategory = idCategory ?? '';
+        this.priority = priority ?? Priority.Medium;
 
   final String id;
   String name;
   String description;
   Priority priority;
-  String idCategory;
 
   factory TaskModel.fromJson(Map<String, dynamic> json) => TaskModel(
         id: json["id"],
         name: json["name"],
         priority: Priority.values[json["priority"]],
-        idCategory: json["id_category"],
       );
 
   factory TaskModel.fromForm(GoalFormModel form) => TaskModel(
         name: form.name,
         priority: form.priority,
-        idCategory: form.idCategory,
       );
 
   Map<String, dynamic> toJson() => {
         "id": id,
         "name": name,
         "priority": priority.index,
-        "id_category": idCategory,
       };
 }
 

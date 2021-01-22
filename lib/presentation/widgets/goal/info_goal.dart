@@ -12,7 +12,7 @@ class InfoGoal extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(8.0),
-      width: 80,
+      width: 50,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [

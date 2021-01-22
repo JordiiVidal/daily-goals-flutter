@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:daily_goals/domain/models/category_model.dart';
 import 'package:daily_goals/domain/models/db_model.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
@@ -37,8 +36,7 @@ class DBLocalStorage {
           'id VARCHAR(300) PRIMARY KEY,'
           'name VARCHAR(300),'
           'description TEXT,'
-          'priority INT(1),'
-          'id_category VARCHAR(300)'
+          'priority INT(1)'
           ')',
         );
         await db.execute(
@@ -51,19 +49,8 @@ class DBLocalStorage {
           'status INT(1)'
           ')',
         );
-        await db.execute(
-          'CREATE TABLE Category('
-          'id VARCHAR(300) PRIMARY KEY,'
-          'name VARCHAR(300),'
-          'color VARCHAR(100),'
-          'icon VARCHAR(100)'
-          ')',
-        );
 
-        await db.rawInsert(
-          'INSERT INTO Category VALUES (?,?,?,?)',
-          ['001-001', 'Sport', 0xffff0606, 58726],
-        );
+      
       },
     );
   }
@@ -181,17 +168,5 @@ class DBLocalStorage {
     );
 
     return result;
-  }
-
-  // Category
-
-  Future<List<CategoryModel>> getAllCategories() async {
-    final db = await database;
-    final result = await db.rawQuery(
-      'SELECT Category.*, (SELECT COUNT(id) FROM task WHERE id_category = Category.id) as total FROM Category',
-    );
-    return result.isNotEmpty
-        ? result.map((cat) => CategoryModel.fromJson(cat)).toList()
-        : [];
   }
 }

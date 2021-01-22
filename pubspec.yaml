@@ -43,6 +43,8 @@ dependencies:
   chips_choice: ^2.0.1
   flutter_circular_chart: ^0.1.0
   keyboard_visibility: ^0.5.6
+  marquee: ^1.6.1
+
 
 
 
