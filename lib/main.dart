@@ -1,3 +1,4 @@
+import 'package:daily_goals/presentation/screens/schedule_form_screen.dart';
 import 'package:daily_goals/presentation/screens/task_details_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -9,10 +10,9 @@ import 'data/repositories/goal_repository_impl.dart';
 import 'domain/repositories/goal_repository.dart';
 import 'domain/repositories/task_respository.dart';
 
-import 'presentation/providers/goal_providert.dart';
-import 'presentation/providers/task_provider.dart';
+import 'presentation/providers/main_providert.dart';
 import 'presentation/routes/app_routes.dart';
-import 'presentation/screens/goal_form_screen.dart';
+import 'presentation/screens/task_form_screen.dart';
 import 'presentation/screens/home_screen.dart';
 import 'presentation/theme.dart';
 
@@ -21,7 +21,11 @@ void main() async {
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   SystemChrome.setSystemUIOverlayStyle(
-      SystemUiOverlayStyle(statusBarColor: AppColors.secondaryColor));
+    SystemUiOverlayStyle(
+      statusBarColor: AppColors.secondaryColor,
+      systemNavigationBarColor: AppColors.secondaryColor,
+    ),
+  );
   runApp(MyApp());
 }
 
@@ -37,15 +41,11 @@ class MyApp extends StatelessWidget {
         Provider<GoalRepositoryInterface>(
           create: (_) => GoalRepositoryImpl(),
         ),
-        ChangeNotifierProvider<GoalProvider>(
-          create: (ctx) => GoalProvider(
+        ChangeNotifierProvider<MainProvider>(
+          create: (ctx) => MainProvider(
             ctx.read<GoalRepositoryInterface>(),
-          )..loadGoals(),
-        ),
-        ChangeNotifierProvider<TaskProvider>(
-          create: (ctx) => TaskProvider(
             ctx.read<TaskRepositoryInterface>(),
-          )..loadTasks(),
+          )..initData(),
         ),
       ],
       child: MaterialApp(
@@ -55,8 +55,9 @@ class MyApp extends StatelessWidget {
         initialRoute: AppRoutes.home,
         routes: {
           AppRoutes.home: (_) => HomeScreen(),
-          AppRoutes.goalForm: (_) => GoalFormScreen(),
+          AppRoutes.taskForm: (_) => TaskFormScreen(),
           AppRoutes.taskDetails: (_) => TaskDetailsScreen(),
+          AppRoutes.scheduledForm: (_) => ScheduleFormScreen(),
         },
       ),
     );

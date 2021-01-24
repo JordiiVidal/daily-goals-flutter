@@ -1,4 +1,4 @@
-import 'package:daily_goals/presentation/routes/app_routes.dart';
+import 'package:daily_goals/presentation/widgets/custom_animated_fab.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/home/home_goal_list.dart';
@@ -19,11 +19,7 @@ class HomeScreen extends StatelessWidget {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        heroTag: 'btn-frm',
-        child: Icon(Icons.add),
-        onPressed: () => Navigator.pushNamed(context, AppRoutes.goalForm),
-      ),
+      floatingActionButton: CustomAnimatedFAB(),
     );
   }
 }

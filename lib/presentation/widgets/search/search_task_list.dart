@@ -1,8 +1,8 @@
+import 'package:daily_goals/presentation/providers/main_providert.dart';
 import 'package:daily_goals/presentation/widgets/empty_list.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:daily_goals/presentation/providers/task_provider.dart';
 import 'package:daily_goals/presentation/widgets/search/search_task_item.dart';
 
 import 'package:daily_goals/domain/models/task_model.dart';
@@ -14,7 +14,7 @@ class SearchTaskList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<TaskModel>>(
-      future: Provider.of<TaskProvider>(context).searchListTasks(query),
+      future: Provider.of<MainProvider>(context).searchListTasks(query),
       builder: (_, snapshot) {
         if (snapshot.hasData) {
           final List<TaskModel> list = snapshot.data;

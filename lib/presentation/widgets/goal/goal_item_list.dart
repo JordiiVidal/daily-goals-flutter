@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 
 import 'package:daily_goals/presentation/theme.dart';
 import 'package:daily_goals/presentation/widgets/goal/info_goal.dart';
-import 'package:daily_goals/presentation/providers/goal_providert.dart';
+import 'package:daily_goals/presentation/providers/main_providert.dart';
 import 'package:daily_goals/domain/models/goal_model.dart';
 
 class GoalItemList extends StatelessWidget {
@@ -45,19 +45,19 @@ class GoalItemList extends StatelessWidget {
             ),
           ),
           GestureDetector(
-            onTap: () => context.read<GoalProvider>().deleteGoalById(goal.id),
+            onTap: () => context.read<MainProvider>().deleteGoalById(goal.id),
             child: Container(
               margin: const EdgeInsets.only(
                 left: 10,
               ),
               decoration: BoxDecoration(
-                color: AppColors.primaryColor,
+                color: Colors.red[600],
                 borderRadius: BorderRadius.circular(5),
               ),
               child: Center(
                 child: const Icon(
                   Icons.delete,
-                  color: Colors.red,
+                  color: Colors.white,
                   size: 26,
                 ),
               ),
@@ -65,7 +65,7 @@ class GoalItemList extends StatelessWidget {
           ),
         ],
         child: GestureDetector(
-          onTap: () => context.read<GoalProvider>().updateStatus(
+          onTap: () => context.read<MainProvider>().updateStatus(
                 goal.id,
                 goal.status == Status.Pending ? Status.Done : Status.Pending,
               ),

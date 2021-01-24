@@ -85,6 +85,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "5.2.1"
+  floating_action_bubble:
+    dependency: "direct main"
+    description:
+      name: floating_action_bubble
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.1.2"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -275,6 +282,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.99"
+  smart_select:
+    dependency: "direct main"
+    description:
+      name: smart_select
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.3.2"
   source_span:
     dependency: transitive
     description:
@@ -382,4 +396,4 @@ packages:
     version: "0.1.0"
 sdks:
   dart: ">=2.9.0-14.0.dev <3.0.0"
-  flutter: ">=1.17.0 <2.0.0"
+  flutter: ">=1.17.1 <2.0.0"

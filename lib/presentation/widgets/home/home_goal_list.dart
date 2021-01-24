@@ -1,4 +1,4 @@
-import 'package:daily_goals/presentation/providers/goal_providert.dart';
+import 'package:daily_goals/presentation/providers/main_providert.dart';
 import 'package:daily_goals/presentation/widgets/empty_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -12,7 +12,7 @@ import '../../helpers.dart';
 class HomeGoalList extends StatelessWidget {
   const HomeGoalList();
   void _showModalBottomSheetCalendar(BuildContext context) {
-    final goalProvider = context.read<GoalProvider>();
+    final goalProvider = context.read<MainProvider>();
     showModalBottomSheet(
       context: context,
       elevation: 3,
@@ -31,7 +31,7 @@ class HomeGoalList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final goalProvider = context.watch<GoalProvider>();
+    final goalProvider = context.watch<MainProvider>();
     final SlidableController slidableController = SlidableController();
 
     return Expanded(

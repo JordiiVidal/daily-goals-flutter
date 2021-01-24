@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 class AppColors {
   static final primaryColor = const Color(0XFF292e3c);
-  static final secondaryColor =const Color(0XFF1d1f25);
+  static final secondaryColor = const Color(0XFF1d1f25);
   static final accentColor = const Color(0XFFeb06ff);
   static final secondaryAccentColor = const Color(0XFF2dff06);
   static final primaryTextColor = const Color(0XFFFFFFFF);
@@ -15,6 +15,8 @@ class AppPadding {
   static final screen = const EdgeInsets.symmetric(horizontal: 12.0);
   static final title = const EdgeInsets.symmetric(vertical: 12.0);
   static final form = const EdgeInsets.only(left: 25, right: 25, bottom: 20);
+  static final formH = const EdgeInsets.only(left: 25, right: 25);
+  static final formV = const EdgeInsets.only(top: 20, bottom: 20);
 }
 
 final darkTheme = ThemeData(

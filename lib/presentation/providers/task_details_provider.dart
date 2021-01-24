@@ -22,7 +22,6 @@ class TaskDetailsProvider extends ChangeNotifier {
   void loadDetails() async {
     _register = await goalRI.getGoalsByTask(task.id);
     final result = loadData();
-    print(result);
     _data = result['data'];
     _holeLabel = result['label'];
     notifyListeners();
