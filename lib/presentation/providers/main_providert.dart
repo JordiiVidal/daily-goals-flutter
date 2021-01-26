@@ -1,3 +1,4 @@
+import 'package:daily_goals/domain/models/goal_form_model.dart';
 import 'package:daily_goals/domain/models/task_model.dart';
 import 'package:daily_goals/domain/repositories/task_respository.dart';
 import 'package:flutter/material.dart';
@@ -13,9 +14,15 @@ class MainProvider extends ChangeNotifier {
 
   MainProvider(this.goalRepositoryInterface, this.taskRepositoryInterface);
 
-  List<GoalModel> _goalsList = <GoalModel>[];///LIST OF GOALS SHOWEDS ON HOME SCREEN USING SELECTED DATE
-  DateTime _selectedDate = DateTime.now();/// DATE SELECTED BY THE USER, PROVIDE LIST OF GOALS 
-  List<TaskModel> _tasksList = <TaskModel>[];/// ALL EXISTING DATA ABOUT TASK
+  List<GoalModel> _goalsList = <GoalModel>[];
+
+  ///LIST OF GOALS SHOWEDS ON HOME SCREEN USING SELECTED DATE
+  DateTime _selectedDate = DateTime.now();
+
+  /// DATE SELECTED BY THE USER, PROVIDE LIST OF GOALS
+  List<TaskModel> _tasksList = <TaskModel>[];
+
+  /// ALL EXISTING DATA ABOUT TASK
 
   // @GETTERS
 
@@ -24,8 +31,8 @@ class MainProvider extends ChangeNotifier {
   List<TaskModel> get tasksList => _tasksList;
 
   /// INIT DATA
-  
-  Future<void> initData() async{
+
+  Future<void> initData() async {
     await loadTasks();
     await loadGoals();
   }
@@ -37,7 +44,16 @@ class MainProvider extends ChangeNotifier {
     await loadGoals();
   }
 
-  /// TASK 
+  //FORM
+
+  Future<void> createTaskGoal(GoalFormModel formModel) async {
+    final task = TaskModel.fromForm(formModel);
+    await createTask(task);
+    final goal = GoalModel.fromForm(formModel, task.id);
+    await createGoal(goal);
+  }
+
+  /// TASK
 
   Future<void> loadTasks() async {
     final result = await taskRepositoryInterface.getAllTasks();

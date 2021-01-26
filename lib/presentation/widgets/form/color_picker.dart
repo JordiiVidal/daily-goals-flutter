@@ -1,6 +1,5 @@
 import 'package:daily_goals/data/datasources/local_data.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class ColorPicker extends StatelessWidget {
   final Function onTap;
@@ -36,8 +35,17 @@ class ColorPicker extends StatelessWidget {
                   curve: Curves.easeInOutCirc,
                   width: selectedColor == pickerColors[i] ? 80 : 40,
                   height: 20,
-                  color: selectedColor == pickerColors[i] ?pickerColors[i]: pickerColors[i].withOpacity(0.7) ,
-                  child: selectedColor == pickerColors[i] ? Center(child: Icon(Icons.check, color: Colors.white,),): Text(''),
+                  color: selectedColor == pickerColors[i]
+                      ? pickerColors[i]
+                      : pickerColors[i].withOpacity(0.7),
+                  child: selectedColor == pickerColors[i]
+                      ? Center(
+                          child: Icon(
+                            Icons.check,
+                            color: Colors.white,
+                          ),
+                        )
+                      : Text(''),
                 ),
               ),
             ),
@@ -47,7 +55,3 @@ class ColorPicker extends StatelessWidget {
     );
   }
 }
-//  CircleAvatar(
-//                   radius: selectedColor == pickerColors[i] ? 20 : 16,
-//                   backgroundColor: pickerColors[i],
-//                 ),

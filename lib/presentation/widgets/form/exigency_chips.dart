@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 
 import 'package:chips_choice/chips_choice.dart';
 import 'package:daily_goals/domain/models/task_model.dart';
-import 'package:daily_goals/presentation/providers/task_form_provider.dart';
+import 'package:daily_goals/presentation/providers/goal_form_provider.dart';
 
 import '../../theme.dart';
 import '../custom_chip.dart';

@@ -1,4 +1,3 @@
-import 'package:daily_goals/presentation/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:provider/provider.dart';
@@ -22,28 +21,6 @@ class GoalItemList extends StatelessWidget {
         controller: slidableController,
         actionPane: SlidableDrawerActionPane(),
         secondaryActions: [
-          GestureDetector(
-            onTap: () => Navigator.pushNamed(
-              context,
-              AppRoutes.taskDetails,
-              arguments: goal.task,
-            ),
-            child: Container(
-              margin: const EdgeInsets.only(
-                left: 10,
-              ),
-              decoration: BoxDecoration(
-                color: AppColors.accentColor,
-                borderRadius: BorderRadius.circular(5),
-              ),
-              child: Center(
-                child: const Icon(
-                  Icons.data_usage,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-          ),
           GestureDetector(
             onTap: () => context.read<MainProvider>().deleteGoalById(goal.id),
             child: Container(

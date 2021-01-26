@@ -1,5 +1,6 @@
-import 'package:daily_goals/presentation/widgets/custom_animated_fab.dart';
 import 'package:flutter/material.dart';
+
+import 'package:daily_goals/presentation/routes/app_routes.dart';
 
 import '../widgets/home/home_goal_list.dart';
 import '../widgets/home/app_bar_home.dart';
@@ -19,7 +20,10 @@ class HomeScreen extends StatelessWidget {
           ],
         ),
       ),
-      floatingActionButton: CustomAnimatedFAB(),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => Navigator.pushNamed(context, AppRoutes.taskForm),
+        child: Icon(Icons.add),
+      ),
     );
   }
 }

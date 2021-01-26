@@ -3,7 +3,7 @@ import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:provider/provider.dart';
 
-import 'package:daily_goals/presentation/providers/task_form_provider.dart';
+import 'package:daily_goals/presentation/providers/goal_form_provider.dart';
 import 'package:daily_goals/presentation/helpers.dart';
 
 import '../../widgets/form/item_picker.dart';

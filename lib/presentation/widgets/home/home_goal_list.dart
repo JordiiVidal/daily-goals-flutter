@@ -5,29 +5,11 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:provider/provider.dart';
 
 import '../../theme.dart';
-import '../bottom_sheet_calendar.dart';
 import '../goal/goal_item_list.dart';
 import '../../helpers.dart';
 
 class HomeGoalList extends StatelessWidget {
   const HomeGoalList();
-  void _showModalBottomSheetCalendar(BuildContext context) {
-    final goalProvider = context.read<MainProvider>();
-    showModalBottomSheet(
-      context: context,
-      elevation: 3,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.only(
-          topRight: Radius.circular(30),
-          topLeft: Radius.circular(30),
-        ),
-      ),
-      builder: (context) => BottomSheetCalendar(
-        onDaySelected: goalProvider.setSelectedDate,
-        initDateTime: goalProvider.selectedDate,
-      ),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,14 +29,11 @@ class HomeGoalList extends StatelessWidget {
                   color: AppColors.secondaryTextColor,
                 ),
               ),
-              GestureDetector(
-                onTap: () => _showModalBottomSheetCalendar(context),
-                child: Text(
-                  Formatter.ui(goalProvider.selectedDate),
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: AppColors.secondaryTextColor,
-                  ),
+              Text(
+                Formatter.ui(goalProvider.selectedDate),
+                style: TextStyle(
+                  fontSize: 16,
+                  color: AppColors.secondaryTextColor,
                 ),
               ),
             ],

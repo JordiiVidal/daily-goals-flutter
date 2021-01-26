@@ -1,5 +1,3 @@
-import 'package:daily_goals/presentation/screens/schedule_form_screen.dart';
-import 'package:daily_goals/presentation/screens/task_details_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/services.dart';
@@ -56,8 +54,6 @@ class MyApp extends StatelessWidget {
         routes: {
           AppRoutes.home: (_) => HomeScreen(),
           AppRoutes.taskForm: (_) => TaskFormScreen(),
-          AppRoutes.taskDetails: (_) => TaskDetailsScreen(),
-          AppRoutes.scheduledForm: (_) => ScheduleFormScreen(),
         },
       ),
     );

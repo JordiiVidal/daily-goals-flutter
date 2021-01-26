@@ -2,25 +2,19 @@ import 'package:daily_goals/presentation/widgets/form/name_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:daily_goals/presentation/providers/task_form_provider.dart';
+import 'package:daily_goals/presentation/providers/goal_form_provider.dart';
 import 'package:daily_goals/presentation/theme.dart';
 import 'package:daily_goals/presentation/widgets/form/date_time_picker.dart';
 import 'package:daily_goals/presentation/widgets/form/exigency_chips.dart';
 
-import 'package:daily_goals/domain/models/goal_model.dart';
-import 'package:daily_goals/domain/models/task_model.dart';
 import 'package:daily_goals/presentation/providers/main_providert.dart';
 
 class TaskFormScreen extends StatelessWidget {
   void onSubmit(BuildContext context) async {
-    ///TODO IMPROVE THIS CODE
     final formProvider = context.read<GoalFormProvider>();
     if (formProvider.errorName != null) return;
     final formModel = formProvider.formState;
-    final task = TaskModel.fromForm(formModel);
-    await context.read<MainProvider>().createTask(task);
-    final goal = GoalModel.fromForm(formModel, task.id);
-    await context.read<MainProvider>().createGoal(goal);
+    await context.read<MainProvider>().createTaskGoal(formModel);
     Navigator.pop(context);
   }
 
