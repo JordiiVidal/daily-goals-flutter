@@ -1,4 +1,4 @@
-package com.example.daily_goals
+package com.vidiic.daily_goals
 
 import io.flutter.embedding.android.FlutterActivity
 

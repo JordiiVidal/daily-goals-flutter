@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:provider/provider.dart';
 
 import 'package:daily_goals/presentation/providers/goal_form_provider.dart';
 import 'package:daily_goals/presentation/helpers.dart';
 
+import '../../status_navigation_bar.dart';
 import '../../widgets/form/item_picker.dart';
 
 import '../bottom_sheet_calendar.dart';
@@ -14,7 +14,7 @@ class DateTimePicker extends StatelessWidget {
   void _showModalBottomSheetCalendar(BuildContext context) {
     FocusScope.of(context).unfocus();
     final readFormProvider = context.read<GoalFormProvider>();
-    showBarModalBottomSheet(
+    showModalBottomSheet(
       context: context,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
@@ -24,23 +24,26 @@ class DateTimePicker extends StatelessWidget {
       ),
       builder: (context) => BottomSheetCalendar(
         closeOnClick: true,
-        initDateTime: readFormProvider.dateForm,
+        focusedDay: readFormProvider.dateForm,
         onDaySelected: readFormProvider.setDate,
       ),
-    );
+    ).then((_) => changeColors());
   }
 
   void _showModalBottomSheetTime(BuildContext context) {
     FocusScope.of(context).unfocus();
     final readFormProvider = context.read<GoalFormProvider>();
+    changeColors(statusBar: Colors.transparent, navigationBar: Colors.white);
     DatePicker.showTimePicker(
       context,
+      theme:
+          DatePickerTheme(titleHeight: 0, itemStyle: TextStyle(fontSize: 23)),
       showTitleActions: true,
       showSecondsColumn: false,
       onChanged: (date) => readFormProvider.setTime(date),
       onConfirm: (date) => readFormProvider.setTime(date),
       currentTime: readFormProvider.timeForm,
-    );
+    ).then((_) => changeColors());
   }
 
   @override

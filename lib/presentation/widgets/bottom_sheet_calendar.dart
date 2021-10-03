@@ -1,35 +1,15 @@
-import 'package:daily_goals/presentation/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 
-class BottomSheetCalendar extends StatefulWidget {
+class BottomSheetCalendar extends StatelessWidget {
   final bool closeOnClick;
-  final DateTime initDateTime;
+  final DateTime focusedDay;
   final Function onDaySelected;
   const BottomSheetCalendar({
-    @required this.initDateTime,
+    @required this.focusedDay,
     @required this.onDaySelected,
     closeOnClick,
   }) : this.closeOnClick = closeOnClick ?? false;
-
-  @override
-  _BottomSheetCalendarState createState() => _BottomSheetCalendarState();
-}
-
-class _BottomSheetCalendarState extends State<BottomSheetCalendar> {
-  var _calendarController;
-
-  @override
-  void initState() {
-    super.initState();
-    _calendarController = CalendarController();
-  }
-
-  @override
-  void dispose() {
-    _calendarController.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,36 +17,47 @@ class _BottomSheetCalendarState extends State<BottomSheetCalendar> {
       child: Container(
         padding: const EdgeInsets.all(20.0),
         child: TableCalendar(
-          calendarController: _calendarController,
+          firstDay: DateTime.utc(2010, 1, 1),
+          focusedDay: focusedDay,
+          lastDay: DateTime.now().add(Duration(days: 365)),
+          currentDay: DateTime.now(),
           startingDayOfWeek: StartingDayOfWeek.monday,
+          selectedDayPredicate: (day) {
+            return isSameDay(focusedDay, day);
+          },
+          onDaySelected: (da, l) {
+            onDaySelected(da);
+            if (closeOnClick) Navigator.pop(context);
+          },
           calendarStyle: CalendarStyle(
-            highlightToday: true,
-            contentPadding: const EdgeInsets.all(5),
-            selectedColor: AppColors.accentColor,
-            cellMargin: const EdgeInsets.all(5),
-            todayColor: Colors.grey[200],
-            todayStyle: TextStyle(
-              color: AppColors.primaryColor,
-              fontSize: 18,
+            isTodayHighlighted: true,
+            defaultTextStyle: TextStyle(
+              color: Colors.black87,
+              fontSize: 17,
             ),
-            weekdayStyle: TextStyle(
-              color: AppColors.primaryColor,
-              fontSize: 18,
+            weekendTextStyle: TextStyle(
+              color: Colors.black38,
+              fontSize: 17,
+            ),
+            outsideTextStyle: TextStyle(
+              color: Colors.black38,
+              fontSize: 17,
             ),
           ),
-          initialSelectedDay: widget.initDateTime,
-          onDaySelected: (da, l, ls) {
-            widget.onDaySelected(da);
-            if (widget.closeOnClick) Navigator.pop(context);
-          },
           availableCalendarFormats: {CalendarFormat.month: 'Month'},
           headerStyle: HeaderStyle(
-            centerHeaderTitle: true,
+            titleCentered: true,
             titleTextStyle: TextStyle(
               color: Colors.black,
-              fontSize: 25,
+              fontSize: 23,
               fontWeight: FontWeight.bold,
             ),
+            leftChevronPadding: const EdgeInsets.all(0.0),
+            rightChevronPadding: const EdgeInsets.all(0.0),
+            leftChevronMargin: const EdgeInsets.all(0.0),
+            rightChevronMargin: const EdgeInsets.all(0.0),
+            headerPadding: const EdgeInsets.only(bottom: 25.0),
+            headerMargin: const EdgeInsets.all(0.0),
           ),
         ),
       ),

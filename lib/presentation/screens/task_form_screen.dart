@@ -60,7 +60,7 @@ class TaskFormScreen extends StatelessWidget {
           ),
           floatingActionButton: FloatingActionButton.extended(
             onPressed: () => onSubmit(context),
-            heroTag: 'btn-frm',
+            heroTag: 'fab',
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
             ),

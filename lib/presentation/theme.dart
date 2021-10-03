@@ -22,7 +22,6 @@ class AppPadding {
 final darkTheme = ThemeData(
   scaffoldBackgroundColor: AppColors.secondaryColor,
   primaryColor: AppColors.primaryColor,
-  buttonColor: AppColors.primaryColor,
   textTheme: GoogleFonts.montserratTextTheme().apply(
     bodyColor: AppColors.primaryTextColor,
   ),

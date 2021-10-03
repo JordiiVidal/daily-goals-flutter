@@ -1,3 +1,4 @@
+import 'package:daily_goals/presentation/status_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/services.dart';
@@ -14,16 +15,11 @@ import 'presentation/screens/task_form_screen.dart';
 import 'presentation/screens/home_screen.dart';
 import 'presentation/theme.dart';
 
-void main() async {
+void main() {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
-  SystemChrome.setSystemUIOverlayStyle(
-    SystemUiOverlayStyle(
-      statusBarColor: AppColors.secondaryColor,
-      systemNavigationBarColor: AppColors.secondaryColor,
-    ),
-  );
+  changeColors();
   runApp(MyApp());
 }
 
